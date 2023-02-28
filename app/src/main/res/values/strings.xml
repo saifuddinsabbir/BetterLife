@@ -1,0 +1,65 @@
+<resources>
+    <string name="app_name">Better Life</string>
+
+    <string name="share_value">This app is recommended for being very high efficient healthcare in the current period. It is also capable detecting Leukemia Disease and Brain Tumor with quite high probability. Please download and install the app. \nLink: https://play.google.com/store/apps/details?id=com.betterlife.</string>
+
+    <string name="navigation_drawer_open">Open Navigation Drawer</string>
+
+    <string name="navigation_drawer_close">Close Navigation Drawer</string>
+
+    <!--On Boarding Screen-->
+    <string name="first_heading">Detect Leukemia diseases and Brain Tumor</string>
+    <string name="second_heading">Get necessary treatment</string>
+    <string name="third_heading">Book an appointment with the right doctor</string>
+    <string name="fourth_heading">Get medicines delivered to your doorstep</string>
+    <string name="fifth_heading">Keep your Medical history handy</string>
+
+    <string name="first_desc">Detect Leukemia diseases and brain tumor is they exist or not sadknddsf af dsfdf dsfdsf</string>
+    <string name="second_desc">sfasdf gfsdg dg grtg dh dhgf j ghjhg j jj j gj gj gy ujyg jyj</string>
+    <string name="third_desc">dfggffd hdh ty hth t h yth ft h fdfdadafd ada d wd w daw d wad aw d</string>
+    <string name="fourth_desc"> cdv f gh uuyi yg  das d a ghgki l ho;  lj d ffdsa f s f DS </string>
+    <string name="fifth_desc">sad fg fj  uk l k  hgfs das d sa fsaefrg r th y hyf fc b xf d h df hfgjfgk hjgh jm hmn h nfgb gb db fb f</string>
+
+
+    <string name="about_brain_tumor1_desc"> A brain tumor is a mass or growth of abnormal cells in your brain.\n\nMany different types of brain\ntumors exist. Some brain\ntumors are noncancerous\n(benign), and some brain\ntumors are cancerous\n(malignant). Brain tumors\ncan begin in your brain \n(primarybrain tumors), or\ncancer can begin in other\nparts of your body and \nspread to your brain as \nsecondary (metastatic) brain tumors.
+    \nHow quickly a brain tumor grows can vary greatly. The growth rate as well as the location of a brain tumor determines how it will affect the function of your nervous system.\n\nBrain tumor treatment options depend on the type of brain tumor you have, as well as its size and location.</string>
+
+    <string name="brainTumorTreatmentText1">Treatment for a brain tumor depends on the type, size and location of the tumor, as well as your overall health and your preferences.</string>
+
+    <string name="brainTumorTreatmentText2">If the brain tumor is located in a place that makes it accessible for an operation, your surgeon will work to remove as much of the brain tumor as can be done safely.
+        \nSome brain tumors are small and easy to separate from surrounding brain tissue, which makes complete surgical removal possible. Other brain tumors can\'t be separated from surrounding tissue or they\'re located near sensitive areas in your brain, making surgery risky. In these situations, your doctor removes as much of the tumor as is safe.
+        \nEven removing a portion of the brain tumor may help reduce your signs and symptoms.
+        \nSurgery to remove a brain tumor carries risks, such as infection and bleeding. Other risks may depend on the part of your brain where your tumor is located. For instance, surgery on a tumor near nerves that connect to your eyes may carry a risk of vision loss.</string>
+
+    <string name="brainTumorTreatmentText3">Radiation therapy uses high-energy beams, such as X-rays or protons, to kill tumor cells. Radiation therapy can come from a machine outside your body (external beam radiation), or, very rarely, radiation can be placed inside your body close to your brain tumor (brachytherapy).
+        \nExternal beam radiation can focus just on the area of your brain where the tumor is located, or it can be applied to your entire brain (whole-brain radiation). Whole-brain radiation is most often used to treat cancer that spreads to the brain from some other part of the body and forms multiple tumors in the brain.
+        \nTraditionally, radiation therapy uses X-rays, but a newer form of this treatment uses proton beams. Proton beam therapy allows doctors to control the radiation more precisely. It may be helpful for treating brain tumors in children and tumors that are very close to sensitive areas of the brain. Proton beam therapy isn\'t as widely available as traditional X-ray radiation therapy.
+        \nSide effects of radiation therapy depend on the type and dose of radiation you receive. Common side effects during or immediately following radiation include fatigue, headaches, memory loss, scalp irritation and hair loss.</string>
+
+    <string name="brainTumorTreatmentText4">Stereotactic radiosurgery is not a form of surgery in the traditional sense. Instead, radiosurgery uses multiple beams of radiation to give a highly focused form of radiation treatment to kill the tumor cells in a very small area. Each beam of radiation isn\'t particularly powerful, but the point where all the beams meet — at the brain tumor — receives a very large dose of radiation to kill the tumor cells.
+        \nThere are different types of technology used in radiosurgery to deliver radiation to treat brain tumors, such as a Gamma Knife or linear accelerator.
+        \nRadiosurgery is typically done in one treatment, and usually you can go home the same day.</string>
+
+    <string name="brainTumorTreatmentText5">Chemotherapy uses drugs to kill tumor cells. Chemotherapy drugs can be taken orally in pill form or injected into a vein (intravenously). The chemotherapy drug used most often to treat brain tumors is temozolomide (Temodar). Other chemotherapy drugs may be recommended depending on the type of cancer.
+        \nChemotherapy side effects depend on the type and dose of drugs you receive. Chemotherapy can cause nausea, vomiting and hair loss.
+        \nTests of your brain tumor cells can determine whether chemotherapy will be helpful for you. The type of brain tumor you have also is helpful in determining whether to recommend chemotherapy.</string>
+
+    <string name="brainTumorTreatmentText6">Targeted drug treatments focus on specific abnormalities present within cancer cells. By blocking these abnormalities, targeted drug treatments can cause cancer cells to die.
+       \nTargeted therapy drugs are available for certain types of brain tumors, and many more are being studied in clinical trials. Your doctor may have your tumor cells tested to see whether targeted therapy is likely to be an effective treatment for your brain tumor.</string>
+
+    <string name="brainTumorTreatmentText7">
+        Because brain tumors can develop in parts of the brain that control motor skills, speech, vision and thinking, rehabilitation may be a necessary part of recovery. Depending on your needs, your doctor may refer you to:\n\n
+        <ul>
+            <li>Physical therapy to help you regain lost motor skills or muscle strength.</li>\n
+            <li>Occupational therapy to help you get back to your normal daily activities, including work, after a brain tumor or other illness.</li>\n
+            <li>Speech therapy with specialists in speech difficulties (speech pathologists) to help if you have difficulty speaking.</li>\n
+            <li>Tutoring for school-age children to help kids cope with changes in their memory and thinking after a brain tumor.</li>\n
+        </ul>
+    </string>
+
+    <string name="feedbackCardDescText">A health app is categorized by the FDA as mobile software that diagnoses, tracks, or treats disease. A wellness app is a mobile software that enhances or tracks the overall health of the user. These apps can address mental, physical, social, environmental, or even spiritual factors that relate to overall health.
+    </string>
+
+    <string name="feedbackPostCommentText">This apps is very useful to me. I am vey happy to this. But think, if many Prescription saved option is have so that very useful to us. Thanks</string>
+
+</resources>

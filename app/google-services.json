@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "355450974747",
+    "project_id": "dashbosrd-8473c",
+    "storage_bucket": "dashbosrd-8473c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:355450974747:android:29f4c8a00bf32b508ffebe",
+        "android_client_info": {
+          "package_name": "com.example.dashbosrd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "355450974747-63t5ogoalgdqo5o70a2pm4893iih29s9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBC2lTPv5MV-16_WjzOLuqXuDpC_xC_2o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "355450974747-63t5ogoalgdqo5o70a2pm4893iih29s9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

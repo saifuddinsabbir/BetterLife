@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="#1B03A9F4"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:background="@drawable/feedback_card_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="15dp"
+        android:padding="20dp"
+        android:elevation="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.blogspot.atifsoftwares.circularimageview.CircularImageView
+            android:id="@+id/feedbackCardUserImage"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/profile3"
+            app:c_background_color="@color/white"
+            app:c_border="true"
+            app:c_border_color="#2E4B61"
+            app:c_border_width="1.5dp"
+            app:c_shadow_color="#000"
+            app:c_shadow_gravity="end"
+            app:c_shadow_radius="5.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/feedbackCardFullName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:elevation="10dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/feedbackCardUserImage"
+            app:layout_constraintTop_toTopOf="parent" />
+<!--        android:text="Saifuddin Sabbir"-->
+
+        <TextView
+            android:id="@+id/feedbackCardUserNameId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:elevation="10dp"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/feedbackCardUserImage"
+            app:layout_constraintTop_toBottomOf="@+id/feedbackCardFullName" />
+<!--        android:text="\@saif"-->
+
+        <TextView
+            android:id="@+id/feedbackCardTimestampId"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:elevation="10dp"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/feedbackCardPosImageId" />
+<!--        android:text="14/01/23"-->
+
+        <RatingBar
+            android:id="@+id/feedbackCardRatingBarId"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:elevation="10dp"
+            android:numStars="5"
+            android:progressTint="#3EC2FD"
+            android:stepSize="0.5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/feedbackCardExperianceId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/feedbackCardRatingBarId" />
+<!--        android:text="Experience: Good"-->
+
+        <ImageView
+            android:id="@+id/feedbackCardPosImageId"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/post_image_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.525"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/feedbackCardDescriptionId" />
+
+        <TextView
+            android:id="@+id/feedbackCardDescriptionId"
+            android:layout_width="0dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/feedbackCardUserImage" />
+<!--        android:text="@string/feedbackCardDescText"-->
+
+
+        <TextView
+            android:id="@+id/feedbackPostLikeCountId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/feedbackCardTimestampId" />
+<!--        android:text="100 likes"-->
+
+        <TextView
+            android:id="@+id/feedbackPostCommentCountId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/feedbackCardTimestampId" />
+<!--        android:text="20 comments"-->
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/feedback_card_bottom_background"
+            android:weightSum="3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/feedbackPostLikeCountId">
+
+            <LinearLayout
+                android:id="@+id/feedbackCardLikeButtonId"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/like_button_background"
+                android:elevation="3dp"
+                android:gravity="center"
+                android:stateListAnimator="@null">
+
+                <ImageView
+                    android:id="@+id/feedbackCardLikeButtonImageId"
+                    android:layout_width="25dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/like3"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/feedbackCardCommentButtonId"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/like_button_background"
+                android:elevation="3dp"
+                android:gravity="center"
+                android:stateListAnimator="@null">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/message1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/feedbackCardShareButtonId"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/like_button_background"
+                android:elevation="3dp"
+                android:gravity="center"
+                android:stateListAnimator="@null">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/share17"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="15dp"/>
+
+
+
+
+</LinearLayout>
+
+
+
+
