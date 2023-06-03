@@ -47,7 +47,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
-                    android:background="#3C03A9F4"
+                    android:background="#C374D4FF"
                     android:padding="20dp">
 
                     <com.blogspot.atifsoftwares.circularimageview.CircularImageView

@@ -193,7 +193,7 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
     }
 
     private void checkCounts() {
-        DatabaseReference referenceHistory = FirebaseDatabase.getInstance().getReference("history");
+        DatabaseReference referenceHistory = FirebaseDatabase.getInstance().getReference("history").child(userNameGlobal);
         referenceHistory.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -201,10 +201,8 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
                 for(DataSnapshot historySnap : snapshot.getChildren()) {
                     String uid = historySnap.child("userId").getValue(String.class);
 
-                    if(uid.equals(userNameGlobal)) {
-                        count++;
+                    count++;
 
-                    }
                 }
                 BrainTumorCheckCount.setText(count+"");
             }
@@ -437,7 +435,7 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
                 @Override
                 public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
                     i1 += 1;
-                    String s = "" + day + "/" + i1 + "/" + i + "";
+                    String s = "" + i2 + "/" + i1 + "/" + i + "";
                     profileDateOfBirthInputLayer.getEditText().setText(s);
                 }
             };

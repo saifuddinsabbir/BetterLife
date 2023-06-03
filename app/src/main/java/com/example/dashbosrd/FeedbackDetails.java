@@ -52,7 +52,7 @@ public class FeedbackDetails extends AppCompatActivity {
 
     DatabaseReference referenceFeedbacks, referenceUsers, referenceComments, referenceCommentsAdd, referenceLikes,
             referenceLikesFetch;
-    Query checkFeedbackPost, checkPostUser, checkCommentUser;
+    Query checkMainUser, checkFeedbackPost, checkPostUser, checkCommentUser;
     String postKeyGlobal, userNameGlobal;
 
     List<Like> listLike;
@@ -96,6 +96,21 @@ public class FeedbackDetails extends AppCompatActivity {
         feedbackCommentUserImage = findViewById(R.id.feedbackCommentUserImageId);
         feedbackCommentEditText = findViewById(R.id.feedbackCommentEditTextId);
         feedbackCommentAddButton = findViewById(R.id.feedbackCommentAddButtonId);
+
+        referenceUsers = FirebaseDatabase.getInstance().getReference("users");
+        checkCommentUser = referenceUsers.orderByChild("userName").equalTo(userNameGlobal);
+        checkCommentUser.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                commentFullName = snapshot.child(userNameGlobal).child("fullName").getValue(String.class);
+                feedbackCommentEditText.setHint("Comment as " + commentFullName);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         recycleViewComment = findViewById(R.id.recycleViewCommentId);
 

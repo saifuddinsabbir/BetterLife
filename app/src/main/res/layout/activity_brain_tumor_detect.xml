@@ -35,12 +35,11 @@
             android:id="@+id/postHeadingId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/brandon_grotesque_black"
             android:gravity="center"
-            android:text="Detect Brain Tumor"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:textStyle="bold"
+            android:textSize="22sp"
+            android:fontFamily="@font/balo_bhai"
+            android:text="PREDICTION"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -103,44 +102,55 @@
                     app:layout_constraintTop_toBottomOf="@+id/lottieAnimationId" />
                 <!--        android:src="@drawable/choose9">-->
 
-                <Button
-                    android:id="@+id/cameraButtonId"
-                    android:layout_width="140dp"
-                    android:layout_height="60dp"
-                    android:layout_marginStart="65dp"
+                <LinearLayout
+                    android:id="@+id/buttonLinearLayoutId"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:backgroundTint="#647C90"
-                    android:drawableLeft="@drawable/white_camera_vector"
-                    android:stateListAnimator="@null"
-                    android:text="Take Picture"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/pickImageId" />
-
-                <Button
-                    android:id="@+id/galleryButtonId"
-                    android:layout_width="140dp"
-                    android:layout_height="60dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="65dp"
-                    android:backgroundTint="#647C90"
-                    android:drawableLeft="@drawable/white_image_vector"
-                    android:stateListAnimator="@null"
-                    android:text="Choose Image"
+                    android:gravity="center"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/pickImageId" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/pickImageId">
+
+                    <Button
+                        android:id="@+id/cameraButtonId"
+                        android:layout_width="140dp"
+                        android:layout_height="60dp"
+                        android:backgroundTint="#647C90"
+                        android:layout_marginRight="10dp"
+                        android:drawableLeft="@drawable/white_camera_vector"
+                        android:stateListAnimator="@null"
+                        android:text="Take Picture"
+                        android:fontFamily="@font/balo_bhai"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/pickImageId" />
+
+                    <Button
+                        android:id="@+id/galleryButtonId"
+                        android:layout_width="140dp"
+                        android:layout_height="60dp"
+                        android:backgroundTint="#647C90"
+                        android:drawableLeft="@drawable/white_image_vector"
+                        android:stateListAnimator="@null"
+                        android:text="Choose Image"
+                        android:fontFamily="@font/balo_bhai"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/pickImageId" />
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/linearLayout8"
                     android:layout_width="280dp"
-                    android:layout_height="150dp"
-                    android:layout_marginTop="70dp"
+                    android:layout_height="170dp"
+                    android:layout_marginTop="50dp"
                     android:background="@drawable/result_background"
                     android:elevation="2dp"
                     android:gravity="center_horizontal"
                     android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/galleryButtonId">
+                    app:layout_constraintTop_toBottomOf="@+id/buttonLinearLayoutId">
 
                     <TextView
                         android:id="@+id/textView"
@@ -148,6 +158,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:text="Result"
+                        android:fontFamily="@font/balo_bhai"
                         android:textSize="25sp" />
 
                     <TextView

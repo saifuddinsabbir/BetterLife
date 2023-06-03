@@ -52,7 +52,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="25dp"
                         android:layout_marginEnd="10dp"
-                        android:text="\@userName"
                         app:layout_constraintEnd_toStartOf="@+id/userProfileImage"
                         app:layout_constraintTop_toTopOf="parent" />
 

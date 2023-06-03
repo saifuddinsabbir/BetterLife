@@ -104,7 +104,7 @@ public class MedicalRecords extends AppCompatActivity {
 
     private void loadData() {
         swipeRefreshLayout.setRefreshing(true);
-        referenceHistory = FirebaseDatabase.getInstance().getReference("history");
+        referenceHistory = FirebaseDatabase.getInstance().getReference("history").child(userNameGlobal);
 
         Query query;
         if (key == null) {
@@ -120,23 +120,31 @@ public class MedicalRecords extends AppCompatActivity {
                 for (DataSnapshot historySnap : snapshot.getChildren()) {
                     String uid = historySnap.child("userId").getValue(String.class);
 
+                    Toast.makeText(MedicalRecords.this, uid + " " + userNameGlobal, Toast.LENGTH_SHORT).show();
+
+                    key = historySnap.getKey();
+
                     if (uid.equals(userNameGlobal)) {
                         History history = historySnap.getValue(History.class);
                         historyList.add(history);
                         historyList2.add(history);
-
-                        key = historySnap.getKey();
                     }
                 }
 
                 if (historyList2.isEmpty()) {
                     nothingLottieAnimation.setVisibility(View.VISIBLE);
                 }
+
                 swipeRefreshLayout.setRefreshing(false);
-                historyAdapter.setItems((ArrayList<History>) historyList);
-                historyAdapter.notifyDataSetChanged();
-                isLoading = false;
-                searchingLottieAnimation.setVisibility(View.INVISIBLE);
+
+                if(!historyList.isEmpty()) {
+                    historyAdapter.setItems((ArrayList<History>) historyList);
+                    historyAdapter.notifyDataSetChanged();
+                    isLoading = false;
+                    searchingLottieAnimation.setVisibility(View.INVISIBLE);
+                } else {
+                    swipeRefreshLayout.setRefreshing(true);
+                }
             }
 
             @Override

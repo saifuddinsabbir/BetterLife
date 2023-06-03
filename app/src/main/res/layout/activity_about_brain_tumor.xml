@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="#F3F5FF"
     android:orientation="vertical"
     tools:context=".AboutBrainTumor">
 
@@ -35,17 +35,16 @@
             android:id="@+id/postHeadingId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/brandon_grotesque_black"
             android:gravity="center"
-            android:text="Brain TUmor"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:textStyle="bold"
+            android:textSize="22sp"
+            android:fontFamily="@font/balo_bhai"
+            android:textColor="@color/black"
+            android:text="BRAIN TUMOR"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
+<!--        android:fontFamily="@font/brandon_grotesque_black"-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
@@ -62,20 +61,21 @@
                 android:id="@+id/textView4"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:fontFamily="sans-serif"
                 android:text="What is a brain tumor? A Mayo Clinic expert explains"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.6"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/lottieAnimationId" />
 
             <TextView
                 android:id="@+id/textView6"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="5dp"
                 android:fontFamily="sans-serif"
                 android:text="Learn more about brain tumors from neuro- oncologist Alyx Porter, M.D."
                 android:textSize="16sp"
@@ -84,44 +84,45 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/lottieAnimationId"
-                android:layout_width="250dp"
-                android:layout_height="250dp"
-                android:elevation="5dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView6"
-                app:lottie_autoPlay="true"
-                app:lottie_loop="true"
-                app:lottie_rawRes="@raw/female_doctor" />
-
 
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="150dp"
                 android:layout_height="200dp"
-                android:layout_marginTop="50dp"
-                android:src="@drawable/brain_tumor"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/brain_tumoro"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lottieAnimationId" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottieAnimationId"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:elevation="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/female_doctor" />
 
             <TextView
                 android:id="@+id/textView5"
                 android:layout_width="match_parent"
-                android:layout_height="432dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:text="@string/about_brain_tumor1_desc"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/imageView"
-                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lottieAnimationId" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
             <LinearLayout
                 android:id="@+id/linearLayout7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="50dp"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

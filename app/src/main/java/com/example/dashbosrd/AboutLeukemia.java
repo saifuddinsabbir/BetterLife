@@ -46,7 +46,7 @@ public class AboutLeukemia extends AppCompatActivity {
             public void onItemSelected(int i) {
                 switch (i) {
                     case R.id.aboutId:
-                        //startActivity(new Intent(AboutLeukemia.this, AboutLeukemia.class));
+                        //startActivity(new Intent(AboutBrainTumor.this, AboutBrainTumor.class));
                         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                         break;
                     case R.id.detectId:
@@ -60,6 +60,7 @@ public class AboutLeukemia extends AppCompatActivity {
                 }
             }
         });
+
         //----------------------------------- Bottom Navigation (end)--------------------------------------
     }
 

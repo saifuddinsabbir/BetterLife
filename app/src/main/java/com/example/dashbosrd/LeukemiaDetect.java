@@ -36,6 +36,8 @@ public class LeukemiaDetect extends AppCompatActivity {
         cameraButton = findViewById(R.id.cameraButtonLeukemiaId);
         galleryButton = findViewById(R.id.galleryButtonLeukemiaId);
 
+
+
         //take photos with CAMERA
         activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
@@ -77,14 +79,11 @@ public class LeukemiaDetect extends AppCompatActivity {
             launcher.launch(intent);
         });
 
-
+        chipNavigationBarLeukemiaDetect();
 
     }
 
-
-
     public void chipNavigationBarLeukemiaDetect() {
-        //----------------------------------- Bottom Navigation (start)--------------------------------------
         chipNavigationBar = findViewById(R.id.bottomNavbarLeukemiaDetectId);
         chipNavigationBar.setItemSelected(R.id.detectId, true);
         chipNavigationBar.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
@@ -96,7 +95,7 @@ public class LeukemiaDetect extends AppCompatActivity {
                         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                         break;
                     case R.id.detectId:
-                        //startActivity(new Intent(LeukemiaDetect.this, LeukemiaDetect.class));
+                        //startActivity(new Intent(BrainTumorDetect.this, BrainTumorDetect.class));
                         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                         break;
                     case R.id.treatmentId:
@@ -106,8 +105,34 @@ public class LeukemiaDetect extends AppCompatActivity {
                 }
             }
         });
-        //----------------------------------- Bottom Navigation (end)--------------------------------------
     }
+
+//
+//    public void chipNavigationBarLeukemiaDetect() {
+//        //----------------------------------- Bottom Navigation (start)--------------------------------------
+//        chipNavigationBar = findViewById(R.id.bottomNavbarLeukemiaDetectId);
+//        chipNavigationBar.setItemSelected(R.id.detectId, true);
+//        chipNavigationBar.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(int i) {
+//                switch (i) {
+//                    case R.id.aboutId:
+//                        startActivity(new Intent(LeukemiaDetect.this, AboutLeukemia.class));
+//                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+//                        break;
+//                    case R.id.detectId:
+//                        //startActivity(new Intent(LeukemiaDetect.this, LeukemiaDetect.class));
+//                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+//                        break;
+//                    case R.id.treatmentId:
+//                        startActivity(new Intent(LeukemiaDetect.this, LeukemiaDetect.class));
+//                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+//                        break;
+//                }
+//            }
+//        });
+//        //----------------------------------- Bottom Navigation (end)--------------------------------------
+//    }
 
     @Override
     public void onBackPressed() {

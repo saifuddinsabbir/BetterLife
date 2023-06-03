@@ -336,7 +336,7 @@ public class BrainTumorDetect extends AppCompatActivity {
     private void storeHistoryOnDatabase() {
         history = new History("Brain Tumor Test", "", resultClass, resultProbability, userNameGlobal);
 
-        referenceHistory = FirebaseDatabase.getInstance().getReference("history").push();
+        referenceHistory = FirebaseDatabase.getInstance().getReference("history").child(userNameGlobal).push();
         String key = referenceHistory.getKey();
         history.setHistoryKey(key);
 

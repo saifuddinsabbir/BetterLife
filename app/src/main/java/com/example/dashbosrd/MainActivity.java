@@ -72,6 +72,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         userNameTextView = findViewById(R.id.userNameId);
         userProfileImage = findViewById(R.id.userProfileImage);
 
+        userProfileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, UserProfile.class));
+            }
+        });
+
+        userNameTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, UserProfile.class));
+            }
+        });
+
         userNameTextView.setText("@" + userDetails.get(SessionManager.KEY_USERNAME));
         if(userDetails.get(SessionManager.KEY_DP) != null) {
             Picasso.get().load(userDetails.get(SessionManager.KEY_DP)).into(userProfileImage);
