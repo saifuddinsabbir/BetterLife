@@ -1,5 +1,7 @@
 package com.example.dashbosrd;
 
+import static org.checkerframework.checker.units.UnitsTools.min;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -33,19 +35,23 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Consultation extends AppCompatActivity {
 
     Dialog popupRegister;
-    AutoCompleteTextView formDistrictAutoCom, formUpazilaAutoCom;
+    AutoCompleteTextView formDistrictAutoCom, formUpazilaAutoCom, formScheduleAutoCom;
 
     RadioGroup genderRadioGroup = null;
     RadioButton selectedRadioButton, maleRadioButton = null, femaleRadioButton = null;
 
     ImageView formCancelButton;
-    TextInputLayout formFullNameInputLayout, formUserNameInputLayout, fromPhoneNoInputLayout, formGenderInputLayout, formDateOfBirthInputLayer, formBloodGroupInputLayout;
-    TextInputEditText dateOfBirthEditText;
+    TextInputLayout formFullNameInputLayout, formUserNameInputLayout, fromPhoneNoInputLayout, formGenderInputLayout,
+            formDateOfBirthInputLayer, formBloodGroupInputLayout, formAppointmentNoInputLayout;
+    TextInputEditText dateOfBirthEditText, formAppointmentNoET;
     DatePickerDialog.OnDateSetListener setListener;
     Button popupSubmitButton;
 
@@ -57,14 +63,14 @@ public class Consultation extends AppCompatActivity {
 
     Spinner spinner, spinner2;
     DatabaseReference referenceLocation;
-    ArrayList<String> spinnerList, spinnerList2;
-    ArrayAdapter<String> adapter, adapter2;
+    ArrayList<String> spinnerList, spinnerList2, spinnerList3;
+    ArrayAdapter<String> adapter, adapter2, adapter3;
 
     String userNameGlobal;
     SessionManager sessionManager;
     HashMap<String, String> userDetails;
 
-    String district;
+    String speciality, doctor;
     TextView resultFromSpinner1;
 
     @SuppressLint("MissingInflatedId")
@@ -112,11 +118,14 @@ public class Consultation extends AppCompatActivity {
         formUserNameInputLayout = popupRegister.findViewById(R.id.formUserNameInputLayoutId);
         formFullNameInputLayout = popupRegister.findViewById(R.id.formFullNameInputLayoutId);
         fromPhoneNoInputLayout = popupRegister.findViewById(R.id.fromPhoneNoInputLayoutId);
-        formGenderInputLayout = popupRegister.findViewById(R.id.formGenderInputLayoutId);
+//        formGenderInputLayout = popupRegister.findViewById(R.id.formGenderInputLayoutId);
         formDateOfBirthInputLayer = popupRegister.findViewById(R.id.formDateOfBirthInputLayerId);
-        formBloodGroupInputLayout = popupRegister.findViewById(R.id.formBloodGroupInputLayoutId);
+//        formBloodGroupInputLayout = popupRegister.findViewById(R.id.formBloodGroupInputLayoutId);
         formDistrictAutoCom = popupRegister.findViewById(R.id.formDistrictAutoComId);
         formUpazilaAutoCom = popupRegister.findViewById(R.id.formUpazilaAutoComId);
+        formScheduleAutoCom = popupRegister.findViewById(R.id.formScheduleAutoComId);
+        formAppointmentNoInputLayout = popupRegister.findViewById(R.id.formAppointmentNoInputLayoutId);
+        formAppointmentNoET= popupRegister.findViewById(R.id.formAppointmentNoETID);
         popupSubmitButton = popupRegister.findViewById(R.id.popupSubmitButtonId);
 
         noInternetLottieAnimation.setVisibility(View.INVISIBLE);
@@ -127,11 +136,13 @@ public class Consultation extends AppCompatActivity {
                 formUserNameInputLayout.getEditText().setText("");
                 formFullNameInputLayout.getEditText().setText("");
                 fromPhoneNoInputLayout.getEditText().setText("");
-                formGenderInputLayout.getEditText().setText("");
+//                formGenderInputLayout.getEditText().setText("");
                 formDateOfBirthInputLayer.getEditText().setText("");
-                formBloodGroupInputLayout.getEditText().setText("");
+//                formBloodGroupInputLayout.getEditText().setText("");
                 formDistrictAutoCom.setText("");
                 formUpazilaAutoCom.setText("");
+                formScheduleAutoCom.setText("");
+                formAppointmentNoET.setText("");
                 popupRegister.dismiss();
             }
         });
@@ -144,6 +155,19 @@ public class Consultation extends AppCompatActivity {
                     String command = "ping -c 1 google.com";
                     if(Runtime.getRuntime().exec(command).waitFor() != 0) {
                         noInternetLottieAnimation.setVisibility(View.VISIBLE);
+                    } else {
+                        Toast.makeText(Consultation.this, "Appointment registered successfully", Toast.LENGTH_SHORT).show();
+                        formUserNameInputLayout.getEditText().setText("");
+                        formFullNameInputLayout.getEditText().setText("");
+                        fromPhoneNoInputLayout.getEditText().setText("");
+//                formGenderInputLayout.getEditText().setText("");
+                        formDateOfBirthInputLayer.getEditText().setText("");
+//                formBloodGroupInputLayout.getEditText().setText("");
+                        formDistrictAutoCom.setText("");
+                        formUpazilaAutoCom.setText("");
+                        formScheduleAutoCom.setText("");
+                        formAppointmentNoET.setText("");
+                        popupRegister.dismiss();
                     }
                 } catch (Exception e) {
                     Toast.makeText(Consultation.this, "Please connect to INTERNET", Toast.LENGTH_SHORT).show();
@@ -177,12 +201,16 @@ public class Consultation extends AppCompatActivity {
                             addressFromDB = snapshot.child(typedUserName).child("address").getValue(String.class);
 
                             formFullNameInputLayout.getEditText().setText(fullNameFromDB);
-                            formDateOfBirthInputLayer.getEditText().setText(dateOfBirthFromDB);
-                            formBloodGroupInputLayout.getEditText().setText(bloodGroupFromDB);
+//                            formBloodGroupInputLayout.getEditText().setText(bloodGroupFromDB);
                             fromPhoneNoInputLayout.getEditText().setText(phoneNoFromDB);
-                            formGenderInputLayout.getEditText().setText(genderFromDB);
+//                            formGenderInputLayout.getEditText().setText(genderFromDB);
 
+                            String substr=dateOfBirthFromDB.substring(dateOfBirthFromDB.length()-4, dateOfBirthFromDB.length());
+                            Calendar cal = Calendar.getInstance();
+                            int year = cal.get(Calendar.YEAR);
 
+                            formDateOfBirthInputLayer.getEditText().setText(String.valueOf(year - Integer.parseInt(substr) + 1));
+                            //Toast.makeText(Consultation.this, String.valueOf(year - Integer.parseInt(substr) + 1) , Toast.LENGTH_SHORT).show();
                         }  else {
                         }
                     }
@@ -200,20 +228,24 @@ public class Consultation extends AppCompatActivity {
 
         spinnerList = new ArrayList<>();
         spinnerList2 = new ArrayList<>();
+        spinnerList3 = new ArrayList<>();
 
         adapter = new ArrayAdapter<String>(Consultation.this, R.layout.drop_down_item, spinnerList);
         adapter2 = new ArrayAdapter<String>(Consultation.this, R.layout.drop_down_item, spinnerList2);
+        adapter3 = new ArrayAdapter<String>(Consultation.this, R.layout.drop_down_item, spinnerList3);
 
         formDistrictAutoCom.setAdapter(adapter);
         formUpazilaAutoCom.setAdapter(adapter2);
+        formScheduleAutoCom.setAdapter(adapter3);
 
+        showSchedule();
         showData();
 
         formDistrictAutoCom.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 spinnerList2.clear();
-                district = formDistrictAutoCom.getText().toString();
+                speciality = formDistrictAutoCom.getText().toString();
                 showSecondList();
             }
         });
@@ -221,17 +253,50 @@ public class Consultation extends AppCompatActivity {
         formUpazilaAutoCom.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(Consultation.this, district + " " + formUpazilaAutoCom.getText().toString(), Toast.LENGTH_SHORT).show();
+                doctor = formUpazilaAutoCom.getText().toString();
+                //Toast.makeText(Consultation.this, speciality + " " + , Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        formScheduleAutoCom.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(!speciality.isEmpty() && !doctor.isEmpty()) {
+                    Random r = new Random();
+                    int randomNumber = r.nextInt(50);
+                    formAppointmentNoET.setText(String.valueOf(randomNumber));
+                } else {
+                    Toast.makeText(Consultation.this, "Please select Speciality and Doctor first!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private void showSchedule() {
+        referenceLocation.child("schedule").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot item : snapshot.getChildren()) {
+                    if(!item.getValue().toString().equals("schedule")) {
+                        spinnerList3.add(item.getValue().toString());
+                    }
+                }
+                adapter3.notifyDataSetChanged();;
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
     }
 
     private void showData() {
-        referenceLocation.child("district").addValueEventListener(new ValueEventListener() {
+        referenceLocation.child("doctors").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot item : snapshot.getChildren()) {
-                    if(!item.getValue().toString().equals("district")) {
+                    if(!item.getValue().toString().equals("doctors")) {
                         spinnerList.add(item.getValue().toString());
                     }
                 }
@@ -246,7 +311,7 @@ public class Consultation extends AppCompatActivity {
     }
 
     private void showSecondList() {
-        referenceLocation.child(district).addValueEventListener(new ValueEventListener() {
+        referenceLocation.child(speciality).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot item : snapshot.getChildren()) {
