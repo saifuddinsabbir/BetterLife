@@ -83,7 +83,7 @@ public class MedicalRecords extends AppCompatActivity {
                 int totalItem = linearLayoutManager.getItemCount();
                 int lastVisible = linearLayoutManager.findLastCompletelyVisibleItemPosition();
 
-                if (totalItem < lastVisible + 3) {
+                if (totalItem < lastVisible + 5) {
                     if (!isLoading) {
                         isLoading = true;
                         loadData();
@@ -108,9 +108,9 @@ public class MedicalRecords extends AppCompatActivity {
 
         Query query;
         if (key == null) {
-            query = referenceHistory.orderByKey().limitToFirst(3);
+            query = referenceHistory.orderByKey().limitToFirst(5);
         } else {
-            query = referenceHistory.orderByKey().startAfter(key).limitToFirst(3);
+            query = referenceHistory.orderByKey().startAfter(key).limitToFirst(5);
         }
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -120,15 +120,18 @@ public class MedicalRecords extends AppCompatActivity {
                 for (DataSnapshot historySnap : snapshot.getChildren()) {
                     String uid = historySnap.child("userId").getValue(String.class);
 
-                    Toast.makeText(MedicalRecords.this, uid + " " + userNameGlobal, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(MedicalRecords.this, uid + " " + userNameGlobal, Toast.LENGTH_SHORT).show();
 
+                    History history = historySnap.getValue(History.class);
+                    historyList.add(history);
+                    historyList2.add(history);
                     key = historySnap.getKey();
 
-                    if (uid.equals(userNameGlobal)) {
-                        History history = historySnap.getValue(History.class);
-                        historyList.add(history);
-                        historyList2.add(history);
-                    }
+//                    if (uid.equals(userNameGlobal)) {
+//                        History history = historySnap.getValue(History.class);
+//                        historyList.add(history);
+//                        historyList2.add(history);
+//                    }
                 }
 
                 if (historyList2.isEmpty()) {

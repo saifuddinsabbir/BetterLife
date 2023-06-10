@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -32,6 +33,7 @@ import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.google.android.gms.maps.model.ButtCap;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.button.MaterialButton;
@@ -60,7 +62,6 @@ public class Feedback extends AppCompatActivity {
     SwipeRefreshLayout swipeRefreshLayout;
     RecyclerView feedbackListRecycleView;
     PostAdapter postAdapter;
-    List<Post> feedbackList;
 
     ImageView postBackButton;
 
@@ -78,6 +79,8 @@ public class Feedback extends AppCompatActivity {
 
     Post post;
 
+    Button prev_btn, one, next_btn;
+
     //DATABASE----------------
     FirebaseStorage storage;
     FirebaseDatabase database;
@@ -91,7 +94,7 @@ public class Feedback extends AppCompatActivity {
     int totalNoOfRating;
     private static final DecimalFormat decfor = new DecimalFormat("0.00");
 
-    String key = null;
+    String key = null, startKey = null;
     boolean isLoading = false;
 
     SessionManager sessionManager;
@@ -116,7 +119,7 @@ public class Feedback extends AppCompatActivity {
         lottieAnimation = findViewById(R.id.lottieAnimationId);
 
         //Feedback list
-        swipeRefreshLayout = findViewById(R.id.swipeFeedback);
+//        swipeRefreshLayout = findViewById(R.id.swipeFeedback);
         feedbackListRecycleView = findViewById(R.id.feedbackListRecycleViewId);
         feedbackListRecycleView = findViewById(R.id.feedbackListRecycleViewId);
         feedbackListRecycleView.setLayoutManager(new LinearLayoutManager(Feedback.this));
@@ -127,23 +130,42 @@ public class Feedback extends AppCompatActivity {
 
         loadData();
 
-        feedbackListRecycleView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        prev_btn = findViewById(R.id.prev_btn);
+        one = findViewById(R.id.one);
+        next_btn = findViewById(R.id.next_btn);
+
+
+//        feedbackListRecycleView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+//            @Override
+//            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+//
+//                LinearLayoutManager linearLayoutManager = (LinearLayoutManager) feedbackListRecycleView.getLayoutManager();
+//                int totalItem = linearLayoutManager.getItemCount();
+//                int lastVisible = linearLayoutManager.findLastCompletelyVisibleItemPosition();
+//
+//                if(totalItem < lastVisible+2)
+//                {
+//                    if(!isLoading)
+//                    {
+//                        isLoading=true;
+//                        loadData();
+//
+//                    }
+//                }
+//            }
+//        });
+
+        next_btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+            public void onClick(View v) {
+                loadData();
+            }
+        });
 
-                LinearLayoutManager linearLayoutManager = (LinearLayoutManager) feedbackListRecycleView.getLayoutManager();
-                int totalItem = linearLayoutManager.getItemCount();
-                int lastVisible = linearLayoutManager.findLastCompletelyVisibleItemPosition();
-
-                if(totalItem < lastVisible+2)
-                {
-                    if(!isLoading)
-                    {
-                        isLoading=true;
-                        loadData();
-
-                    }
-                }
+        prev_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadPrevData();
             }
         });
 
@@ -173,28 +195,35 @@ public class Feedback extends AppCompatActivity {
     }
 
     private void loadData() {
-        swipeRefreshLayout.setRefreshing(true);
+        int contentSize = 5;
+
         referenceFeedbacks = FirebaseDatabase.getInstance().getReference("feedbacks");
 
         Query query;
         if(key == null) {
-            query = referenceFeedbacks.orderByKey().limitToFirst(2);
+            query = referenceFeedbacks.orderByKey().limitToFirst(contentSize);
         } else {
-            query = referenceFeedbacks.orderByKey().startAfter(key).limitToFirst(2);
+            query = referenceFeedbacks.orderByKey().startAfter(key).limitToFirst(contentSize);
+//            query = referenceFeedbacks.orderByKey().endBefore(key).limitToFirst(contentSize);
         }
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                feedbackList = new ArrayList<>();
+                List<Post> feedbackList = new ArrayList<>();
+                int count = 0;
                 for(DataSnapshot feedbackSnap : snapshot.getChildren()) {
                     Post feedback = feedbackSnap.getValue(Post.class);
+                    if(feedbackList.isEmpty()) {
+                        startKey = feedbackSnap.getKey();
+                    }
                     feedbackList.add(feedback);
-
                     key = feedbackSnap.getKey();
+                    count++;
                 }
 
-                swipeRefreshLayout.setRefreshing(false);
+                Toast.makeText(Feedback.this, count+" ", Toast.LENGTH_SHORT).show();
+//                swipeRefreshLayout.setRefreshing(false);
                 postAdapter.setItems((ArrayList<Post>) feedbackList);
                 postAdapter.notifyDataSetChanged();
                 isLoading = false;
@@ -203,7 +232,45 @@ public class Feedback extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                swipeRefreshLayout.setRefreshing(false);
+//                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+    }
+
+    private void loadPrevData() {
+        int contentSize = 5;
+//        swipeRefreshLayout.setRefreshing(true);
+        referenceFeedbacks = FirebaseDatabase.getInstance().getReference("feedbacks");
+
+        Query query;
+        if(key == null) {
+            query = referenceFeedbacks.orderByKey().limitToFirst(contentSize);
+        } else {
+//            query = referenceFeedbacks.orderByKey().startAfter(key).limitToFirst(contentSize);
+            query = referenceFeedbacks.orderByKey().endBefore(startKey).limitToLast(contentSize);
+        }
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                List<Post> feedbackList = new ArrayList<>();
+                for(DataSnapshot feedbackSnap : snapshot.getChildren()) {
+                    Post feedback = feedbackSnap.getValue(Post.class);
+                    if(feedbackList.isEmpty()) {
+                        startKey = feedbackSnap.getKey();
+                    }
+                    feedbackList.add(feedback);
+                    key = feedbackSnap.getKey();
+                }
+
+                postAdapter.setItems((ArrayList<Post>) feedbackList);
+                postAdapter.notifyDataSetChanged();
+                isLoading = false;
+                lottieAnimation.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
             }
         });
     }
@@ -214,29 +281,29 @@ public class Feedback extends AppCompatActivity {
         //fetchFeedbackListFromDatabase();
     }
 
-    private void fetchFeedbackListFromDatabase() {
-        //Get list of Feedback from database
-        referenceFeedbacks = FirebaseDatabase.getInstance().getReference("feedbacks");
-        referenceFeedbacks.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                feedbackList = new ArrayList<>();
-                for(DataSnapshot feedbackSnap : snapshot.getChildren()) {
-                    Post feedback = feedbackSnap.getValue(Post.class);
-                    feedbackList.add(feedback);
-                }
-
-//                postAdapter = new PostAdapter(Feedback.this, feedbackList);
-                feedbackListRecycleView.setAdapter(postAdapter);
-                lottieAnimation.setVisibility(View.INVISIBLE);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
+//    private void fetchFeedbackListFromDatabase() {
+//        //Get list of Feedback from database
+//        referenceFeedbacks = FirebaseDatabase.getInstance().getReference("feedbacks");
+//        referenceFeedbacks.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                feedbackList = new ArrayList<>();
+//                for(DataSnapshot feedbackSnap : snapshot.getChildren()) {
+//                    Post feedback = feedbackSnap.getValue(Post.class);
+//                    feedbackList.add(feedback);
+//                }
+//
+////                postAdapter = new PostAdapter(Feedback.this, feedbackList);
+//                feedbackListRecycleView.setAdapter(postAdapter);
+//                lottieAnimation.setVisibility(View.INVISIBLE);
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//    }
 
     private void iniPopup() {
 

@@ -75,7 +75,7 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
     FirebaseDatabase database;
     FirebaseStorage storage;
 
-    DatabaseReference reference;
+    DatabaseReference reference, referenceChange, referenceImage;
     Query checkUser;
 
     String fullNameFromDB, userNameFromDB, emailFromDB, phoneNoFromDB, dateOfBirthFromDB, genderFromDB, bloodGroupFromDB, addressFromDB, passwordFromDB;
@@ -238,6 +238,8 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
     }
 
     public void updateValuesIntoDatabaseMethod() {
+//        Toast.makeText(this, "called", Toast.LENGTH_SHORT).show();
+
         if (isUserNameChanged()) {
             profileProgressBar.setVisibility(View.INVISIBLE);
             Toast.makeText(this, "Username can't be changed", Toast.LENGTH_SHORT).show();
@@ -245,6 +247,8 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
         }
 
         isAnyValueChanged = false;
+
+        referenceChange = FirebaseDatabase.getInstance().getReference("users").child(userNameGlobal);
 
         changeFullName();
         changeEmail();
@@ -275,28 +279,28 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
 
     public void changeFullName() {
         if (!fullNameFromDB.equals(profileFullNameInputLayout.getEditText().getText().toString())) {
-            reference.child(userNameGlobal).child("fullName").setValue(profileFullNameInputLayout.getEditText().getText().toString());
+            referenceChange.child("fullName").setValue(profileFullNameInputLayout.getEditText().getText().toString());
             isAnyValueChanged = true;
         }
     }
 
     private void changeEmail() {
         if (!emailFromDB.equals(profileEmailInputLayout.getEditText().getText().toString())) {
-            reference.child(userNameGlobal).child("email").setValue(profileEmailInputLayout.getEditText().getText().toString());
+            referenceChange.child("email").setValue(profileEmailInputLayout.getEditText().getText().toString());
             isAnyValueChanged = true;
         }
     }
 
     private void changePhoneNo() {
         if (!phoneNoFromDB.equals(profilePhoneNoInputLayout.getEditText().getText().toString())) {
-            reference.child(userNameGlobal).child("phoneNo").setValue(profilePhoneNoInputLayout.getEditText().getText().toString());
+            referenceChange.child("phoneNo").setValue(profilePhoneNoInputLayout.getEditText().getText().toString());
             isAnyValueChanged = true;
         }
     }
 
     private void changeDateOfBirth() {
         if (!dateOfBirthFromDB.equals(profileDateOfBirthInputLayer.getEditText().getText().toString())) {
-            reference.child(userNameGlobal).child("dateOfBirth").setValue(profileDateOfBirthInputLayer.getEditText().getText().toString());
+            referenceChange.child("dateOfBirth").setValue(profileDateOfBirthInputLayer.getEditText().getText().toString());
             isAnyValueChanged = true;
         }
     }
@@ -306,28 +310,28 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
         selectedRadioButton = findViewById(ID);
 
         if (!genderFromDB.equals(selectedRadioButton.getText().toString())) {
-            reference.child(userNameGlobal).child("gender").setValue(selectedRadioButton.getText().toString());
+            referenceChange.child("gender").setValue(selectedRadioButton.getText().toString());
             isAnyValueChanged = true;
         }
     }
 
     private void changeBloodGroup() {
         if (!bloodGroupFromDB.equals(profileBloodGroupInputLayout.getEditText().getText().toString())) {
-            reference.child(userNameGlobal).child("bloodGroup").setValue(profileBloodGroupInputLayout.getEditText().getText().toString());
+            referenceChange.child("bloodGroup").setValue(profileBloodGroupInputLayout.getEditText().getText().toString());
             isAnyValueChanged = true;
         }
     }
 
     private void changeAddress() {
         if (!addressFromDB.equals(profileAddressInputLayout.getEditText().getText().toString())) {
-            reference.child(userNameGlobal).child("address").setValue(profileAddressInputLayout.getEditText().getText().toString());
+            referenceChange.child("address").setValue(profileAddressInputLayout.getEditText().getText().toString());
             isAnyValueChanged = true;
         }
     }
 
     private void changePassword() {
         if (!passwordFromDB.equals(profilePasswordInputLayout.getEditText().getText().toString())) {
-            reference.child(userNameGlobal).child("password").setValue(profilePasswordInputLayout.getEditText().getText().toString());
+            referenceChange.child("password").setValue(profilePasswordInputLayout.getEditText().getText().toString());
             isAnyValueChanged = true;
         }
     }
@@ -339,7 +343,7 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
 
         try {
             database = FirebaseDatabase.getInstance();
-            reference = database.getReference("users").child(userNameGlobal);
+            referenceImage = database.getReference("users").child(userNameGlobal);
 
             checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -375,21 +379,21 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
                                     storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                         @Override
                                         public void onSuccess(Uri uri) {
-                                            reference.child("dp").setValue(uri.toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            referenceImage.child("dp").setValue(uri.toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override
                                                 public void onSuccess(Void unused) {
                                                     profileProgressBar.setVisibility(View.INVISIBLE);
 
-                                                    sessionManager.createLoginSession(uri.toString(),
-                                                            fullNameFromDB,
-                                                            userNameFromDB,
-                                                            emailFromDB,
-                                                            phoneNoFromDB,
-                                                            dateOfBirthFromDB,
-                                                            genderFromDB,
-                                                            bloodGroupFromDB,
-                                                            addressFromDB,
-                                                            passwordFromDB);
+//                                                    sessionManager.createLoginSession(uri.toString(),
+//                                                            fullNameFromDB,
+//                                                            userNameFromDB,
+//                                                            emailFromDB,
+//                                                            phoneNoFromDB,
+//                                                            dateOfBirthFromDB,
+//                                                            genderFromDB,
+//                                                            bloodGroupFromDB,
+//                                                            addressFromDB,
+//                                                            passwordFromDB);
                                                     Toast.makeText(UserProfile.this, "Profile image uploaded.", Toast.LENGTH_SHORT).show();
                                                 }
                                             });

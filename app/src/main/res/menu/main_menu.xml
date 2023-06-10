@@ -9,19 +9,19 @@
             android:title="Home" />
         <item
             android:id="@+id/nav_leukemia"
-            android:icon="@drawable/blood3"
+            android:icon="@drawable/blood_drop"
             android:title="Leukemia" />
         <item
             android:id="@+id/nav_brain_tumor"
-            android:icon="@drawable/brain1"
+            android:icon="@drawable/body_organ1"
             android:title="Brain Tumor" />
         <item
             android:id="@+id/nav_consulation"
-            android:icon="@drawable/doctor1"
+            android:icon="@drawable/doctor_nav1"
             android:title="Doctors" />
         <item
             android:id="@+id/nav_medicine"
-            android:icon="@drawable/medicin3"
+            android:icon="@drawable/medicine_nav1"
             android:title="Medicine" />
 
     </group>
@@ -35,7 +35,7 @@
 
                 <item
                     android:id="@+id/nav_profile"
-                    android:icon="@drawable/profile6"
+                    android:icon="@drawable/profile_nav2"
                     android:title="Profile" />
 
                 <item
@@ -45,7 +45,7 @@
 
                 <item
                     android:id="@+id/nav_logout"
-                    android:icon="@drawable/logout1"
+                    android:icon="@drawable/logout_nav1"
                     android:title="Logout" />
 
             </group>
@@ -62,14 +62,19 @@
             <group android:checkableBehavior="none">
 
                 <item
+                    android:id="@+id/nav_rate"
+                    android:icon="@drawable/rate3"
+                    android:title="Rating" />
+
+                <item
+                    android:id="@+id/nav_feedback"
+                    android:icon="@drawable/feedbacks_nav3"
+                    android:title="Feedback" />
+
+                <item
                     android:id="@+id/nav_share"
                     android:icon="@drawable/share1"
                     android:title="Share" />
-
-                <item
-                    android:id="@+id/nav_rate"
-                    android:icon="@drawable/rate3"
-                    android:title="Rate" />
 
             </group>
 

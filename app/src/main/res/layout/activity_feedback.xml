@@ -63,6 +63,8 @@
             app:lottie_rawRes="@raw/searching" />
 
 
+
+
     </RelativeLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -75,19 +77,67 @@
         android:elevation="5dp"
         android:src="@drawable/create_white_vector" />
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipeFeedback"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+<!--    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout-->
+<!--        android:id="@+id/swipeFeedback"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_marginTop="60dp"-->
+<!--        app:layout_anchor="@+id/linearLayout9"-->
+<!--        app:layout_anchorGravity="center">-->
+
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_marginTop="60dp"
-        app:layout_anchor="@+id/linearLayout9"
-        app:layout_anchorGravity="center">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/feedbackListRecycleViewId"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"/>
 
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="2dp"
+        android:gravity="center_horizontal|bottom"
+        android:padding="7dp">
+
+        <Button
+            android:id="@+id/prev_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/solid_btn"
+            android:text="Prev"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/solid_btn_reverse"
+            android:text="1"
+            android:textSize="17sp" />
+
+        <Button
+            android:id="@+id/next_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/solid_btn"
+            android:text="Next"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+
+<!--    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

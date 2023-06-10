@@ -210,6 +210,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Menu menu = navigationView.getMenu();
         menu.findItem(R.id.nav_profile);
         menu.findItem(R.id.nav_logout);
+        menu.findItem(R.id.nav_rate);
         //-------------------------------------------------------
         navigationView.bringToFront();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -277,6 +278,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Intent intent_nav_logout = new Intent(MainActivity.this, Login.class);
                 startActivity(intent_nav_logout);
                 ////overridePendingTransition(R.anim.slide_from_top, R.anim.slide_to_bottom);
+                break;
+
+            case R.id.nav_rate:
+                Intent intent_nav_rating = new Intent(MainActivity.this, AppRating.class);
+                startActivity(intent_nav_rating);
+                overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
                 break;
 
             case R.id.nav_share:
