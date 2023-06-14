@@ -47,6 +47,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> 
 
     public void setItems(ArrayList<Post> data)
     {
+        mData.clear();
         mData.addAll(data);
     }
 

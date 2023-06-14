@@ -277,6 +277,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 Intent intent_nav_logout = new Intent(MainActivity.this, Login.class);
                 startActivity(intent_nav_logout);
+                finish();
                 ////overridePendingTransition(R.anim.slide_from_top, R.anim.slide_to_bottom);
                 break;
 

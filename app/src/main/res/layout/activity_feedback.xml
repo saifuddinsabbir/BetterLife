@@ -72,7 +72,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
+        android:layout_marginBottom="100dp"
+        android:layout_marginRight="30dp"
         android:backgroundTint="#C342BEF6"
         android:elevation="5dp"
         android:src="@drawable/create_white_vector" />
@@ -101,11 +102,13 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginTop="2dp"
-        android:gravity="center_horizontal|bottom"
+        android:layout_width="380dp"
+        android:layout_height="65dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:background="@drawable/pagination_backround"
+        android:layout_marginBottom="10dp"
+        android:elevation="20dp"
+        android:gravity="center"
         android:padding="7dp">
 
         <Button
@@ -113,8 +116,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
-            android:background="@drawable/solid_btn"
             android:text="Prev"
+            android:elevation="20dp"
+            android:background="@drawable/solid_btn"
+            android:drawableLeft="@drawable/left_previous"
             android:textColor="@color/black" />
 
         <Button
@@ -123,8 +128,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:background="@drawable/solid_btn_reverse"
             android:text="1"
+            android:backgroundTint="@color/black"
+            android:background="@drawable/solid_btn_reverse"
             android:textSize="17sp" />
 
         <Button
@@ -132,12 +138,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:background="@drawable/solid_btn"
             android:text="Next"
+            android:drawableRight="@drawable/right_next"
+            android:backgroundTint="@color/black"
+            android:background="@drawable/solid_btn"
             android:textColor="@color/black" />
     </LinearLayout>
 
 
-<!--    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

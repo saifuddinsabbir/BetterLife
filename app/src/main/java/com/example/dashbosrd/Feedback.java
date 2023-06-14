@@ -101,6 +101,7 @@ public class Feedback extends AppCompatActivity {
     HashMap<String, String> userDetails;
 
     String userNameGlobal;
+    int pageNumber = 1;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -119,7 +120,6 @@ public class Feedback extends AppCompatActivity {
         lottieAnimation = findViewById(R.id.lottieAnimationId);
 
         //Feedback list
-//        swipeRefreshLayout = findViewById(R.id.swipeFeedback);
         feedbackListRecycleView = findViewById(R.id.feedbackListRecycleViewId);
         feedbackListRecycleView = findViewById(R.id.feedbackListRecycleViewId);
         feedbackListRecycleView.setLayoutManager(new LinearLayoutManager(Feedback.this));
@@ -155,9 +155,13 @@ public class Feedback extends AppCompatActivity {
 //            }
 //        });
 
+
+
+
         next_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                pageNumber++;
                 loadData();
             }
         });
@@ -165,6 +169,7 @@ public class Feedback extends AppCompatActivity {
         prev_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                pageNumber--;
                 loadPrevData();
             }
         });
@@ -176,7 +181,6 @@ public class Feedback extends AppCompatActivity {
             }
         });
 
-        // ini popup
         iniPopup();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -204,14 +208,12 @@ public class Feedback extends AppCompatActivity {
             query = referenceFeedbacks.orderByKey().limitToFirst(contentSize);
         } else {
             query = referenceFeedbacks.orderByKey().startAfter(key).limitToFirst(contentSize);
-//            query = referenceFeedbacks.orderByKey().endBefore(key).limitToFirst(contentSize);
         }
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 List<Post> feedbackList = new ArrayList<>();
-                int count = 0;
                 for(DataSnapshot feedbackSnap : snapshot.getChildren()) {
                     Post feedback = feedbackSnap.getValue(Post.class);
                     if(feedbackList.isEmpty()) {
@@ -219,11 +221,23 @@ public class Feedback extends AppCompatActivity {
                     }
                     feedbackList.add(feedback);
                     key = feedbackSnap.getKey();
-                    count++;
                 }
 
-                Toast.makeText(Feedback.this, count+" ", Toast.LENGTH_SHORT).show();
-//                swipeRefreshLayout.setRefreshing(false);
+                one.setText(pageNumber+"");
+
+                if(pageNumber == 1) {
+                    prev_btn.setEnabled(false);
+                } else {
+                    prev_btn.setEnabled(true);
+                }
+
+                if(feedbackList.size() < contentSize) {
+                    next_btn.setEnabled(false);
+                } else {
+                    next_btn.setEnabled(true);
+                }
+
+//                Toast.makeText(Feedback.this, feedbackList.size()+" ", Toast.LENGTH_SHORT).show();
                 postAdapter.setItems((ArrayList<Post>) feedbackList);
                 postAdapter.notifyDataSetChanged();
                 isLoading = false;
@@ -232,21 +246,18 @@ public class Feedback extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-//                swipeRefreshLayout.setRefreshing(false);
             }
         });
     }
 
     private void loadPrevData() {
         int contentSize = 5;
-//        swipeRefreshLayout.setRefreshing(true);
         referenceFeedbacks = FirebaseDatabase.getInstance().getReference("feedbacks");
 
         Query query;
         if(key == null) {
             query = referenceFeedbacks.orderByKey().limitToFirst(contentSize);
         } else {
-//            query = referenceFeedbacks.orderByKey().startAfter(key).limitToFirst(contentSize);
             query = referenceFeedbacks.orderByKey().endBefore(startKey).limitToLast(contentSize);
         }
 
@@ -261,6 +272,20 @@ public class Feedback extends AppCompatActivity {
                     }
                     feedbackList.add(feedback);
                     key = feedbackSnap.getKey();
+                }
+
+                one.setText(pageNumber+"");
+
+                if(pageNumber == 1) {
+                    prev_btn.setEnabled(false);
+                } else {
+                    prev_btn.setEnabled(true);
+                }
+
+                if(feedbackList.size() < contentSize) {
+                    next_btn.setEnabled(false);
+                } else {
+                    next_btn.setEnabled(true);
                 }
 
                 postAdapter.setItems((ArrayList<Post>) feedbackList);

@@ -57,7 +57,7 @@ public class AppRating extends AppCompatActivity {
 
                     averageRating = decfor.format((sumOfAllrating) / (totalNoOfRating));
 
-                    writeFeedbackAvarageRating.setText("Average rating: "  + averageRating + "/5.00");
+                    writeFeedbackAvarageRating.setText("Average Rating: "  + averageRating + "/5.00");
                 }
 
                 @Override
