@@ -48,6 +48,9 @@ public class SplashScreen extends AppCompatActivity {
                         MODE_PRIVATE);
                 String userNameGlobal = prefs.getString("userName", "null");
 
+                SharedPreferences prefs2 = getSharedPreferences("RememberMe", MODE_PRIVATE);
+                Boolean isRememberMeChecked = prefs2.getBoolean("isRememberMeChecked", true);
+
 //                onBoardingScreen = getSharedPreferences("onBoardingScreen", MODE_PRIVATE);
 //                if (onBoardingScreen.getBoolean("firstTime", true)) {
 //                    SharedPreferences.Editor editor = onBoardingScreen.edit();
@@ -60,7 +63,7 @@ public class SplashScreen extends AppCompatActivity {
 //                    finish();
 //                }
 
-                if(!userNameGlobal.equals("null")) {
+                if(!userNameGlobal.equals("null") && isRememberMeChecked) {
                     startActivity(new Intent(SplashScreen.this, MainActivity.class));
                     //overridePendingTransition(R.anim.slide_from_top, R.anim.slide_to_bottom);
                 } else {

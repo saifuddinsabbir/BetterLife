@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -32,13 +33,14 @@ import com.google.firebase.database.ValueEventListener;
 public class Login extends AppCompatActivity {
 
     LottieAnimationView loginIcon;
+
     TextView loginMainText, loginSecondaryText, testText;
     TextInputLayout loginUserNameTextInputLayout, loginpasswordTextInputLayout;
     Button loginLoginButton, loginSignupButton;
 
     LottieAnimationView loginProgressBar, noInternetLogin;
 
-
+    CheckBox checkboxRememberMe;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -61,6 +63,8 @@ public class Login extends AppCompatActivity {
         loginSignupButton = findViewById(R.id.loginSignupButtonId);
         loginProgressBar = findViewById(R.id.loginProgressBarId);
         noInternetLogin = findViewById(R.id.noInternetLoginId);
+
+        checkboxRememberMe = findViewById(R.id.checkboxRememberMeId);
 
         loginProgressBar.setVisibility(View.INVISIBLE);
         noInternetLogin.setVisibility(View.INVISIBLE);
@@ -203,6 +207,18 @@ public class Login extends AppCompatActivity {
                 MODE_PRIVATE).edit();
         editor.putString("userName", userEnteredUsername);
         editor.apply();
+
+        if(checkboxRememberMe.isChecked()) {
+            SharedPreferences.Editor editor2 = getSharedPreferences("RememberMe",
+                    MODE_PRIVATE).edit();
+            editor2.putBoolean("isRememberMeChecked",true);
+            editor2.apply();
+        } else {
+            SharedPreferences.Editor editor2 = getSharedPreferences("RememberMe",
+                    MODE_PRIVATE).edit();
+            editor2.putBoolean("isRememberMeChecked",false);
+            editor2.apply();
+        }
     }
 
 

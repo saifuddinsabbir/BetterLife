@@ -1,0 +1,116 @@
+body {
+    background-color: #d9f4fff4;
+    height: 100vh;
+    width: 410px;
+    display: flex;
+    justify-content: center;
+}
+
+.main-container {
+    font-family: "ROBOTO", sans-serif;
+    width: 370px;
+    height: 10px;
+}
+
+.main-container .wrapper1 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 7px 45px -10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.main-container .wrapper2 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 7px 45px -10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+
+.main-container .wrapper1 .images1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    margin-left: 20px;
+}
+
+.main-container .wrapper2 .images1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    margin-left: 20px;
+}
+
+.main-container .wrapper1 .images2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    margin-left: 10px;
+}
+
+.main-container .wrapper2 .images2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    margin-left: 10px;
+}
+
+.main-container .wrapper1 .images1 img {
+    width: 30px;
+    height: 30px;
+}
+
+.main-container .wrapper2 .images1 img {
+    width: 30px;
+    height: 30px;
+}
+
+.main-container .wrapper1 .images2 img {
+    width: 35px;
+    height: 35px;
+}
+
+.main-container .wrapper2 .images2 img {
+    width: 35px;
+    height: 35px;
+}
+
+.main-container .wrapper1 .description {
+    
+    margin-right: 20px;
+    width: 650px;
+}
+
+.main-container .wrapper2 .description {
+
+    margin-right: 20px;
+    width: 650px;
+}
+
+.main-container .wrapper1 .description h1 {
+    font-size: 18px;
+}
+
+.main-container .wrapper2 .description h1 {
+    font-size: 18px;
+}
+
+.main-container .wrapper1 .description p {
+    font-size: 15px;
+}
+
+.main-container .wrapper2 .description p {
+    font-size: 15px;
+}

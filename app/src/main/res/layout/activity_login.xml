@@ -103,6 +103,11 @@
                     android:textCursorDrawable="@null"/>
             </com.google.android.material.textfield.TextInputLayout>
 
+            <CheckBox android:id="@+id/checkboxRememberMeId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Remember me on this device"/>
+
             <Button
                 android:id="@+id/loginFOrgetPasswordButtonId"
                 android:layout_width="200dp"
