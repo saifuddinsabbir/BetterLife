@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DoctorInfo">
+    tools:context=".PatientInfo">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayoutInner1"
@@ -44,28 +44,32 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <ScrollView
+        android:layout_marginTop="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <LinearLayout
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:layout_marginTop="60dp"
         android:padding="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TextView
             android:textSize="22sp"
-            android:text="Doctor's Information"
+            android:text="Patient Information"
             android:fontFamily="@font/balo_bhai"
             android:layout_marginTop="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/doctorNameInputLayoutId"
+            android:id="@+id/patientNameInputLayoutId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:hint="Doctor's Name"
+            android:layout_marginTop="15dp"
+            android:hint="Patient's Name"
             app:startIconTint="@color/black"
             android:textColorHint="@color/black"
             app:boxStrokeColor="@color/black"
@@ -79,16 +83,16 @@
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:textColor="@color/black"
-                android:textCursorDrawable="@null"/>
+                android:textCursorDrawable="@null" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/specialityInputLayoutId"
+            android:id="@+id/ageInputLayoutId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:hint="Speciality (e.g. Neurologist, Cardiologist)"
+            android:hint="Age"
             app:startIconTint="@color/black"
             android:textColorHint="@color/black"
             app:boxStrokeColor="@color/black"
@@ -106,11 +110,11 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/qualificationInputLayoutId"
+            android:id="@+id/genderInputLayoutId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:hint="Qualification (e.g. MBBS, M.D Medicine)"
+            android:hint="Gender"
             app:startIconTint="@color/black"
             android:textColorHint="@color/black"
             app:boxStrokeColor="@color/black"
@@ -128,11 +132,11 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/registrationInputLayoutId"
+            android:id="@+id/bloodInputLayoutId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:hint="Registration No."
+            android:hint="Blood Group"
             app:startIconTint="@color/black"
             android:textColorHint="@color/black"
             app:boxStrokeColor="@color/black"
@@ -146,16 +150,38 @@
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:textColor="@color/black"
-                android:textCursorDrawable="@null"/>
+                android:textCursorDrawable="@null" />
         </com.google.android.material.textfield.TextInputLayout>
 
-
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/timeInputLayoutId"
+            android:id="@+id/weightInputLayoutId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:hint="Days &amp; Times of Services (e.g. 5 &amp; 6)"
+            android:hint="Weight"
+            app:startIconTint="@color/black"
+            android:textColorHint="@color/black"
+            app:boxStrokeColor="@color/black"
+            app:boxStrokeWidthFocused="2dp"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/black"
+            app:hintTextColor="@color/black">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:textCursorDrawable="@null" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/heightInputLayoutId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:hint="Height"
             app:startIconTint="@color/black"
             android:textColorHint="@color/black"
             app:boxStrokeColor="@color/black"
@@ -174,7 +200,7 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/EmailInputLayoutId"
+            android:id="@+id/emailPatientInputLayoutId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -197,7 +223,7 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/contactInputLayoutId"
+            android:id="@+id/contactPatientInputLayoutId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -220,11 +246,11 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/otherInputLayoutId"
+            android:id="@+id/appIDInputLayoutId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:hint="Other Details"
+            android:hint="ID No."
             app:startIconTint="@color/black"
             android:textColorHint="@color/black"
             app:boxStrokeColor="@color/black"
@@ -235,7 +261,31 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:textCursorDrawable="@null" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/dateInputLayoutId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:hint="Date"
+            app:startIconTint="@color/black"
+            android:textColorHint="@color/black"
+            app:boxStrokeColor="@color/black"
+            app:boxStrokeWidthFocused="2dp"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/black"
+            app:hintTextColor="@color/black">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="top"
                 android:inputType="text"
                 android:textColor="@color/black"
@@ -253,13 +303,13 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
                 android:fontFamily="@font/balo_bhai"
-                android:text="Step - 1/3"
+                android:text="Step - 2/3"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
-                android:id="@+id/doctorInfoNextBtn"
+                android:id="@+id/patientInfoNextBtn"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:layout_marginEnd="15dp"
@@ -274,5 +324,8 @@
 
 
     </LinearLayout>
+
+    </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
