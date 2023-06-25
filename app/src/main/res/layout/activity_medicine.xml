@@ -46,23 +46,36 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
-        android:gravity="center"
+        android:orientation="vertical"
         android:layout_marginTop="60dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lottieAnimationId"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:elevation="5dp"
-        app:lottie_loop="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:lottie_autoPlay="true"
-        app:lottie_rawRes="@raw/medicine2" />
+        <LinearLayout
+            android:padding="20dp"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/searchDoctorBox"
+                android:hint="Search Doctor"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/searchBtn"
+                android:text="Search"
+                android:layout_marginLeft="10dp"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/appointmentListRecycleViewId"
+            android:background="#1B03A9F4"
+            android:layout_marginTop="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 

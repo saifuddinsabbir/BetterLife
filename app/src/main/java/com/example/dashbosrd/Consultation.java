@@ -4,6 +4,8 @@ import static org.checkerframework.checker.units.UnitsTools.min;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
@@ -25,6 +27,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.radiobutton.MaterialRadioButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -37,6 +41,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -50,7 +55,8 @@ public class Consultation extends AppCompatActivity {
 
     ImageView formCancelButton;
     TextInputLayout formFullNameInputLayout, formUserNameInputLayout, fromPhoneNoInputLayout, formGenderInputLayout,
-            formDateOfBirthInputLayer, formBloodGroupInputLayout, formAppointmentNoInputLayout;
+            formDateOfBirthInputLayer, formBloodGroupInputLayout, formAppointmentNoInputLayout, profileUpazilaInputLayout,
+            formScheduleInputLayout;
     TextInputEditText dateOfBirthEditText, formAppointmentNoET;
     DatePickerDialog.OnDateSetListener setListener;
     Button popupSubmitButton;
@@ -73,6 +79,12 @@ public class Consultation extends AppCompatActivity {
     String speciality, doctor;
     TextView resultFromSpinner1;
 
+    DatabaseReference referenceAppointment;
+    DatabaseReference doctorReference;
+
+    RecyclerView appointmentListRecycleView;
+    AppointmentAdapter appointmentAdapter;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +95,10 @@ public class Consultation extends AppCompatActivity {
 
         sessionManager = new SessionManager(this);
         userDetails = sessionManager.getUsersDetailFromSession();
+
+        appointmentListRecycleView = findViewById(R.id.appointmentListRecycleViewId);
+        appointmentListRecycleView.setLayoutManager(new LinearLayoutManager(Consultation.this));
+        appointmentListRecycleView.setHasFixedSize(true);
 
         referenceLocation = FirebaseDatabase.getInstance().getReference("location");
         registrationButton = findViewById(R.id.registrationButtonId);
@@ -104,6 +120,41 @@ public class Consultation extends AppCompatActivity {
         userNameGlobal = prefs.getString("userName", "null");
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        loadAppointments();
+    }
+
+    private void loadAppointments() {
+        doctorReference = FirebaseDatabase.getInstance().getReference("appointments");
+
+        doctorReference.orderByKey().addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                List<Appointment> appointmentsList = new ArrayList<>();
+                for (DataSnapshot appointmentSnap : snapshot.getChildren()) {
+                    String userName = appointmentSnap.child("userName").getValue(String.class);
+
+//                    Toast.makeText(Medicine.this, doctor + " " + doctorName, Toast.LENGTH_SHORT).show();
+
+                    if(userName.equals(userNameGlobal)) {
+                        Appointment appointment = appointmentSnap.getValue(Appointment.class);
+                        appointmentsList.add(appointment);
+                    }
+                }
+
+                appointmentAdapter = new AppointmentAdapter(Consultation.this, appointmentsList);
+                appointmentListRecycleView.setAdapter(appointmentAdapter);
+                appointmentAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+    }
+
     private void iniPopup() {
         popupRegister = new Dialog(this);
         popupRegister.setContentView(R.layout.popup_register);
@@ -118,15 +169,15 @@ public class Consultation extends AppCompatActivity {
         formUserNameInputLayout = popupRegister.findViewById(R.id.formUserNameInputLayoutId);
         formFullNameInputLayout = popupRegister.findViewById(R.id.formFullNameInputLayoutId);
         fromPhoneNoInputLayout = popupRegister.findViewById(R.id.fromPhoneNoInputLayoutId);
-//        formGenderInputLayout = popupRegister.findViewById(R.id.formGenderInputLayoutId);
         formDateOfBirthInputLayer = popupRegister.findViewById(R.id.formDateOfBirthInputLayerId);
-//        formBloodGroupInputLayout = popupRegister.findViewById(R.id.formBloodGroupInputLayoutId);
         formDistrictAutoCom = popupRegister.findViewById(R.id.formDistrictAutoComId);
         formUpazilaAutoCom = popupRegister.findViewById(R.id.formUpazilaAutoComId);
         formScheduleAutoCom = popupRegister.findViewById(R.id.formScheduleAutoComId);
         formAppointmentNoInputLayout = popupRegister.findViewById(R.id.formAppointmentNoInputLayoutId);
         formAppointmentNoET= popupRegister.findViewById(R.id.formAppointmentNoETID);
         popupSubmitButton = popupRegister.findViewById(R.id.popupSubmitButtonId);
+        profileUpazilaInputLayout = popupRegister.findViewById(R.id.profileUpazilaInputLayoutId);
+        formScheduleInputLayout = popupRegister.findViewById(R.id.formScheduleInputLayoutId);
 
         noInternetLottieAnimation.setVisibility(View.INVISIBLE);
 
@@ -136,14 +187,21 @@ public class Consultation extends AppCompatActivity {
                 formUserNameInputLayout.getEditText().setText("");
                 formFullNameInputLayout.getEditText().setText("");
                 fromPhoneNoInputLayout.getEditText().setText("");
-//                formGenderInputLayout.getEditText().setText("");
                 formDateOfBirthInputLayer.getEditText().setText("");
-//                formBloodGroupInputLayout.getEditText().setText("");
                 formDistrictAutoCom.setText("");
                 formUpazilaAutoCom.setText("");
                 formScheduleAutoCom.setText("");
                 formAppointmentNoET.setText("");
                 popupRegister.dismiss();
+
+                profileUpazilaInputLayout.setVisibility(View.INVISIBLE);
+                formScheduleInputLayout.setVisibility(View.INVISIBLE);
+                formAppointmentNoInputLayout.setVisibility(View.INVISIBLE);
+                formUserNameInputLayout.setVisibility(View.INVISIBLE);
+                formFullNameInputLayout.setVisibility(View.INVISIBLE);
+                formDateOfBirthInputLayer.setVisibility(View.INVISIBLE);
+                fromPhoneNoInputLayout.setVisibility(View.INVISIBLE);
+                popupSubmitButton.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -152,25 +210,65 @@ public class Consultation extends AppCompatActivity {
             public void onClick(View v) {
                 //checkInternet
                 try {
-                    String command = "ping -c 1 google.com";
-                    if(Runtime.getRuntime().exec(command).waitFor() != 0) {
-                        noInternetLottieAnimation.setVisibility(View.VISIBLE);
-                    } else {
-                        Toast.makeText(Consultation.this, "Appointment registered successfully", Toast.LENGTH_SHORT).show();
-                        formUserNameInputLayout.getEditText().setText("");
-                        formFullNameInputLayout.getEditText().setText("");
-                        fromPhoneNoInputLayout.getEditText().setText("");
-//                formGenderInputLayout.getEditText().setText("");
-                        formDateOfBirthInputLayer.getEditText().setText("");
-//                formBloodGroupInputLayout.getEditText().setText("");
-                        formDistrictAutoCom.setText("");
-                        formUpazilaAutoCom.setText("");
-                        formScheduleAutoCom.setText("");
-                        formAppointmentNoET.setText("");
-                        popupRegister.dismiss();
-                    }
+//                    String command = "ping -c 1 google.com";
+//                    if(Runtime.getRuntime().exec(command).waitFor() != 0) {
+//                        noInternetLottieAnimation.setVisibility(View.VISIBLE);
+//                    } else {
+
+                        String speciality = formDistrictAutoCom.getText().toString();
+                        String doctor = formUpazilaAutoCom.getText().toString();
+                        String schedule = formScheduleAutoCom.getText().toString();
+                        String serialNo = formAppointmentNoET.getText().toString();
+                        String userName = formUserNameInputLayout.getEditText().getText().toString();
+                        String fullName = formFullNameInputLayout.getEditText().getText().toString();
+                        String phoneNo = fromPhoneNoInputLayout.getEditText().getText().toString();
+                        String age = formDateOfBirthInputLayer.getEditText().getText().toString();
+
+                        Appointment appointment = new Appointment(speciality, doctor, schedule, serialNo, userName, age);
+
+                        referenceAppointment = FirebaseDatabase.getInstance().getReference("appointments").push();
+
+                        String key = referenceAppointment.getKey();
+                        appointment.setAppointmentKey(key);
+
+                        referenceAppointment.setValue(appointment).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                Toast.makeText(Consultation.this, "Appointment registered successfully", Toast.LENGTH_SHORT).show();
+                                formUserNameInputLayout.getEditText().setText("");
+                                formFullNameInputLayout.getEditText().setText("");
+                                fromPhoneNoInputLayout.getEditText().setText("");
+                                formDateOfBirthInputLayer.getEditText().setText("");
+                                formDistrictAutoCom.setText("");
+                                formUpazilaAutoCom.setText("");
+                                formScheduleAutoCom.setText("");
+                                formAppointmentNoET.setText("");
+                                popupRegister.dismiss();
+
+                                profileUpazilaInputLayout.setVisibility(View.INVISIBLE);
+                                formScheduleInputLayout.setVisibility(View.INVISIBLE);
+                                formAppointmentNoInputLayout.setVisibility(View.INVISIBLE);
+                                formUserNameInputLayout.setVisibility(View.INVISIBLE);
+                                formFullNameInputLayout.setVisibility(View.INVISIBLE);
+                                formDateOfBirthInputLayer.setVisibility(View.INVISIBLE);
+                                fromPhoneNoInputLayout.setVisibility(View.INVISIBLE);
+                                popupSubmitButton.setVisibility(View.INVISIBLE);
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(Consultation.this, e.getMessage()+"", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+
+
+
+
+
+//                    }
                 } catch (Exception e) {
-                    Toast.makeText(Consultation.this, "Please connect to INTERNET", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Consultation.this, e.getMessage()+"", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -191,6 +289,11 @@ public class Consultation extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (snapshot.exists()) {
 
+                            formFullNameInputLayout.setVisibility(View.VISIBLE);
+                            formDateOfBirthInputLayer.setVisibility(View.VISIBLE);
+                            fromPhoneNoInputLayout.setVisibility(View.VISIBLE);
+                            popupSubmitButton.setVisibility(View.VISIBLE);
+
                             fullNameFromDB = snapshot.child(typedUserName).child("fullName").getValue(String.class);
                             userNameFromDB = snapshot.child(typedUserName).child("userName").getValue(String.class);
                             emailFromDB = snapshot.child(typedUserName).child("email").getValue(String.class);
@@ -201,9 +304,9 @@ public class Consultation extends AppCompatActivity {
                             addressFromDB = snapshot.child(typedUserName).child("address").getValue(String.class);
 
                             formFullNameInputLayout.getEditText().setText(fullNameFromDB);
-//                            formBloodGroupInputLayout.getEditText().setText(bloodGroupFromDB);
                             fromPhoneNoInputLayout.getEditText().setText(phoneNoFromDB);
-//                            formGenderInputLayout.getEditText().setText(genderFromDB);
+
+
 
                             String substr=dateOfBirthFromDB.substring(dateOfBirthFromDB.length()-4, dateOfBirthFromDB.length());
                             Calendar cal = Calendar.getInstance();
@@ -212,6 +315,9 @@ public class Consultation extends AppCompatActivity {
                             formDateOfBirthInputLayer.getEditText().setText(String.valueOf(year - Integer.parseInt(substr) + 1));
                             //Toast.makeText(Consultation.this, String.valueOf(year - Integer.parseInt(substr) + 1) , Toast.LENGTH_SHORT).show();
                         }  else {
+                            formFullNameInputLayout.setVisibility(View.INVISIBLE);
+                            formDateOfBirthInputLayer.setVisibility(View.INVISIBLE);
+                            fromPhoneNoInputLayout.setVisibility(View.INVISIBLE);
                         }
                     }
                     @Override
@@ -247,6 +353,14 @@ public class Consultation extends AppCompatActivity {
                 spinnerList2.clear();
                 speciality = formDistrictAutoCom.getText().toString();
                 showSecondList();
+                profileUpazilaInputLayout.setVisibility(View.VISIBLE);
+                formScheduleInputLayout.setVisibility(View.INVISIBLE);
+                formAppointmentNoInputLayout.setVisibility(View.INVISIBLE);
+                formUserNameInputLayout.setVisibility(View.INVISIBLE);
+                formFullNameInputLayout.setVisibility(View.INVISIBLE);
+                formDateOfBirthInputLayer.setVisibility(View.INVISIBLE);
+                fromPhoneNoInputLayout.setVisibility(View.INVISIBLE);
+                popupSubmitButton.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -254,6 +368,13 @@ public class Consultation extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 doctor = formUpazilaAutoCom.getText().toString();
+                formScheduleInputLayout.setVisibility(View.VISIBLE);
+                formAppointmentNoInputLayout.setVisibility(View.INVISIBLE);
+                formUserNameInputLayout.setVisibility(View.INVISIBLE);
+                formFullNameInputLayout.setVisibility(View.INVISIBLE);
+                formDateOfBirthInputLayer.setVisibility(View.INVISIBLE);
+                fromPhoneNoInputLayout.setVisibility(View.INVISIBLE);
+                popupSubmitButton.setVisibility(View.INVISIBLE);
                 //Toast.makeText(Consultation.this, speciality + " " + , Toast.LENGTH_SHORT).show();
             }
         });
@@ -262,9 +383,15 @@ public class Consultation extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(!speciality.isEmpty() && !doctor.isEmpty()) {
+                    formAppointmentNoInputLayout.setVisibility(View.VISIBLE);
                     Random r = new Random();
                     int randomNumber = r.nextInt(50);
                     formAppointmentNoET.setText(String.valueOf(randomNumber));
+                    formUserNameInputLayout.setVisibility(View.VISIBLE);
+                    formFullNameInputLayout.setVisibility(View.INVISIBLE);
+                    formDateOfBirthInputLayer.setVisibility(View.INVISIBLE);
+                    fromPhoneNoInputLayout.setVisibility(View.INVISIBLE);
+                    popupSubmitButton.setVisibility(View.INVISIBLE);
                 } else {
                     Toast.makeText(Consultation.this, "Please select Speciality and Doctor first!", Toast.LENGTH_SHORT).show();
                 }

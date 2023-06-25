@@ -45,7 +45,6 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
-        android:gravity="center"
         android:orientation="vertical"
         android:layout_marginTop="60dp"
         android:layout_width="match_parent"
@@ -53,10 +52,11 @@
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottieAnimationId"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
+            android:layout_width="200dp"
+            android:layout_height="170dp"
             android:elevation="5dp"
             app:lottie_loop="true"
+            android:layout_gravity="center_horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -64,8 +64,12 @@
             app:lottie_autoPlay="true"
             app:lottie_rawRes="@raw/doctors" />
 
-
-
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/appointmentListRecycleViewId"
+            android:background="@color/white"
+            android:layout_marginTop="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 
@@ -74,8 +78,9 @@
         android:layout_marginTop="100dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center|bottom"
-        android:layout_marginBottom="50dp"
+        android:layout_gravity="right|bottom"
+        android:layout_marginBottom="30dp"
+        android:layout_marginRight="30dp"
         android:elevation="5dp"
         android:backgroundTint="#C342BEF6"
         android:textSize="16sp"

@@ -103,6 +103,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
+                    android:visibility="invisible"
                     android:hint="Doctors">
 
                     <AutoCompleteTextView
@@ -118,6 +119,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
+                    android:visibility="invisible"
                     android:hint="Schedule">
 
                     <AutoCompleteTextView
@@ -132,6 +134,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
+                    android:visibility="invisible"
                     android:hint="Appointment No">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -148,6 +151,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
+                    android:visibility="invisible"
                     android:hint="Username">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -164,6 +168,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
+                    android:visibility="invisible"
                     android:hint="Full Name">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -181,6 +186,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
+                    android:visibility="invisible"
                     android:hint="Age">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -243,6 +249,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
+                    android:visibility="invisible"
                     android:hint="Phone Number">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -261,6 +268,7 @@
                     android:elevation="5dp"
                     android:backgroundTint="#03A9F4"
                     android:fontFamily="@font/bungee"
+                    android:visibility="invisible"
                     android:text="Submit" />
 
             </LinearLayout>
