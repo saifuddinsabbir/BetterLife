@@ -11,8 +11,10 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,8 +27,8 @@ import java.util.List;
 
 public class Medicine extends AppCompatActivity {
 
-    EditText searchDoctorBox;
-    Button searchBtn;
+    TextInputEditText searchDoctorBox;
+    ImageButton searchBtn;
 
     String doctorName;
 

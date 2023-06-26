@@ -20,9 +20,10 @@ public class DoctorInfo extends AppCompatActivity {
 
     ImageButton doctorInfoNextBtn;
 
-    TextInputLayout doctorNameInputLayout, specialityInputLayout;
+    TextInputLayout doctorNameInputLayout, specialityInputLayout, qualificationInputLayout, registrationInputLayout,
+            timeInputLayout, EmailInputLayout, contactInputLayout, otherInputLayout;
 
-    DatabaseReference referenceAppointment;
+    DatabaseReference referenceAppointment, referenceAppointment2;
 
     String appointmentKey;
 
@@ -33,6 +34,12 @@ public class DoctorInfo extends AppCompatActivity {
 
         doctorNameInputLayout = findViewById(R.id.doctorNameInputLayoutId);
         specialityInputLayout = findViewById(R.id.specialityInputLayoutId);
+        qualificationInputLayout = findViewById(R.id.qualificationInputLayoutId);
+        registrationInputLayout = findViewById(R.id.registrationInputLayoutId);
+        timeInputLayout = findViewById(R.id.timeInputLayoutId);
+        EmailInputLayout = findViewById(R.id.EmailInputLayoutId);
+        contactInputLayout = findViewById(R.id.contactInputLayoutId);
+        otherInputLayout = findViewById(R.id.otherInputLayoutId);
         doctorInfoNextBtn = findViewById(R.id.doctorInfoNextBtn);
 
         appointmentKey = getIntent().getStringExtra("appointmentKey");
@@ -42,6 +49,7 @@ public class DoctorInfo extends AppCompatActivity {
         doctorInfoNextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                setDataIntoDatabase();
                 Intent intent = new Intent(DoctorInfo.this, PatientInfo.class);
                 intent.putExtra("appointmentKey", appointmentKey);
                 startActivity(intent);
@@ -69,5 +77,18 @@ public class DoctorInfo extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void setDataIntoDatabase() {
+        referenceAppointment2 = FirebaseDatabase.getInstance().getReference("appointments").child(appointmentKey);
+
+        referenceAppointment2.child("qualification").setValue(qualificationInputLayout.getEditText().getText().toString());
+        referenceAppointment2.child("regNo").setValue(registrationInputLayout.getEditText().getText().toString());
+        referenceAppointment2.child("doctorDayTime").setValue(timeInputLayout.getEditText().getText().toString());
+        referenceAppointment2.child("doctorEmail").setValue(EmailInputLayout.getEditText().getText().toString());
+        referenceAppointment2.child("doctorContact").setValue(contactInputLayout.getEditText().getText().toString());
+        referenceAppointment2.child("otherDocDetails").setValue(otherInputLayout.getEditText().getText().toString());
+
+        referenceAppointment2.child("prescribed").setValue("onProgress");
     }
 }

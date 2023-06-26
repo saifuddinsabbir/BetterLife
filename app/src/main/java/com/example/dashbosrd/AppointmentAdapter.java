@@ -2,6 +2,7 @@ package com.example.dashbosrd;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,6 +52,33 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
         holder.scheduleText.setText("Schedule: " + mData.get(position).getSchedule());
         holder.ageText.setText("Age: " + mData.get(position).getAge());
 
+        DatabaseReference referenceAppointment = FirebaseDatabase.getInstance().getReference("appointments");
+        referenceAppointment.child(mData.get(position).getAppointmentKey()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String prescribed = snapshot.child("prescribed").getValue(String.class);
+
+                if(prescribed.equals("false")) {
+                    holder.state.setText("Pending");
+                    holder.constraintLayoutAppointment.setBackgroundColor(Color.parseColor("#FFE2E2"));
+                    holder.constraintLayoutAppointment.setBackgroundResource(R.drawable.appointment_back_background);
+                } else if(prescribed.equals("true")){
+                    holder.state.setText("Prescribed");
+                    holder.constraintLayoutAppointment.setBackgroundColor(Color.parseColor("#99DAB6"));
+                    holder.constraintLayoutAppointment.setBackgroundResource(R.drawable.appointment_back_prescribed);
+                } else {
+                    holder.state.setText("On Progress");
+                    holder.constraintLayoutAppointment.setBackgroundColor(Color.parseColor("#FFF6A3"));
+                    holder.constraintLayoutAppointment.setBackgroundResource(R.drawable.appointment_back_on_progress);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         String userName = mData.get(position).getUserName();
         DatabaseReference referenceUser = FirebaseDatabase.getInstance().getReference("users");
         referenceUser.child(userName).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -83,6 +111,7 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
+        TextView state;
         TextView doctorNameText;
         TextView specialityText;
         TextView appointmentNoText;
@@ -98,6 +127,7 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            state = itemView.findViewById(R.id.stateId);
             doctorNameText = itemView.findViewById(R.id.doctorNameText);
             specialityText = itemView.findViewById(R.id.specialityText);
             appointmentNoText = itemView.findViewById(R.id.appointmentNoText);
@@ -114,9 +144,32 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
                 public void onClick(View v) {
                     int position = getAdapterPosition();
 
-                    Intent intentToDoctorInfo = new Intent(mContext, DoctorInfo.class);
-                    intentToDoctorInfo.putExtra("appointmentKey", mData.get(position).getAppointmentKey());
-                    mContext.startActivity(intentToDoctorInfo);
+                    DatabaseReference referenceAppointment = FirebaseDatabase.getInstance().getReference("appointments");
+                    referenceAppointment.child(mData.get(position).getAppointmentKey()).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            String prescribed = snapshot.child("prescribed").getValue(String.class);
+
+                            if(prescribed.equals("true")) {
+                                Intent intentToDoctorInfo = new Intent(mContext, Prescription.class);
+                                intentToDoctorInfo.putExtra("appointmentKey", mData.get(position).getAppointmentKey());
+                                mContext.startActivity(intentToDoctorInfo);
+
+                            } else {
+                                Intent intentToDoctorInfo = new Intent(mContext, DoctorInfo.class);
+                                intentToDoctorInfo.putExtra("appointmentKey", mData.get(position).getAppointmentKey());
+                                mContext.startActivity(intentToDoctorInfo);
+
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+
                 }
             });
         }

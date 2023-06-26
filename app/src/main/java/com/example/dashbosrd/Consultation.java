@@ -260,11 +260,7 @@ public class Consultation extends AppCompatActivity {
                                 Toast.makeText(Consultation.this, e.getMessage()+"", Toast.LENGTH_SHORT).show();
                             }
                         });
-
-
-
-
-
+                    referenceAppointment.child("prescribed").setValue("false");
 
 //                    }
                 } catch (Exception e) {
@@ -272,7 +268,6 @@ public class Consultation extends AppCompatActivity {
                 }
             }
         });
-
 
         formUserNameInputLayout.getEditText().setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override

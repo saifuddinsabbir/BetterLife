@@ -69,10 +69,10 @@
             android:layout_height="wrap_content"/>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/patientNameInputLayoutId"
+            android:id="@+id/chefComplaintsInputLayoutId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="25dp"
             android:hint="Chief Complaints"
             app:startIconTint="@color/black"
             android:textColorHint="@color/black"
@@ -92,10 +92,10 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/ageInputLayoutId"
+            android:id="@+id/clinicalFindingsInputLayoutId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="15dp"
             android:hint="Clinical Findings"
             app:startIconTint="@color/black"
             android:textColorHint="@color/black"
@@ -115,7 +115,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/genderInputLayoutId"
+            android:id="@+id/clinicalDiagnosisInputLayoutId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -138,7 +138,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/weightInputLayoutId"
+            android:id="@+id/examinationInputLayoutId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -162,11 +162,11 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/heightInputLayoutId"
+            android:id="@+id/investigationInputLayoutId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:hint="Investigation"
+            android:hint="Medicine (name *-*-* days)"
             app:startIconTint="@color/black"
             android:textColorHint="@color/black"
             app:boxStrokeColor="@color/black"
@@ -186,7 +186,7 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/emailPatientInputLayoutId"
+            android:id="@+id/treatmentPlanInputLayoutId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -210,7 +210,7 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/contactPatientInputLayoutId"
+            android:id="@+id/adviceInputLayoutId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -234,7 +234,7 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/appIDInputLayoutId"
+            android:id="@+id/notesInputLayoutId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -275,6 +275,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
+                android:id="@+id/generatePDFBtnDiagnosis"
                 android:layout_width="wrap_content"
                 android:layout_height="55dp"
                 android:layout_marginEnd="15dp"

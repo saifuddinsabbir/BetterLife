@@ -3,78 +3,96 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:background="#1B03A9F4"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayoutAppointment"
-        android:background="@drawable/feedback_card_background"
+        android:background="#FFF6A3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="15dp"
-        android:padding="20dp"
         android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <TextView
+            android:id="@+id/stateId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/balo_bhai"
+            android:text="Pending..."
+            android:layout_marginTop="5dp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <LinearLayout
             android:layout_width="155dp"
-            android:layout_height="200dp"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
+            android:layout_height="180dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/appointment_background"
+            android:elevation="10dp"
             android:orientation="vertical"
             android:padding="10dp"
-            android:background="@drawable/appointment_background"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
 
             <TextView
                 android:id="@+id/doctorNameText"
-                android:text="Dr. Mehnaz Akter"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:layout_marginTop="15dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Dr. Mehnaz Akter"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/specialityText"
-                android:text="Cardiologist"
-                android:textStyle="bold"
-                android:layout_marginTop="5dp"
-                android:textSize="17sp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Cardiologist"
+                android:textSize="17sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/appointmentNoText"
-                android:text="Appointment No: 1"
-                android:layout_marginTop="10dp"
-                android:textSize="16sp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Appointment No: 1"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/scheduleText"
-                android:text="Schedule: 4:00 PM (GMT+6) "
-                android:layout_marginTop="0dp"
-                android:textSize="16sp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:text="Schedule: 4:00 PM (GMT+6) "
+                android:textSize="16sp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout11"
             android:layout_width="155dp"
-            android:layout_height="200dp"
+            android:layout_height="180dp"
             android:orientation="vertical"
             android:padding="10dp"
+            android:elevation="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="40dp"
             android:background="@drawable/appointment_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">

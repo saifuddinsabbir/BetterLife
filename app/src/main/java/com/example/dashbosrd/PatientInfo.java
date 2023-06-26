@@ -20,12 +20,12 @@ public class PatientInfo extends AppCompatActivity {
 
     ImageButton patientInfoNextBtn;
 
-    TextInputLayout patientNameInputLayout, ageInputLayout, genderInputLayout, bloodInputLayout,
-            emailPatientInputLayout, contactPatientInputLayout, appIDInputLayout, dateInputLayout;
+    TextInputLayout patientNameInputLayout, ageInputLayout, genderInputLayout, bloodInputLayout, weightInputLayout,
+            heightInputLayout, emailPatientInputLayout, contactPatientInputLayout, appIDInputLayout, dateInputLayout;
 
     String appointmentKey, userName;;
 
-    DatabaseReference referenceAppointment, referenceUser;
+    DatabaseReference referenceAppointment, referenceAppointment2, referenceUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +36,8 @@ public class PatientInfo extends AppCompatActivity {
         ageInputLayout = findViewById(R.id.ageInputLayoutId);
         genderInputLayout = findViewById(R.id.genderInputLayoutId);
         bloodInputLayout = findViewById(R.id.bloodInputLayoutId);
+        weightInputLayout = findViewById(R.id.weightInputLayoutId);
+        heightInputLayout = findViewById(R.id.heightInputLayoutId);
         emailPatientInputLayout = findViewById(R.id.emailPatientInputLayoutId);
         contactPatientInputLayout = findViewById(R.id.contactPatientInputLayoutId);
         appIDInputLayout = findViewById(R.id.appIDInputLayoutId);
@@ -49,7 +51,9 @@ public class PatientInfo extends AppCompatActivity {
         patientInfoNextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                setDataIntoDatabase();
                 Intent intent = new Intent(PatientInfo.this, Diagnosis.class);
+                intent.putExtra("appointmentKey", appointmentKey);
                 startActivity(intent);
             }
         });
@@ -105,8 +109,20 @@ public class PatientInfo extends AppCompatActivity {
 
             }
         });
+    }
 
 
+    private void setDataIntoDatabase() {
+        referenceAppointment2 = FirebaseDatabase.getInstance().getReference("appointments").child(appointmentKey);
 
+        referenceAppointment2.child("patientName").setValue(patientNameInputLayout.getEditText().getText().toString());
+        referenceAppointment2.child("age").setValue(ageInputLayout.getEditText().getText().toString());
+        referenceAppointment2.child("gender").setValue(genderInputLayout.getEditText().getText().toString());
+        referenceAppointment2.child("blood").setValue(bloodInputLayout.getEditText().getText().toString());
+        referenceAppointment2.child("weight").setValue(weightInputLayout.getEditText().getText().toString());
+        referenceAppointment2.child("height").setValue(heightInputLayout.getEditText().getText().toString());
+        referenceAppointment2.child("patientEmail").setValue(emailPatientInputLayout.getEditText().getText().toString());
+        referenceAppointment2.child("patientContact").setValue(contactPatientInputLayout.getEditText().getText().toString());
+        referenceAppointment2.child("appDate").setValue(dateInputLayout.getEditText().getText().toString());
     }
 }
