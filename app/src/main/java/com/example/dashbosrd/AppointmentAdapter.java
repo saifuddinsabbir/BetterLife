@@ -67,7 +67,7 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
                     holder.constraintLayoutAppointment.setBackgroundColor(Color.parseColor("#99DAB6"));
                     holder.constraintLayoutAppointment.setBackgroundResource(R.drawable.appointment_back_prescribed);
                 } else {
-                    holder.state.setText("On Progress");
+                    holder.state.setText("In Progress");
                     holder.constraintLayoutAppointment.setBackgroundColor(Color.parseColor("#FFF6A3"));
                     holder.constraintLayoutAppointment.setBackgroundResource(R.drawable.appointment_back_on_progress);
                 }
