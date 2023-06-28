@@ -16,6 +16,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
 public class PatientInfo extends AppCompatActivity {
 
     ImageButton patientInfoNextBtn;
@@ -67,15 +72,19 @@ public class PatientInfo extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()) {
                     String userName = snapshot.child("userName").getValue(String.class);
-                    String age = snapshot.child("age").getValue(String.class);
-                    String serialNo = snapshot.child("serialNo").getValue(String.class);
                     String schedule = snapshot.child("schedule").getValue(String.class);
 
-                    ageInputLayout.getEditText().setText(age);
-                    appIDInputLayout.getEditText().setText(serialNo);
-                    dateInputLayout.getEditText().setText(schedule);
+                    ageInputLayout.getEditText().setText(snapshot.child("age").getValue(String.class));
+                    weightInputLayout.getEditText().setText(snapshot.child("weight").getValue(String.class));
+                    heightInputLayout.getEditText().setText(snapshot.child("height").getValue(String.class));
+                    appIDInputLayout.getEditText().setText(snapshot.child("serialNo").getValue(String.class));
 
-                    Toast.makeText(PatientInfo.this, userName, Toast.LENGTH_SHORT).show();
+                    Date c = Calendar.getInstance().getTime();
+                    SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault());
+                    String formattedDate = df.format(c);
+                    dateInputLayout.getEditText().setText(formattedDate);
+
+
                     referenceUser = FirebaseDatabase.getInstance().getReference("users");
 
                     referenceUser.child(userName).addListenerForSingleValueEvent(new ValueEventListener() {

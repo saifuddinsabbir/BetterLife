@@ -3,6 +3,7 @@ package com.example.dashbosrd;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -23,6 +24,8 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTube
 
 public class AboutBrainTumor extends AppCompatActivity {
 
+    ConstraintLayout constraintLayoutPituitary, constraintLayoutGlioma, constraintLayoutMeningioma;
+
     ChipNavigationBar chipNavigationBar;
 
     String userNameGlobal;
@@ -34,6 +37,10 @@ public class AboutBrainTumor extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_brain_tumor);
 
+        constraintLayoutPituitary = findViewById(R.id.constraintLayoutPituitary);
+        constraintLayoutGlioma = findViewById(R.id.constraintLayoutGlioma);
+        constraintLayoutMeningioma = findViewById(R.id.constraintLayoutMeningioma);
+
         setUserNameGlobally();
 
         toolBarFunctionalities();
@@ -41,6 +48,36 @@ public class AboutBrainTumor extends AppCompatActivity {
         youtubeVideo("QubaJaH_THc");
 
         chipNavigationBarAboutBrainTumor();
+
+        constraintLayoutPituitary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String type = "pituitary";
+                Intent intent = new Intent(AboutBrainTumor.this, BrainTumorDetails.class);
+                intent.putExtra("type", type);
+                startActivity(intent);
+            }
+        });
+
+        constraintLayoutGlioma.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String type = "glioma";
+                Intent intent = new Intent(AboutBrainTumor.this, BrainTumorDetails.class);
+                intent.putExtra("type", type);
+                startActivity(intent);
+            }
+        });
+
+        constraintLayoutMeningioma.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String type = "meningioma";
+                Intent intent = new Intent(AboutBrainTumor.this, BrainTumorDetails.class);
+                intent.putExtra("type", type);
+                startActivity(intent);
+            }
+        });
     }
 
 //                                           Related Methods

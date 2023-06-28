@@ -21,8 +21,8 @@
     <string name="fifth_desc">sad fg fj  uk l k  hgfs das d sa fsaefrg r th y hyf fc b xf d h df hfgjfgk hjgh jm hmn h nfgb gb db fb f</string>
 
 
-    <string name="about_brain_tumor1_desc"> A brain tumor is a mass or growth of abnormal cells in your brain.\n\nMany different types of brain tumors exist. Some brain tumors are noncancerous (benign), and some brain tumors are cancerous (malignant). Brain tumors can begin in your brain (primarybrain tumors), or cancer can begin in other parts of your body and spread to your brain as secondary (metastatic) brain tumors.
-    \nHow quickly a brain tumor grows can vary greatly. The growth rate as well as the location of a brain tumor determines how it will affect the function of your nervous system.\n\nBrain tumor treatment options depend on the type of brain tumor you have, as well as its size and location.</string>
+    <string name="about_brain_tumor1_desc"> A brain tumor is a mass or growth of abnormal cells in your brain. Many different types of brain tumors exist. Some brain tumors are noncancerous (benign), and some brain tumors are cancerous (malignant). Brain tumors can begin in your brain (primarybrain tumors), or cancer can begin in other parts of your body and spread to your brain as secondary (metastatic) brain tumors.
+    \n\nHow quickly a brain tumor grows can vary greatly. The growth rate as well as the location of a brain tumor determines how it will affect the function of your nervous system.\n\nBrain tumor treatment options depend on the type of brain tumor you have, as well as its size and location.</string>
 
     <string name="brainTumorTreatmentText1">Treatment for a brain tumor depends on the type, size and location of the tumor, as well as your overall health and your preferences.</string>
 
@@ -62,4 +62,59 @@
 
     <string name="feedbackPostCommentText">This apps is very useful to me. I am vey happy to this. But think, if many Prescription saved option is have so that very useful to us. Thanks</string>
 
+    <string name="brain_tumor_characteristics">The characteristics of a brain tumor can vary depending on its type, location, size, and rate of growth. Common characteristics include:
+     \n\n<b>1. Location:</b> Brain tumors can occur in different areas of the brain, such as the cerebral hemispheres, cerebellum, brain stem, or pituitary gland.
+     \n\n<b>2. Size: Tumors</b> can range in size from small and localized to large and invasive, potentially affecting multiple brain regions.
+     \n\n<b>3. Growth rate:</b> Some brain tumors grow slowly over a long period, while others may grow rapidly and aggressively.
+     \n\n<b>4. Invasiveness:</b> Malignant brain tumors can invade nearby healthy brain tissue, making complete removal challenging.</string>
+
+    <string name="brain_tumor_types">There are various types of brain tumors, including:
+        \n\n<b>1. Gliomas:</b> The most common type, originating from the glial cells that support and nourish the neurons. Gliomas include astrocytomas, oligodendrogliomas, and ependymomas.
+        \n\n<b>2. Meningiomas:</b> Arising from the meninges, the protective membranes covering the brain and spinal cord. Meningiomas are often benign.
+        \n\n<b>3. Pituitary adenomas:</b> Tumors that develop in the pituitary gland, a small gland at the base of the brain that regulates hormone production.
+        \n\n<b>4. Medulloblastomas:</b> Common in children, these tumors occur in the cerebellum and can spread to other parts of the central nervous system.
+        \n\n<b>5. Metastatic tumors:</b> Secondary brain tumors that result from cancer spreading from another part of the body, such as the lung, breast, or skin.</string>
+
+    <string name="brain_tumor_symptom">The symptoms and signs of a brain tumor can vary depending on its location and size. Common symptoms may include:
+        \n\n<b>1. Headaches:</b> Often persistent and worsen over time, especially in the morning or after physical activity.
+        \n\n<b>2. Seizures:</b> Sudden, uncontrolled electrical disturbances in the brain, leading to convulsions or loss of consciousness.
+        \n\n<b>3. Cognitive and neurological changes:</b> Memory problems, confusion, difficulty concentrating, personality changes, weakness, numbness, or problems with coordination.
+        \n\n<b>4. Visual and hearing disturbances:</b> Blurred vision, double vision, partial or complete loss of vision, and hearing difficulties.
+        \n\n<b>5. Nausea and vomiting:</b> Often unrelated to digestive issues and typically more severe in the morning.
+        \n\n<b>6. Speech and language difficulties:</b> Slurred speech, difficulty finding words, or understanding language.
+        \n\n<b>7. Changes in mood or behavior:</b> Depression, irritability, anxiety, or emotional instability.</string>
+
+<!--    <string name="pituitary_symptom">The symptoms and signs of gliomas depend on the size, location, and rate of growth of the tumor. Common symptoms include:-->
+<!--        \n\n1. Headaches-->
+<!--        \n\n2. Seizures-->
+<!--        \n\n3. Cognitive and memory problems-->
+<!--        \n\n4. Changes in personality or behavior-->
+<!--        \n\n5. Weakness or numbness in the limbs-->
+<!--        \n\n6. Visual disturbances-->
+<!--        \n\n7. Difficulty speaking or understanding language-->
+<!--        \n\n8. Problems with balance and coordination</string>-->
+
+<!--    <string name="pituitary_diagnosis">Diagnosing a glioma usually involves the following steps:-->
+<!--        \n\n<b>1. Medical history and physical examination:</b> The doctor will review your medical history and perform a neurological examination to assess brain function.-->
+<!--        \n\n<b>2. Imaging tests:</b> Magnetic resonance imaging (MRI) or computed tomography (CT) scans are used to visualize the brain and detect any abnormalities.-->
+<!--        \n\n<b>3. Biopsy:</b> A sample of the tumor tissue is extracted through surgery or a minimally invasive procedure to determine the type and grade of the glioma.-->
+<!--        \n\n<b>4. Genetic testing:</b> Molecular profiling of the tumor may be performed to identify specific genetic mutations that can guide treatment decisions.-->
+<!--    </string>-->
+
+<!--    <string name="pituitary_treatment">Treatment options for gliomas depend on the type, grade, size, and location of the tumor. Common treatment modalities include:-->
+<!--        \n\n<b>1. Surgery:</b> The main goal is to remove as much of the tumor as possible while minimizing damage to healthy brain tissue. In some cases, complete removal may not be feasible due to the tumors location.-->
+<!--        \n\n<b>2. Radiation therapy:</b> High-energy beams, such as X-rays or protons, are used to target and destroy remaining tumor cells after surgery or to control tumor growth in inoperable cases.-->
+<!--        \n\n<b>3. Chemotherapy:</b> Medications are administered orally or intravenously to kill cancer cells or inhibit their growth. Chemotherapy may be used alone or in combination with other treatments.-->
+<!--        \n\n<b>4. Targeted therapy:</b> Certain genetic mutations present in gliomas can be targeted with specific drugs to disrupt tumor growth pathways.-->
+<!--        \n\n<b>5. Immunotherapy:</b> This approach aims to stimulate the body's immune system to recognize and attack cancer cells.-->
+<!--        \n\n<b>6. Supportive care:</b> Symptom management, rehabilitation, and supportive therapies, such as physical therapy or counseling, can help improve quality of life and alleviate symptoms.-->
+<!--        \n\nThe choice of treatment depends on factors like the tumor type, grade, location, and the individual's overall health. Treatment plans are often developed by a multidisciplinary team of healthcare professionals, including neurosurgeons, oncologists, radiation therapists, and other specialists.-->
+<!--    </string>-->
+    
+<!--    <string name="symptoms">The treatment approach for meningiomas depends on various factors such as the tumor size, location, grade, and individual patient considerations. The treatment options may include:-->
+<!--        \n\n<b>1. Observation:</b> If the meningioma is small, slow-growing, and not causing significant symptoms, it may be monitored over time with regular imaging.-->
+<!--        \n\n<b>2. Surgery:</b> The primary treatment for meningiomas involves surgical removal of the tumor whenever possible. The goal is to achieve complete resection while minimizing damage to surrounding brain tissue.-->
+<!--        \n\n<b>3. Radiation Therapy:</b> In cases where complete surgical removal is not feasible or the tumor recurs, radiation therapy may be used to destroy or control the tumor cells.-->
+<!--        \n\n<b>4. Medications:</b> Certain medications, such as hormone therapy, may be used for recurrent or progressive meningiomas, particularly those that are hormone-sensitive.-->
+<!--        \n\n<b>5. Clinical Trials:</b> Participation in clinical trials may be an option for some patients.</string>-->
 </resources>

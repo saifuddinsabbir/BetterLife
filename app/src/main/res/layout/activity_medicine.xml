@@ -56,18 +56,17 @@
             android:background="@drawable/pagination_backround"
             android:gravity="center"
             android:layout_marginTop="15dp"
-            android:elevation="15dp"
-            android:layout_width="380dp"
-            android:layout_height="50dp">
+            android:elevation="10dp"
+            android:layout_width="370dp"
+            android:layout_height="45dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/searchDoctorBox"
                 android:layout_width="250dp"
-                android:layout_height="50dp"
+                android:layout_height="45dp"
                 android:paddingLeft="10dp"
-                android:elevation="10dp"
+                android:elevation="5dp"
                 android:textColor="@color/black"
-                android:textColorHint="@color/black"
                 android:background="@android:color/transparent"
                 android:hint="Search Doctor..." />
 

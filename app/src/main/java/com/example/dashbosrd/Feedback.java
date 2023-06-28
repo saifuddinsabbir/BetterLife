@@ -128,35 +128,12 @@ public class Feedback extends AppCompatActivity {
         postAdapter = new PostAdapter(Feedback.this);
         feedbackListRecycleView.setAdapter(postAdapter);
 
+//        loadLastData();
         loadData();
 
         prev_btn = findViewById(R.id.prev_btn);
         one = findViewById(R.id.one);
         next_btn = findViewById(R.id.next_btn);
-
-
-//        feedbackListRecycleView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-//            @Override
-//            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-//
-//                LinearLayoutManager linearLayoutManager = (LinearLayoutManager) feedbackListRecycleView.getLayoutManager();
-//                int totalItem = linearLayoutManager.getItemCount();
-//                int lastVisible = linearLayoutManager.findLastCompletelyVisibleItemPosition();
-//
-//                if(totalItem < lastVisible+2)
-//                {
-//                    if(!isLoading)
-//                    {
-//                        isLoading=true;
-//                        loadData();
-//
-//                    }
-//                }
-//            }
-//        });
-
-
-
 
         next_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -198,8 +175,30 @@ public class Feedback extends AppCompatActivity {
         userNameGlobal = prefs.getString("userName", "null");
     }
 
+    private void loadLastData() {
+        int contentSize = 2;
+
+        referenceFeedbacks = FirebaseDatabase.getInstance().getReference("feedbacks");
+
+        referenceFeedbacks.orderByKey().addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot feedbackSnap : snapshot.getChildren()) {
+                    Post feedback = feedbackSnap.getValue(Post.class);
+                    key = feedbackSnap.getKey();
+                    Toast.makeText(Feedback.this, key, Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
+    }
+
     private void loadData() {
-        int contentSize = 5;
+        int contentSize = 2;
 
         referenceFeedbacks = FirebaseDatabase.getInstance().getReference("feedbacks");
 
@@ -251,7 +250,7 @@ public class Feedback extends AppCompatActivity {
     }
 
     private void loadPrevData() {
-        int contentSize = 5;
+        int contentSize = 2;
         referenceFeedbacks = FirebaseDatabase.getInstance().getReference("feedbacks");
 
         Query query;

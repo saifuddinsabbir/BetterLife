@@ -64,11 +64,14 @@ public class DoctorInfo extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()) {
-                    String doctorName = snapshot.child("doctor").getValue(String.class);
-                    String speciality = snapshot.child("speciality").getValue(String.class);
-
-                    doctorNameInputLayout.getEditText().setText(doctorName);
-                    specialityInputLayout.getEditText().setText(speciality);
+                    doctorNameInputLayout.getEditText().setText(snapshot.child("doctor").getValue(String.class));
+                    specialityInputLayout.getEditText().setText(snapshot.child("speciality").getValue(String.class));
+                    qualificationInputLayout.getEditText().setText(snapshot.child("qualification").getValue(String.class));
+                    registrationInputLayout.getEditText().setText(snapshot.child("regNo").getValue(String.class));
+                    timeInputLayout.getEditText().setText(snapshot.child("doctorDayTime").getValue(String.class));
+                    EmailInputLayout.getEditText().setText(snapshot.child("doctorEmail").getValue(String.class));
+                    contactInputLayout.getEditText().setText(snapshot.child("doctorContact").getValue(String.class));
+                    otherInputLayout.getEditText().setText(snapshot.child("otherDocDetails").getValue(String.class));
                 }
             }
 
