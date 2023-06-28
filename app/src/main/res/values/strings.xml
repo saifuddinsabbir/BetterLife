@@ -27,25 +27,25 @@
     <string name="brainTumorTreatmentText1">Treatment for a brain tumor depends on the type, size and location of the tumor, as well as your overall health and your preferences.</string>
 
     <string name="brainTumorTreatmentText2">If the brain tumor is located in a place that makes it accessible for an operation, your surgeon will work to remove as much of the brain tumor as can be done safely.
-        \nSome brain tumors are small and easy to separate from surrounding brain tissue, which makes complete surgical removal possible. Other brain tumors can\'t be separated from surrounding tissue or they\'re located near sensitive areas in your brain, making surgery risky. In these situations, your doctor removes as much of the tumor as is safe.
-        \nEven removing a portion of the brain tumor may help reduce your signs and symptoms.
-        \nSurgery to remove a brain tumor carries risks, such as infection and bleeding. Other risks may depend on the part of your brain where your tumor is located. For instance, surgery on a tumor near nerves that connect to your eyes may carry a risk of vision loss.</string>
+        \n\nSome brain tumors are small and easy to separate from surrounding brain tissue, which makes complete surgical removal possible. Other brain tumors can\'t be separated from surrounding tissue or they\'re located near sensitive areas in your brain, making surgery risky. In these situations, your doctor removes as much of the tumor as is safe.
+        \n\nEven removing a portion of the brain tumor may help reduce your signs and symptoms.
+        \n\nSurgery to remove a brain tumor carries risks, such as infection and bleeding. Other risks may depend on the part of your brain where your tumor is located. For instance, surgery on a tumor near nerves that connect to your eyes may carry a risk of vision loss.</string>
 
     <string name="brainTumorTreatmentText3">Radiation therapy uses high-energy beams, such as X-rays or protons, to kill tumor cells. Radiation therapy can come from a machine outside your body (external beam radiation), or, very rarely, radiation can be placed inside your body close to your brain tumor (brachytherapy).
-        \nExternal beam radiation can focus just on the area of your brain where the tumor is located, or it can be applied to your entire brain (whole-brain radiation). Whole-brain radiation is most often used to treat cancer that spreads to the brain from some other part of the body and forms multiple tumors in the brain.
-        \nTraditionally, radiation therapy uses X-rays, but a newer form of this treatment uses proton beams. Proton beam therapy allows doctors to control the radiation more precisely. It may be helpful for treating brain tumors in children and tumors that are very close to sensitive areas of the brain. Proton beam therapy isn\'t as widely available as traditional X-ray radiation therapy.
-        \nSide effects of radiation therapy depend on the type and dose of radiation you receive. Common side effects during or immediately following radiation include fatigue, headaches, memory loss, scalp irritation and hair loss.</string>
+        \n\nExternal beam radiation can focus just on the area of your brain where the tumor is located, or it can be applied to your entire brain (whole-brain radiation). Whole-brain radiation is most often used to treat cancer that spreads to the brain from some other part of the body and forms multiple tumors in the brain.
+        \n\nTraditionally, radiation therapy uses X-rays, but a newer form of this treatment uses proton beams. Proton beam therapy allows doctors to control the radiation more precisely. It may be helpful for treating brain tumors in children and tumors that are very close to sensitive areas of the brain. Proton beam therapy isn\'t as widely available as traditional X-ray radiation therapy.
+        \n\nSide effects of radiation therapy depend on the type and dose of radiation you receive. Common side effects during or immediately following radiation include fatigue, headaches, memory loss, scalp irritation and hair loss.</string>
 
     <string name="brainTumorTreatmentText4">Stereotactic radiosurgery is not a form of surgery in the traditional sense. Instead, radiosurgery uses multiple beams of radiation to give a highly focused form of radiation treatment to kill the tumor cells in a very small area. Each beam of radiation isn\'t particularly powerful, but the point where all the beams meet — at the brain tumor — receives a very large dose of radiation to kill the tumor cells.
-        \nThere are different types of technology used in radiosurgery to deliver radiation to treat brain tumors, such as a Gamma Knife or linear accelerator.
-        \nRadiosurgery is typically done in one treatment, and usually you can go home the same day.</string>
+        \n\nThere are different types of technology used in radiosurgery to deliver radiation to treat brain tumors, such as a Gamma Knife or linear accelerator.
+        \n\nRadiosurgery is typically done in one treatment, and usually you can go home the same day.</string>
 
     <string name="brainTumorTreatmentText5">Chemotherapy uses drugs to kill tumor cells. Chemotherapy drugs can be taken orally in pill form or injected into a vein (intravenously). The chemotherapy drug used most often to treat brain tumors is temozolomide (Temodar). Other chemotherapy drugs may be recommended depending on the type of cancer.
-        \nChemotherapy side effects depend on the type and dose of drugs you receive. Chemotherapy can cause nausea, vomiting and hair loss.
-        \nTests of your brain tumor cells can determine whether chemotherapy will be helpful for you. The type of brain tumor you have also is helpful in determining whether to recommend chemotherapy.</string>
+        \n\nChemotherapy side effects depend on the type and dose of drugs you receive. Chemotherapy can cause nausea, vomiting and hair loss.
+        \n\nTests of your brain tumor cells can determine whether chemotherapy will be helpful for you. The type of brain tumor you have also is helpful in determining whether to recommend chemotherapy.</string>
 
     <string name="brainTumorTreatmentText6">Targeted drug treatments focus on specific abnormalities present within cancer cells. By blocking these abnormalities, targeted drug treatments can cause cancer cells to die.
-       \nTargeted therapy drugs are available for certain types of brain tumors, and many more are being studied in clinical trials. Your doctor may have your tumor cells tested to see whether targeted therapy is likely to be an effective treatment for your brain tumor.</string>
+       \n\nTargeted therapy drugs are available for certain types of brain tumors, and many more are being studied in clinical trials. Your doctor may have your tumor cells tested to see whether targeted therapy is likely to be an effective treatment for your brain tumor.</string>
 
     <string name="brainTumorTreatmentText7">
         Because brain tumors can develop in parts of the brain that control motor skills, speech, vision and thinking, rehabilitation may be a necessary part of recovery. Depending on your needs, your doctor may refer you to:\n\n
@@ -83,6 +83,12 @@
         \n\n<b>5. Nausea and vomiting:</b> Often unrelated to digestive issues and typically more severe in the morning.
         \n\n<b>6. Speech and language difficulties:</b> Slurred speech, difficulty finding words, or understanding language.
         \n\n<b>7. Changes in mood or behavior:</b> Depression, irritability, anxiety, or emotional instability.</string>
+
+    <string name="diagnosis_brain_tumor">Medical History and Physical Examination: The doctor will review the patients medical history, including any symptoms experienced, and conduct a thorough physical examination.
+        \n\n<b>1. Neurological Examination:</b> The doctor will assess the patients neurological function, including coordination, reflexes, and sensory responses.
+        \n\n<b>2. Imaging Tests:</b> Imaging techniques such as magnetic resonance imaging (MRI) and computed tomography (CT) scans are commonly used to visualize the brain and detect the presence of a tumor. These tests provide detailed information about the size, location, and characteristics of the tumor.
+        \n\n<b>3. Biopsy:</b> In some cases, a biopsy may be necessary to confirm the presence of a brain tumor and determine its type. A small sample of the tumor tissue is removed for laboratory analysis, often during a surgical procedure.
+        \n\n<b>4. Additional Tests:</b> Additional tests such as blood tests, positron emission tomography (PET) scans, or angiography may be performed to gather more information about the tumor and its effects on the brain.</string>
 
 <!--    <string name="pituitary_symptom">The symptoms and signs of gliomas depend on the size, location, and rate of growth of the tumor. Common symptoms include:-->
 <!--        \n\n1. Headaches-->

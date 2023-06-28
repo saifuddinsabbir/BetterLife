@@ -21,21 +21,10 @@ public class BrainTumorTreatment extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_brain_tumor_treatment);
 
-        toolBarFunctionalities();
         chipNavigationBarAboutBrainTumor();
     }
 
-    public void toolBarFunctionalities() {
-        ImageView treatmentBrainTumorToolBarBack = findViewById(R.id.treatmentBrainTumorToolBarBackId);
 
-        treatmentBrainTumorToolBarBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(BrainTumorTreatment.this, MainActivity.class));
-                overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
-            }
-        });
-    }
 
     public void chipNavigationBarAboutBrainTumor() {
         //----------------------------------- Bottom Navigation (start)--------------------------------------

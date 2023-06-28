@@ -68,7 +68,7 @@ public class BrainTumorDetect extends AppCompatActivity {
     ActivityResultLauncher<Intent> activityResultLauncher;
     ImageView pickImage;
     TextView resultClassTextView, resultClassProbabilityTextView;
-    Button galleryButton, cameraButton, writeFeedbackBrainTumor;
+    Button galleryButton, cameraButton, writeFeedbackBrainTumor, learnBtn;
     ChipNavigationBar chipNavigationBar;
     Bitmap bitmap, bitmapGlobal;
 
@@ -125,6 +125,7 @@ public class BrainTumorDetect extends AppCompatActivity {
         resultClassTextView = findViewById(R.id.textView17);
         resultClassProbabilityTextView = findViewById(R.id.textView18);
         writeFeedbackBrainTumor = findViewById(R.id.writeFeedbackBrainTumorId);
+        learnBtn = findViewById(R.id.learnBtn);
 
         writeFeedbackBrainTumor.setVisibility(View.INVISIBLE);
 
@@ -136,6 +137,16 @@ public class BrainTumorDetect extends AppCompatActivity {
 
         // ini popup
 //        iniPopup();
+
+        learnBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String type = "pituitary";
+                Intent intent = new Intent(BrainTumorDetect.this, BrainTumorDetails.class);
+                intent.putExtra("type", type);
+                startActivity(intent);
+            }
+        });
 
         writeFeedbackBrainTumor.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -180,6 +191,7 @@ public class BrainTumorDetect extends AppCompatActivity {
                         }
                         pickImage.setImageURI(photoUri);
                         writeFeedbackBrainTumor.setVisibility(View.VISIBLE);
+                        learnBtn.setVisibility(View.VISIBLE);
                         Animation anim = new AlphaAnimation(0.0f, 1.0f);
                         anim.setDuration(1500);
                         anim.setStartOffset(20);
@@ -223,6 +235,7 @@ public class BrainTumorDetect extends AppCompatActivity {
 
                     try{
                         writeFeedbackBrainTumor.setVisibility(View.VISIBLE);
+                        learnBtn.setVisibility(View.VISIBLE);
                         Animation anim = new AlphaAnimation(0.0f, 1.0f);
                         anim.setDuration(1500);
                         anim.setStartOffset(20);
