@@ -5,6 +5,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatRatingBar;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -26,8 +27,10 @@ import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
@@ -53,6 +56,7 @@ import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -79,7 +83,11 @@ public class Feedback extends AppCompatActivity {
 
     Post post;
 
-    Button prev_btn, one, next_btn;
+    LinearLayout prev_btn, next_btn;
+    ImageView prevArrowImage;
+    TextView one, prevTex;
+
+
 
     //DATABASE----------------
     FirebaseStorage storage;
@@ -88,6 +96,7 @@ public class Feedback extends AppCompatActivity {
     StorageReference referenceImage;
     Query checkUser;
 
+    RelativeLayout relativeLayout;
     LottieAnimationView lottieAnimation, imagePostLottieAnimation, noInternetLottieAnimation;
 
     double sumOfAllrating;
@@ -118,6 +127,9 @@ public class Feedback extends AppCompatActivity {
 
         postBackButton = findViewById(R.id.postBackButtonId);
         lottieAnimation = findViewById(R.id.lottieAnimationId);
+        relativeLayout = findViewById(R.id.relativeLayoutId);
+        prevArrowImage = findViewById(R.id.prevArrowImage);
+        prevTex = findViewById(R.id.prevTex);
 
         //Feedback list
         feedbackListRecycleView = findViewById(R.id.feedbackListRecycleViewId);
@@ -128,8 +140,8 @@ public class Feedback extends AppCompatActivity {
         postAdapter = new PostAdapter(Feedback.this);
         feedbackListRecycleView.setAdapter(postAdapter);
 
-//        loadLastData();
-        loadData();
+        loadLastData();
+//        loadData();
 
         prev_btn = findViewById(R.id.prev_btn);
         one = findViewById(R.id.one);
@@ -180,14 +192,67 @@ public class Feedback extends AppCompatActivity {
 
         referenceFeedbacks = FirebaseDatabase.getInstance().getReference("feedbacks");
 
-        referenceFeedbacks.orderByKey().addListenerForSingleValueEvent(new ValueEventListener() {
+        referenceFeedbacks.orderByKey().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot feedbackSnap : snapshot.getChildren()) {
-                    Post feedback = feedbackSnap.getValue(Post.class);
                     key = feedbackSnap.getKey();
-                    Toast.makeText(Feedback.this, key, Toast.LENGTH_SHORT).show();
                 }
+
+                Query query;
+                query = referenceFeedbacks.orderByKey().endAt(key).limitToLast(contentSize);
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        List<Post> feedbackList = new ArrayList<>();
+                        for(DataSnapshot feedbackSnap : snapshot.getChildren()) {
+                            Post feedback = feedbackSnap.getValue(Post.class);
+                            if(feedbackList.isEmpty()) {
+                                startKey = feedbackSnap.getKey();
+                            }
+                            feedbackList.add(feedback);
+                            key = feedbackSnap.getKey();
+                        }
+
+                        one.setText(pageNumber+"");
+
+                        if(pageNumber == 1) {
+                            prev_btn.setBackgroundResource(R.drawable.solid_btn_2);
+                            prev_btn.setClickable(false);
+                            prev_btn.setElevation(0);
+                            prev_btn.setEnabled(false);
+                        } else {
+                            prev_btn.setBackgroundResource(R.drawable.solid_btn);
+                            prev_btn.setClickable(true);
+                            prev_btn.setElevation(5);
+                            prev_btn.setEnabled(true);
+                        }
+
+                        if(feedbackList.size() < contentSize) {
+                            next_btn.setBackgroundResource(R.drawable.solid_btn_2);
+                            next_btn.setClickable(false);
+                            next_btn.setElevation(0);
+                            next_btn.setEnabled(false);
+                        } else {
+                            next_btn.setBackgroundResource(R.drawable.solid_btn);
+                            next_btn.setClickable(true);
+                            next_btn.setElevation(5);
+                            next_btn.setEnabled(true);
+                        }
+
+                        Collections.reverse(feedbackList);
+                        postAdapter.setItems((ArrayList<Post>) feedbackList);
+                        postAdapter.notifyDataSetChanged();
+                        feedbackListRecycleView.smoothScrollToPosition(0);
+                        isLoading = false;
+                        relativeLayout.setBackgroundColor(Color.parseColor("#1B03A9F4"));
+                        lottieAnimation.setVisibility(View.INVISIBLE);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                    }
+                });
             }
 
             @Override
@@ -206,10 +271,10 @@ public class Feedback extends AppCompatActivity {
         if(key == null) {
             query = referenceFeedbacks.orderByKey().limitToFirst(contentSize);
         } else {
-            query = referenceFeedbacks.orderByKey().startAfter(key).limitToFirst(contentSize);
+            query = referenceFeedbacks.orderByKey().endBefore(startKey).limitToLast(contentSize);
         }
 
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 List<Post> feedbackList = new ArrayList<>();
@@ -225,21 +290,35 @@ public class Feedback extends AppCompatActivity {
                 one.setText(pageNumber+"");
 
                 if(pageNumber == 1) {
+                    prev_btn.setBackgroundResource(R.drawable.solid_btn_2);
+                    prev_btn.setClickable(false);
+                    prev_btn.setElevation(0);
                     prev_btn.setEnabled(false);
                 } else {
+                    prev_btn.setBackgroundResource(R.drawable.solid_btn);
+                    prev_btn.setClickable(true);
+                    prev_btn.setElevation(5);
                     prev_btn.setEnabled(true);
                 }
 
                 if(feedbackList.size() < contentSize) {
+                    next_btn.setBackgroundResource(R.drawable.solid_btn_2);
+                    next_btn.setClickable(false);
+                    next_btn.setElevation(0);
                     next_btn.setEnabled(false);
                 } else {
+                    next_btn.setBackgroundResource(R.drawable.solid_btn);
+                    next_btn.setClickable(true);
+                    next_btn.setElevation(5);
                     next_btn.setEnabled(true);
                 }
 
-//                Toast.makeText(Feedback.this, feedbackList.size()+" ", Toast.LENGTH_SHORT).show();
+                Collections.reverse(feedbackList);
                 postAdapter.setItems((ArrayList<Post>) feedbackList);
                 postAdapter.notifyDataSetChanged();
+                feedbackListRecycleView.smoothScrollToPosition(0);
                 isLoading = false;
+                relativeLayout.setBackgroundColor(Color.parseColor("#1B03A9F4"));
                 lottieAnimation.setVisibility(View.INVISIBLE);
             }
 
@@ -257,10 +336,10 @@ public class Feedback extends AppCompatActivity {
         if(key == null) {
             query = referenceFeedbacks.orderByKey().limitToFirst(contentSize);
         } else {
-            query = referenceFeedbacks.orderByKey().endBefore(startKey).limitToLast(contentSize);
+            query = referenceFeedbacks.orderByKey().startAfter(key).limitToFirst(contentSize);
         }
 
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 List<Post> feedbackList = new ArrayList<>();
@@ -276,20 +355,35 @@ public class Feedback extends AppCompatActivity {
                 one.setText(pageNumber+"");
 
                 if(pageNumber == 1) {
+                    prev_btn.setBackgroundResource(R.drawable.solid_btn_2);
+                    prev_btn.setClickable(false);
+                    prev_btn.setElevation(0);
                     prev_btn.setEnabled(false);
                 } else {
+                    prev_btn.setBackgroundResource(R.drawable.solid_btn);
+                    prev_btn.setClickable(true);
+                    prev_btn.setElevation(5);
                     prev_btn.setEnabled(true);
                 }
 
                 if(feedbackList.size() < contentSize) {
+                    next_btn.setBackgroundResource(R.drawable.solid_btn_2);
+                    next_btn.setClickable(false);
+                    next_btn.setElevation(0);
                     next_btn.setEnabled(false);
                 } else {
+                    next_btn.setBackgroundResource(R.drawable.solid_btn);
+                    next_btn.setClickable(true);
+                    next_btn.setElevation(5);
                     next_btn.setEnabled(true);
                 }
 
+                Collections.reverse(feedbackList);
                 postAdapter.setItems((ArrayList<Post>) feedbackList);
                 postAdapter.notifyDataSetChanged();
+                feedbackListRecycleView.smoothScrollToPosition(0);
                 isLoading = false;
+                relativeLayout.setBackgroundColor(Color.parseColor("#1B03A9F4"));
                 lottieAnimation.setVisibility(View.INVISIBLE);
             }
 
@@ -305,29 +399,29 @@ public class Feedback extends AppCompatActivity {
         //fetchFeedbackListFromDatabase();
     }
 
-//    private void fetchFeedbackListFromDatabase() {
-//        //Get list of Feedback from database
-//        referenceFeedbacks = FirebaseDatabase.getInstance().getReference("feedbacks");
-//        referenceFeedbacks.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                feedbackList = new ArrayList<>();
-//                for(DataSnapshot feedbackSnap : snapshot.getChildren()) {
-//                    Post feedback = feedbackSnap.getValue(Post.class);
-//                    feedbackList.add(feedback);
-//                }
-//
-////                postAdapter = new PostAdapter(Feedback.this, feedbackList);
-//                feedbackListRecycleView.setAdapter(postAdapter);
-//                lottieAnimation.setVisibility(View.INVISIBLE);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//    }
+    private void fetchFeedbackListFromDatabase() {
+        //Get list of Feedback from database
+        referenceFeedbacks = FirebaseDatabase.getInstance().getReference("feedbacks");
+        referenceFeedbacks.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                List<Post>feedbackList = new ArrayList<>();
+                for(DataSnapshot feedbackSnap : snapshot.getChildren()) {
+                    Post feedback = feedbackSnap.getValue(Post.class);
+                    feedbackList.add(feedback);
+                }
+
+//                postAdapter = new PostAdapter(Feedback.this, feedbackList);
+                feedbackListRecycleView.setAdapter(postAdapter);
+                lottieAnimation.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
 
     private void iniPopup() {
 

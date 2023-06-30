@@ -485,7 +485,7 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
             Intent intent = new Intent(UserProfile.this, MainActivity.class);
             intent.putExtra("userName", userNameGlobal);
             startActivity(intent);
-            overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
+            overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
             super.onBackPressed();
         }
     }

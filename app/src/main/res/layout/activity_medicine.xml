@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".Medicine">
 
 
@@ -45,6 +46,23 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <RelativeLayout
+        android:layout_marginTop="240dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/nothingPrescribeLottieAnimationId"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerInParent="true"
+            android:elevation="5dp"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/nothing3" />
+
+    </RelativeLayout>
+
     <LinearLayout
         android:gravity="center_horizontal"
         android:orientation="vertical"
@@ -56,7 +74,7 @@
             android:background="@drawable/pagination_backround"
             android:gravity="center"
             android:layout_marginTop="15dp"
-            android:elevation="10dp"
+            android:elevation="8dp"
             android:layout_width="370dp"
             android:layout_height="45dp">
 
@@ -66,9 +84,11 @@
                 android:layout_height="45dp"
                 android:paddingLeft="10dp"
                 android:elevation="5dp"
+                android:textSize="15sp"
                 android:textColor="@color/black"
                 android:background="@android:color/transparent"
-                android:hint="Search Doctor..." />
+                android:hint="Search Doctor..."
+                android:textColorHint="@color/black"/>
 
 <!--            <EditText-->
 <!--                android:id="@+id/searchDoctorBox"-->
@@ -84,6 +104,79 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"/>
         </LinearLayout>
+
+        <TextView
+            android:text="or"
+            android:textSize="16sp"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:gravity="center"
+        android:weightSum="5"
+        android:background="@color/white"
+        android:layout_width="390dp"
+        android:layout_height="wrap_content">
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/profileAddressInputLayoutId"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2.2"
+                android:elevation="5dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                app:boxStrokeColor="@color/black"
+                app:boxStrokeWidthFocused="1dp"
+                android:textColorHint="@color/black"
+                app:startIconTint="@color/black"
+                app:endIconTint="@color/black"
+                app:hintTextColor="@color/black"
+                android:hint="Speciality">
+
+                <AutoCompleteTextView
+                    android:id="@+id/formDistrictAutoComId"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/profileUpazilaInputLayoutId"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2.8"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:elevation="5dp"
+                android:visibility="visible"
+                app:boxStrokeColor="@color/black"
+                app:boxStrokeWidthFocused="1dp"
+                android:textColorHint="@color/black"
+                app:startIconTint="@color/black"
+                app:endIconTint="@color/black"
+                app:hintTextColor="@color/black"
+                android:hint="Doctors">
+
+                <AutoCompleteTextView
+                    android:id="@+id/formUpazilaAutoComId"
+                    android:textSize="14sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/appointmentListRecycleViewId"

@@ -9,9 +9,8 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:fitsSystemWindows="true"
-    tools:context=".MainActivity"
-    tools:openDrawer="start">
-<!--    tools:openDrawer="start"-->
+    tools:context=".MainActivity">
+    <!--    tools:openDrawer="start"-->
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navView"
@@ -40,7 +39,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:navigationIcon="@android:drawable/ic_menu_sort_by_size" >
+                app:navigationIcon="@android:drawable/ic_menu_sort_by_size">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -110,25 +109,25 @@
                 android:layout_width="0dp"
                 android:layout_height="160dp"
                 android:layout_marginEnd="16dp"
-                android:padding="23dp"
                 android:elevation="5dp"
-                app:lottie_loop="true"
-                app:lottie_autoPlay="true"
-                app:lottie_rawRes="@raw/anim1"
+                android:padding="23dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView2"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+                app:layout_constraintTop_toBottomOf="@+id/toolbar"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/anim1" />
 
             <!--            <ImageView-->
-<!--                android:id="@+id/imageView2"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="160dp"-->
-<!--                android:layout_marginEnd="16dp"-->
-<!--                android:padding="20dp"-->
-<!--                android:src="@drawable/health1"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toEndOf="@+id/textView2"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/toolbar" />-->
+            <!--                android:id="@+id/imageView2"-->
+            <!--                android:layout_width="0dp"-->
+            <!--                android:layout_height="160dp"-->
+            <!--                android:layout_marginEnd="16dp"-->
+            <!--                android:padding="20dp"-->
+            <!--                android:src="@drawable/health1"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintStart_toEndOf="@+id/textView2"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/toolbar" />-->
 
             <LinearLayout
                 android:id="@+id/linearLayout"
@@ -141,39 +140,39 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView2">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/leukemiaCardViewId"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    app:cardElevation="5dp"
-                    app:cardMaxElevation="5dp">
+                <!--                <androidx.cardview.widget.CardView-->
+                <!--                    android:id="@+id/leukemiaCardViewId"-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    android:layout_margin="10dp"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    app:cardElevation="5dp"-->
+                <!--                    app:cardMaxElevation="5dp">-->
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                <!--                    <RelativeLayout-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="match_parent">-->
 
-                        <TextView
-                            android:id="@+id/leukemiaTextId"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/leukemiaImageId"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="10dp"
-                            android:fontFamily="@font/balo_bhai"
-                            android:text="Leukemia"
-                            android:textSize="18sp" />
+                <!--                        <TextView-->
+                <!--                            android:id="@+id/leukemiaTextId"-->
+                <!--                            android:layout_width="wrap_content"-->
+                <!--                            android:layout_height="wrap_content"-->
+                <!--                            android:layout_below="@id/leukemiaImageId"-->
+                <!--                            android:layout_centerHorizontal="true"-->
+                <!--                            android:layout_marginTop="10dp"-->
+                <!--                            android:fontFamily="@font/balo_bhai"-->
+                <!--                            android:text="Leukemia"-->
+                <!--                            android:textSize="18sp" />-->
 
-                        <ImageView
-                            android:id="@+id/leukemiaImageId"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="10dp"
-                            app:srcCompat="@drawable/blood3" />
-                    </RelativeLayout>
-                </androidx.cardview.widget.CardView>
+                <!--                        <ImageView-->
+                <!--                            android:id="@+id/leukemiaImageId"-->
+                <!--                            android:layout_width="75dp"-->
+                <!--                            android:layout_height="75dp"-->
+                <!--                            android:layout_centerHorizontal="true"-->
+                <!--                            android:layout_marginTop="10dp"-->
+                <!--                            app:srcCompat="@drawable/blood3" />-->
+                <!--                    </RelativeLayout>-->
+                <!--                </androidx.cardview.widget.CardView>-->
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/brainTumorCardViewId"
@@ -208,7 +207,45 @@
                             app:srcCompat="@drawable/brain1" />
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/medicalRecordsCardViewId"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    app:cardElevation="5dp"
+                    app:cardMaxElevation="5dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/MedicalRecordsTextId"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/MedicalRecordsImageId"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/balo_bhai"
+                            android:text="Medical Records"
+                            android:textSize="18sp" />
+
+                        <ImageView
+                            android:id="@+id/MedicalRecordsImageId"
+                            android:layout_width="75dp"
+                            android:layout_height="75dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="15dp"
+                            app:srcCompat="@drawable/document2" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
             </LinearLayout>
+
+
+
 
             <LinearLayout
                 android:id="@+id/linearLayout2"
@@ -242,7 +279,7 @@
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="10dp"
                             android:fontFamily="@font/balo_bhai"
-                            android:text="Consultation"
+                            android:text="Appointment"
                             android:textSize="18sp" />
 
                         <ImageView
@@ -276,7 +313,7 @@
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="5dp"
                             android:fontFamily="@font/balo_bhai"
-                            android:text="Medicine"
+                            android:text="Prescribe"
                             android:textSize="18sp" />
 
                         <ImageView
@@ -284,8 +321,8 @@
                             android:layout_width="75dp"
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="15dp"
-                            app:srcCompat="@drawable/medicin3" />
+                            android:layout_marginTop="25dp"
+                            app:srcCompat="@drawable/prescription" />
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
@@ -300,6 +337,156 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+                <!--                <androidx.cardview.widget.CardView-->
+                <!--                    android:id="@+id/nearbyHospitalsCardViewId"-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    android:layout_margin="10dp"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    app:cardElevation="5dp"-->
+                <!--                    app:cardMaxElevation="5dp">-->
+
+                <!--                    <RelativeLayout-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="match_parent">-->
+
+                <!--                        <TextView-->
+                <!--                            android:id="@+id/exploreTextId"-->
+                <!--                            android:layout_width="wrap_content"-->
+                <!--                            android:layout_height="wrap_content"-->
+                <!--                            android:layout_below="@id/exploreImageId"-->
+                <!--                            android:layout_centerHorizontal="true"-->
+                <!--                            android:layout_marginTop="10dp"-->
+                <!--                            android:fontFamily="@font/balo_bhai"-->
+                <!--                            android:text="Nearby Hospitals"-->
+                <!--                            android:textSize="18sp" />-->
+
+                <!--                        <ImageView-->
+                <!--                            android:id="@+id/exploreImageId"-->
+                <!--                            android:layout_width="75dp"-->
+                <!--                            android:layout_height="75dp"-->
+                <!--                            android:layout_centerHorizontal="true"-->
+                <!--                            android:layout_marginTop="15dp"-->
+                <!--                            app:srcCompat="@drawable/explore4" />-->
+                <!--                    </RelativeLayout>-->
+                <!--                </androidx.cardview.widget.CardView>-->
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/updateProfileCardViewId"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    app:cardElevation="5dp"
+                    app:cardMaxElevation="5dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/updateProfileTextId"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/updateProfileImageId"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/balo_bhai"
+                            android:text="Update Profile"
+                            android:textSize="18sp" />
+
+                        <ImageView
+                            android:id="@+id/updateProfileImageId"
+                            android:layout_width="75dp"
+                            android:layout_height="75dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="15dp"
+                            app:srcCompat="@drawable/profile3" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/feedbackCardViewId"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    app:cardElevation="5dp"
+                    app:cardMaxElevation="5dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/FeedbackTextId"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/FeedbackImageId"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/balo_bhai"
+                            android:text="Feedback"
+                            android:textSize="18sp" />
+
+                        <ImageView
+                            android:id="@+id/FeedbackImageId"
+                            android:layout_width="75dp"
+                            android:layout_height="75dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="15dp"
+                            app:srcCompat="@drawable/feedback" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="0dp"
+                android:layout_height="175dp"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+                <!--                <androidx.cardview.widget.CardView-->
+                <!--                    android:id="@+id/medicalRecordsCardViewId"-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    android:layout_margin="10dp"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    app:cardElevation="5dp"-->
+                <!--                    app:cardMaxElevation="5dp">-->
+
+                <!--                    <RelativeLayout-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="match_parent">-->
+
+                <!--                        <TextView-->
+                <!--                            android:id="@+id/MedicalRecordsTextId"-->
+                <!--                            android:layout_width="wrap_content"-->
+                <!--                            android:layout_height="wrap_content"-->
+                <!--                            android:layout_below="@id/MedicalRecordsImageId"-->
+                <!--                            android:layout_centerHorizontal="true"-->
+                <!--                            android:layout_marginTop="10dp"-->
+                <!--                            android:fontFamily="@font/balo_bhai"-->
+                <!--                            android:text="Medical Records"-->
+                <!--                            android:textSize="18sp" />-->
+
+                <!--                        <ImageView-->
+                <!--                            android:id="@+id/MedicalRecordsImageId"-->
+                <!--                            android:layout_width="75dp"-->
+                <!--                            android:layout_height="75dp"-->
+                <!--                            android:layout_centerHorizontal="true"-->
+                <!--                            android:layout_marginTop="15dp"-->
+                <!--                            app:srcCompat="@drawable/document2" />-->
+                <!--                    </RelativeLayout>-->
+                <!--                </androidx.cardview.widget.CardView>-->
+
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/nearbyHospitalsCardViewId"
@@ -335,85 +522,7 @@
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/updateProfileCardViewId"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    app:cardElevation="5dp"
-                    app:cardMaxElevation="5dp">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:id="@+id/updateProfileTextId"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/updateProfileImageId"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="5dp"
-                            android:fontFamily="@font/balo_bhai"
-                            android:text="Update Profile"
-                            android:textSize="18sp" />
-
-                        <ImageView
-                            android:id="@+id/updateProfileImageId"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="15dp"
-                            app:srcCompat="@drawable/profile3" />
-                    </RelativeLayout>
-                </androidx.cardview.widget.CardView>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/linearLayout4"
-                android:layout_width="0dp"
-                android:layout_height="175dp"
-                android:orientation="horizontal"
-                android:padding="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/medicalRecordsCardViewId"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    app:cardElevation="5dp"
-                    app:cardMaxElevation="5dp">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:id="@+id/MedicalRecordsTextId"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/MedicalRecordsImageId"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="10dp"
-                            android:fontFamily="@font/balo_bhai"
-                            android:text="Medical Records"
-                            android:textSize="18sp" />
-
-                        <ImageView
-                            android:id="@+id/MedicalRecordsImageId"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="15dp"
-                            app:srcCompat="@drawable/document2" />
-                    </RelativeLayout>
-                </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/ambulanceCardViewId"
@@ -448,6 +557,7 @@
                             app:srcCompat="@drawable/ambulance5" />
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
+
             </LinearLayout>
 
             <LinearLayout
@@ -495,39 +605,39 @@
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/feedbackCardViewId"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    app:cardElevation="5dp"
-                    app:cardMaxElevation="5dp">
+                <!--                <androidx.cardview.widget.CardView-->
+                <!--                    android:id="@+id/feedbackCardViewId"-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    android:layout_margin="10dp"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    app:cardElevation="5dp"-->
+                <!--                    app:cardMaxElevation="5dp">-->
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                <!--                    <RelativeLayout-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="match_parent">-->
 
-                        <TextView
-                            android:id="@+id/FeedbackTextId"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/FeedbackImageId"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="5dp"
-                            android:fontFamily="@font/balo_bhai"
-                            android:text="Feedback"
-                            android:textSize="18sp" />
+                <!--                        <TextView-->
+                <!--                            android:id="@+id/FeedbackTextId"-->
+                <!--                            android:layout_width="wrap_content"-->
+                <!--                            android:layout_height="wrap_content"-->
+                <!--                            android:layout_below="@id/FeedbackImageId"-->
+                <!--                            android:layout_centerHorizontal="true"-->
+                <!--                            android:layout_marginTop="5dp"-->
+                <!--                            android:fontFamily="@font/balo_bhai"-->
+                <!--                            android:text="Feedback"-->
+                <!--                            android:textSize="18sp" />-->
 
-                        <ImageView
-                            android:id="@+id/FeedbackImageId"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="15dp"
-                            app:srcCompat="@drawable/community4" />
-                    </RelativeLayout>
-                </androidx.cardview.widget.CardView>
+                <!--                        <ImageView-->
+                <!--                            android:id="@+id/FeedbackImageId"-->
+                <!--                            android:layout_width="75dp"-->
+                <!--                            android:layout_height="75dp"-->
+                <!--                            android:layout_centerHorizontal="true"-->
+                <!--                            android:layout_marginTop="15dp"-->
+                <!--                            app:srcCompat="@drawable/community4" />-->
+                <!--                    </RelativeLayout>-->
+                <!--                </androidx.cardview.widget.CardView>-->
             </LinearLayout>
 
             <LinearLayout
@@ -539,20 +649,18 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
-        </LinearLayout>
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout5"></LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="20dp"
+                android:background="#03A9F4"
                 android:orientation="horizontal"
                 android:padding="10dp"
-                android:background="#03A9F4"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
-            </LinearLayout>
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout6"></LinearLayout>
 
             <!--_____________________________________Drawer (start) _____________________________-->
 

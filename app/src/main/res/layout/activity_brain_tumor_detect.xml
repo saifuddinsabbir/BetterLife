@@ -67,7 +67,7 @@
                 android:padding="50dp"
                 app:lottie_autoPlay="true"
                 app:lottie_loop="true"
-                app:lottie_rawRes="@raw/image1" />
+                app:lottie_rawRes="@raw/image3" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -112,30 +112,103 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/pickImageId">
 
-                    <Button
+                    <LinearLayout
                         android:id="@+id/cameraButtonId"
-                        android:layout_width="140dp"
-                        android:layout_height="60dp"
-                        android:backgroundTint="#647C90"
+                        android:gravity="center"
+                        android:background="@drawable/solid_btn"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="15dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="5dp"
+                        android:orientation="vertical"
+                        android:elevation="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
-                        android:drawableLeft="@drawable/white_camera_vector"
-                        android:stateListAnimator="@null"
-                        android:text="Take Picture"
-                        android:fontFamily="@font/balo_bhai"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="12dp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/pickImageId" />
+                        app:layout_constraintTop_toBottomOf="@+id/pickImageId">
 
-                    <Button
+                        <ImageView
+                            android:src="@drawable/camera1"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:elevation="5dp"/>
+
+                        <TextView
+                            android:elevation="5dp"
+                            android:textColor="@color/white"
+                            android:text="Capture Image"
+                            android:textStyle="bold"
+                            android:textSize="13sp"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/balo_bhai"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+
+                    <LinearLayout
                         android:id="@+id/galleryButtonId"
-                        android:layout_width="140dp"
-                        android:layout_height="60dp"
-                        android:backgroundTint="#647C90"
-                        android:drawableLeft="@drawable/white_image_vector"
-                        android:stateListAnimator="@null"
-                        android:text="Choose Image"
-                        android:fontFamily="@font/balo_bhai"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/pickImageId" />
+                        android:gravity="center"
+                        android:background="@drawable/solid_btn"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="15dp"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="10dp"
+                        android:orientation="vertical"
+                        android:elevation="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="12dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/pickImageId">
+
+                        <ImageView
+                            android:src="@drawable/imagegallery3"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginRight="5dp"/>
+
+                        <TextView
+                            android:elevation="5dp"
+                            android:textColor="@color/white"
+                            android:text="Choose from Gallery"
+                            android:textStyle="bold"
+                            android:textSize="13sp"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/balo_bhai"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+<!--                    <Button-->
+<!--                        android:id="@+id/cameraButtonId"-->
+<!--                        android:layout_width="140dp"-->
+<!--                        android:layout_height="60dp"-->
+<!--                        android:backgroundTint="#647C90"-->
+<!--                        android:layout_marginRight="10dp"-->
+<!--                        android:drawableLeft="@drawable/white_camera_vector"-->
+<!--                        android:stateListAnimator="@null"-->
+<!--                        android:text="Take Picture"-->
+<!--                        android:fontFamily="@font/balo_bhai"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toBottomOf="@+id/pickImageId" />-->
+
+<!--                    <Button-->
+<!--                        android:id="@+id/galleryButtonId"-->
+<!--                        android:layout_width="140dp"-->
+<!--                        android:layout_height="60dp"-->
+<!--                        android:backgroundTint="#647C90"-->
+<!--                        android:drawableLeft="@drawable/white_image_vector"-->
+<!--                        android:stateListAnimator="@null"-->
+<!--                        android:text="Choose Image"-->
+<!--                        android:fontFamily="@font/balo_bhai"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintTop_toBottomOf="@+id/pickImageId" />-->
 
                 </LinearLayout>
 
@@ -161,11 +234,20 @@
                         android:fontFamily="@font/balo_bhai"
                         android:textSize="25sp" />
 
+                    <View
+                        android:id="@+id/view"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginRight="40dp"
+                        android:background="#c0c0c0" />
+
                     <TextView
                         android:id="@+id/textView17"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="15dp"
                         android:textSize="16sp" />
 
                     <TextView
@@ -175,31 +257,76 @@
                         android:layout_marginTop="10dp"
                         android:textSize="16sp" />
 
-                    <Button
+                    <TextView
                         android:id="@+id/learnBtn"
                         android:layout_marginBottom="20dp"
                         android:layout_marginTop="30dp"
-                        android:textSize="16sp"
-                        android:text="Learn about\nPituitary Brain Tumor"
-                        android:visibility="invisible"
+                        android:textSize="15sp"
+                        android:text="Pituitary Brain Tumor"
+                        android:fontFamily="@font/balo_bhai"
+                        android:visibility="visible"
+                        android:background="@drawable/solid_btn_2"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:paddingRight="10dp"
+                        android:paddingLeft="10dp"
+                        android:textColor="@color/black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
                 </LinearLayout>
 
-                <com.google.android.material.button.MaterialButton
+                <LinearLayout
                     android:id="@+id/writeFeedbackBrainTumorId"
+                    android:gravity="center"
+                    android:background="@drawable/solid_btn"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:elevation="8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
-                    android:backgroundTint="#026998"
-                    android:drawableLeft="@drawable/create_white_vector"
-                    android:elevation="10dp"
-                    android:stateListAnimator="@null"
-                    android:text="Write Feedback"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout8" />
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout8">
+
+                    <ImageView
+                        android:id="@+id/prevArrowImage"
+                        android:src="@drawable/edit6"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginRight="5dp"/>
+
+                    <TextView
+                        android:id="@+id/prevTex"
+                        android:elevation="5dp"
+                        android:textColor="@color/white"
+                        android:text="Post as Feedback"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/balo_bhai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+<!--                <com.google.android.material.button.MaterialButton-->
+<!--                    android:id="@+id/writeFeedbackBrainTumorId"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="40dp"-->
+<!--                    android:backgroundTint="#026998"-->
+<!--                    android:drawableLeft="@drawable/create_white_vector"-->
+<!--                    android:elevation="10dp"-->
+<!--                    android:stateListAnimator="@null"-->
+<!--                    android:text="Write Feedback"-->
+<!--                    android:fontFamily="@font/balo_bhai"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/linearLayout8" />-->
 
                 <TextView
                     android:layout_width="match_parent"

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -194,14 +195,14 @@ public class Consultation extends AppCompatActivity {
                 formAppointmentNoET.setText("");
                 popupRegister.dismiss();
 
-                profileUpazilaInputLayout.setVisibility(View.INVISIBLE);
-                formScheduleInputLayout.setVisibility(View.INVISIBLE);
-                formAppointmentNoInputLayout.setVisibility(View.INVISIBLE);
-                formUserNameInputLayout.setVisibility(View.INVISIBLE);
-                formFullNameInputLayout.setVisibility(View.INVISIBLE);
-                formDateOfBirthInputLayer.setVisibility(View.INVISIBLE);
-                fromPhoneNoInputLayout.setVisibility(View.INVISIBLE);
-                popupSubmitButton.setVisibility(View.INVISIBLE);
+                profileUpazilaInputLayout.setVisibility(View.GONE);
+                formScheduleInputLayout.setVisibility(View.GONE);
+                formAppointmentNoInputLayout.setVisibility(View.GONE);
+                formUserNameInputLayout.setVisibility(View.GONE);
+                formFullNameInputLayout.setVisibility(View.GONE);
+                formDateOfBirthInputLayer.setVisibility(View.GONE);
+                fromPhoneNoInputLayout.setVisibility(View.GONE);
+                popupSubmitButton.setVisibility(View.GONE);
             }
         });
 
@@ -245,14 +246,14 @@ public class Consultation extends AppCompatActivity {
                                 formAppointmentNoET.setText("");
                                 popupRegister.dismiss();
 
-                                profileUpazilaInputLayout.setVisibility(View.INVISIBLE);
-                                formScheduleInputLayout.setVisibility(View.INVISIBLE);
-                                formAppointmentNoInputLayout.setVisibility(View.INVISIBLE);
-                                formUserNameInputLayout.setVisibility(View.INVISIBLE);
-                                formFullNameInputLayout.setVisibility(View.INVISIBLE);
-                                formDateOfBirthInputLayer.setVisibility(View.INVISIBLE);
-                                fromPhoneNoInputLayout.setVisibility(View.INVISIBLE);
-                                popupSubmitButton.setVisibility(View.INVISIBLE);
+                                profileUpazilaInputLayout.setVisibility(View.GONE);
+                                formScheduleInputLayout.setVisibility(View.GONE);
+                                formAppointmentNoInputLayout.setVisibility(View.GONE);
+                                formUserNameInputLayout.setVisibility(View.GONE);
+                                formFullNameInputLayout.setVisibility(View.GONE);
+                                formDateOfBirthInputLayer.setVisibility(View.GONE);
+                                fromPhoneNoInputLayout.setVisibility(View.GONE);
+                                popupSubmitButton.setVisibility(View.GONE);
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
@@ -310,9 +311,9 @@ public class Consultation extends AppCompatActivity {
                             formDateOfBirthInputLayer.getEditText().setText(String.valueOf(year - Integer.parseInt(substr) + 1));
                             //Toast.makeText(Consultation.this, String.valueOf(year - Integer.parseInt(substr) + 1) , Toast.LENGTH_SHORT).show();
                         }  else {
-                            formFullNameInputLayout.setVisibility(View.INVISIBLE);
-                            formDateOfBirthInputLayer.setVisibility(View.INVISIBLE);
-                            fromPhoneNoInputLayout.setVisibility(View.INVISIBLE);
+                            formFullNameInputLayout.setVisibility(View.GONE);
+                            formDateOfBirthInputLayer.setVisibility(View.GONE);
+                            fromPhoneNoInputLayout.setVisibility(View.GONE);
                         }
                     }
                     @Override
@@ -349,13 +350,13 @@ public class Consultation extends AppCompatActivity {
                 speciality = formDistrictAutoCom.getText().toString();
                 showSecondList();
                 profileUpazilaInputLayout.setVisibility(View.VISIBLE);
-                formScheduleInputLayout.setVisibility(View.INVISIBLE);
-                formAppointmentNoInputLayout.setVisibility(View.INVISIBLE);
-                formUserNameInputLayout.setVisibility(View.INVISIBLE);
-                formFullNameInputLayout.setVisibility(View.INVISIBLE);
-                formDateOfBirthInputLayer.setVisibility(View.INVISIBLE);
-                fromPhoneNoInputLayout.setVisibility(View.INVISIBLE);
-                popupSubmitButton.setVisibility(View.INVISIBLE);
+                formScheduleInputLayout.setVisibility(View.GONE);
+                formAppointmentNoInputLayout.setVisibility(View.GONE);
+                formUserNameInputLayout.setVisibility(View.GONE);
+                formFullNameInputLayout.setVisibility(View.GONE);
+                formDateOfBirthInputLayer.setVisibility(View.GONE);
+                fromPhoneNoInputLayout.setVisibility(View.GONE);
+                popupSubmitButton.setVisibility(View.GONE);
             }
         });
 
@@ -364,12 +365,12 @@ public class Consultation extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 doctor = formUpazilaAutoCom.getText().toString();
                 formScheduleInputLayout.setVisibility(View.VISIBLE);
-                formAppointmentNoInputLayout.setVisibility(View.INVISIBLE);
-                formUserNameInputLayout.setVisibility(View.INVISIBLE);
-                formFullNameInputLayout.setVisibility(View.INVISIBLE);
-                formDateOfBirthInputLayer.setVisibility(View.INVISIBLE);
-                fromPhoneNoInputLayout.setVisibility(View.INVISIBLE);
-                popupSubmitButton.setVisibility(View.INVISIBLE);
+                formAppointmentNoInputLayout.setVisibility(View.GONE);
+                formUserNameInputLayout.setVisibility(View.GONE);
+                formFullNameInputLayout.setVisibility(View.GONE);
+                formDateOfBirthInputLayer.setVisibility(View.GONE);
+                fromPhoneNoInputLayout.setVisibility(View.GONE);
+                popupSubmitButton.setVisibility(View.GONE);
                 //Toast.makeText(Consultation.this, speciality + " " + , Toast.LENGTH_SHORT).show();
             }
         });
@@ -383,10 +384,10 @@ public class Consultation extends AppCompatActivity {
                     int randomNumber = r.nextInt(50);
                     formAppointmentNoET.setText(String.valueOf(randomNumber));
                     formUserNameInputLayout.setVisibility(View.VISIBLE);
-                    formFullNameInputLayout.setVisibility(View.INVISIBLE);
-                    formDateOfBirthInputLayer.setVisibility(View.INVISIBLE);
-                    fromPhoneNoInputLayout.setVisibility(View.INVISIBLE);
-                    popupSubmitButton.setVisibility(View.INVISIBLE);
+                    formFullNameInputLayout.setVisibility(View.GONE);
+                    formDateOfBirthInputLayer.setVisibility(View.GONE);
+                    fromPhoneNoInputLayout.setVisibility(View.GONE);
+                    popupSubmitButton.setVisibility(View.GONE);
                 } else {
                     Toast.makeText(Consultation.this, "Please select Speciality and Doctor first!", Toast.LENGTH_SHORT).show();
                 }
@@ -447,6 +448,12 @@ public class Consultation extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
     }
 
 }

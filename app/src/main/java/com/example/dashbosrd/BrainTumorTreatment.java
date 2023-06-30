@@ -56,6 +56,6 @@ public class BrainTumorTreatment extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         startActivity(new Intent(BrainTumorTreatment.this, MainActivity.class));
-        overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
+        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
     }
 }

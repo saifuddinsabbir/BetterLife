@@ -95,12 +95,21 @@
                 android:layout_height="200dp"/>
 <!--            android:src="@drawable/brain_tumor1"-->
 
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:background="#c0c0c0" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/banner_textview"
                 android:elevation="5dp"
@@ -144,11 +153,19 @@
 
             </LinearLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:background="#c0c0c0" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/banner_textview"
                 android:elevation="5dp"
                 android:padding="10dp"
@@ -170,11 +187,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:background="#c0c0c0" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/banner_textview"
                 android:elevation="5dp"
                 android:padding="10dp"
@@ -196,12 +221,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:background="#c0c0c0" />
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/banner_textview"
                 android:elevation="5dp"
                 android:padding="10dp"

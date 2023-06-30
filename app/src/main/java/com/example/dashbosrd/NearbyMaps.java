@@ -113,4 +113,10 @@ public class NearbyMaps extends AppCompatActivity implements OnMapReadyCallback 
         super.onLowMemory();
         mapView.onLowMemory();
     }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+    }
 }

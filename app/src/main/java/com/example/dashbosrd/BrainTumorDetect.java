@@ -29,6 +29,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -68,7 +69,8 @@ public class BrainTumorDetect extends AppCompatActivity {
     ActivityResultLauncher<Intent> activityResultLauncher;
     ImageView pickImage;
     TextView resultClassTextView, resultClassProbabilityTextView;
-    Button galleryButton, cameraButton, writeFeedbackBrainTumor, learnBtn;
+    LinearLayout galleryButton, cameraButton, writeFeedbackBrainTumor;
+    TextView learnBtn;
     ChipNavigationBar chipNavigationBar;
     Bitmap bitmap, bitmapGlobal;
 
@@ -82,6 +84,7 @@ public class BrainTumorDetect extends AppCompatActivity {
     ProgressBar popupClickProgress;
     TextView writeFeedbackFullName, writeFeedbackUserName, writeFeedbackAvarageRating, writeFeedbackExperianceRating;
 
+    LinearLayout linearLayout8;
 
     float myRating;
     RatingBar writeFeedbackRatingBar;
@@ -126,8 +129,11 @@ public class BrainTumorDetect extends AppCompatActivity {
         resultClassProbabilityTextView = findViewById(R.id.textView18);
         writeFeedbackBrainTumor = findViewById(R.id.writeFeedbackBrainTumorId);
         learnBtn = findViewById(R.id.learnBtn);
+        linearLayout8 = findViewById(R.id.linearLayout8);
 
-        writeFeedbackBrainTumor.setVisibility(View.INVISIBLE);
+        linearLayout8.setVisibility(View.GONE);
+        writeFeedbackBrainTumor.setVisibility(View.GONE);
+
 
         toolBarFunctionalities();
 
@@ -190,6 +196,7 @@ public class BrainTumorDetect extends AppCompatActivity {
                             e.printStackTrace();
                         }
                         pickImage.setImageURI(photoUri);
+                        linearLayout8.setVisibility(View.VISIBLE);
                         writeFeedbackBrainTumor.setVisibility(View.VISIBLE);
                         learnBtn.setVisibility(View.VISIBLE);
                         Animation anim = new AlphaAnimation(0.0f, 1.0f);
@@ -197,7 +204,7 @@ public class BrainTumorDetect extends AppCompatActivity {
                         anim.setStartOffset(20);
                         anim.setRepeatMode(Animation.REVERSE);
                         anim.setRepeatCount(Animation.INFINITE);
-                        writeFeedbackBrainTumor.setAnimation(anim);
+                        learnBtn.setAnimation(anim);
                         predictTheClass();
                         iniPopup();
                         imageLottieAnimation.setVisibility(View.INVISIBLE);
@@ -234,6 +241,7 @@ public class BrainTumorDetect extends AppCompatActivity {
                     bitmap = bmp;
 
                     try{
+                        linearLayout8.setVisibility(View.VISIBLE);
                         writeFeedbackBrainTumor.setVisibility(View.VISIBLE);
                         learnBtn.setVisibility(View.VISIBLE);
                         Animation anim = new AlphaAnimation(0.0f, 1.0f);
@@ -241,13 +249,13 @@ public class BrainTumorDetect extends AppCompatActivity {
                         anim.setStartOffset(20);
                         anim.setRepeatMode(Animation.REVERSE);
                         anim.setRepeatCount(Animation.INFINITE);
-                        writeFeedbackBrainTumor.setAnimation(anim);
+                        learnBtn.setAnimation(anim);
                         predictTheClass();
                         iniPopup();
                         imageLottieAnimation.setVisibility(View.INVISIBLE);
                     }
                     catch (Exception e){
-                        Toast.makeText(BrainTumorDetect.this, "" + e, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(BrainTumorDetect.this, "" + e, Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -311,7 +319,7 @@ public class BrainTumorDetect extends AppCompatActivity {
         referenceImageHistory.child(key).putFile(photoUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Toast.makeText(BrainTumorDetect.this, "image uploaded", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(BrainTumorDetect.this, "image uploaded", Toast.LENGTH_SHORT).show();
                 referenceImageHistory.child(key).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
@@ -427,7 +435,7 @@ public class BrainTumorDetect extends AppCompatActivity {
                         totalNoOfRating++;
                     }
                     writeFeedbackAvarageRating.setText("Average rating: " + decfor.format((sumOfAllrating) / (totalNoOfRating)) + "/5.00");
-                    Toast.makeText(BrainTumorDetect.this, sumOfAllrating + " " + totalNoOfRating, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(BrainTumorDetect.this, sumOfAllrating + " " + totalNoOfRating, Toast.LENGTH_SHORT).show();
                 }
 
                 @Override
@@ -520,7 +528,7 @@ public class BrainTumorDetect extends AppCompatActivity {
         referenceImage.child(key).putFile(photoUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Toast.makeText(BrainTumorDetect.this, "image uploaded", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(BrainTumorDetect.this, "image uploaded", Toast.LENGTH_SHORT).show();
                 referenceImage.child(key).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
@@ -584,6 +592,6 @@ public class BrainTumorDetect extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         startActivity(new Intent(BrainTumorDetect.this, MainActivity.class));
-        overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
+        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
     }
 }

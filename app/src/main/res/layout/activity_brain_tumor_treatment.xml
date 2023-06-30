@@ -84,10 +84,18 @@
                 android:textSize="16sp"
                 android:textColor="@color/black"/>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:background="#c0c0c0" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="30dp"
                 android:fontFamily="sans-serif"
                 android:textColor="@color/black"
                 android:text="Surgery"
@@ -107,11 +115,19 @@
                 android:textSize="16sp"
                 android:textColor="@color/black"/>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:background="#c0c0c0" />
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="30dp"
                 android:fontFamily="sans-serif"
                 android:textColor="@color/black"
                 android:text="Radiation Therapy"
@@ -131,11 +147,19 @@
                 android:textSize="16sp"
                 android:textColor="@color/black"/>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:background="#c0c0c0" />
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="30dp"
                 android:fontFamily="sans-serif"
                 android:textColor="@color/black"
                 android:text="Radiosurgery"
@@ -155,11 +179,19 @@
                 android:textSize="16sp"
                 android:textColor="@color/black"/>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:background="#c0c0c0" />
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="30dp"
                 android:fontFamily="sans-serif"
                 android:textColor="@color/black"
                 android:text="Chemotherapy"
@@ -179,11 +211,19 @@
                 android:textSize="16sp"
                 android:textColor="@color/black"/>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:background="#c0c0c0" />
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="30dp"
                 android:fontFamily="sans-serif"
                 android:textColor="@color/black"
                 android:text="Targeted Drug Therapy"
@@ -203,12 +243,19 @@
                 android:textSize="16sp"
                 android:textColor="@color/black"/>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:background="#c0c0c0" />
 
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="30dp"
                 android:fontFamily="sans-serif"
                 android:textColor="@color/black"
                 android:text="Rehabilitation After Treatment"

@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         drawerLayoutMethod();
 
-        leukemiaCardView = findViewById(R.id.leukemiaCardViewId);
+//        leukemiaCardView = findViewById(R.id.leukemiaCardViewId);
         brainTumorCardView = findViewById(R.id.brainTumorCardViewId);
         consultationCardView = findViewById(R.id.consultationCardViewId);
         medicineCardView = findViewById(R.id.medicineCardViewId);
@@ -91,13 +91,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Picasso.get().load(userDetails.get(SessionManager.KEY_DP)).into(userProfileImage);
         }
 
-        leukemiaCardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, AboutLeukemia.class));
-                ////overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
-            }
-        });
+//        leukemiaCardView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(MainActivity.this, AboutLeukemia.class));
+//                ////overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+//            }
+//        });
 
          brainTumorCardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Intent intent = new Intent(MainActivity.this, AboutBrainTumor.class);
 //                intent.putExtra("userName", userNameIntent);
                 startActivity(intent);
-                ////overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+                overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
             }
         });
 
@@ -113,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, Consultation.class));
+                overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
             }
         });
 
@@ -120,6 +121,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, Medicine.class));
+                overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
             }
         });
 
@@ -129,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Intent intent = new Intent(MainActivity.this, UserProfile.class);
 //                intent.putExtra("userName", userNameIntent);
                 startActivity(intent);
-                ////overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+                overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
             }
         });
 
@@ -137,6 +139,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, NearbyMaps.class));
+                overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
             }
         });
 
@@ -144,6 +147,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, MedicalRecords.class));
+                overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
             }
         });
 
@@ -151,6 +155,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, Ambulance.class));
+                overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
             }
         });
 
@@ -165,6 +170,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, Feedback.class));
+                overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
             }
         });
     }
