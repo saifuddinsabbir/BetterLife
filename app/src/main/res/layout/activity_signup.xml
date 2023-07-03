@@ -214,6 +214,18 @@
                         android:textCursorDrawable="@null" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/isDoctorSwitch"
+                    style="@style/Widget.Material3.CompoundButton.MaterialSwitch"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:fontFamily="@font/balo_bhai"
+                    android:text="Are you a doctor?"
+                    />
+
 
             </LinearLayout>
 
@@ -222,7 +234,7 @@
                 android:id="@+id/signUpSignUpButtonId"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginBottom="10dp"
                 android:backgroundTint="#064271"
                 android:elevation="15dp"

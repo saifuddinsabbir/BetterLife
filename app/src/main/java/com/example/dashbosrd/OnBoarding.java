@@ -21,7 +21,8 @@ public class OnBoarding extends AppCompatActivity {
     ViewPager onBoardingSlider;
     LinearLayout onBoardingDots;
     SliderAdapter sliderAdapter;
-    Button onBoardingGetStartedButton, onBoardingSkipButton, onBoardingNext;
+    LinearLayout onBoardingGetStartedButton;
+    Button onBoardingSkipButton, onBoardingNext;
     Animation onBoardingGetStartedButtonAnimation, onBoardingNextAnimation;
     TextView[] dots;
     int currentPosition;
@@ -82,7 +83,7 @@ public class OnBoarding extends AppCompatActivity {
         for(int i=0; i<dots.length; i++) {
             dots[i] = new TextView(this);
             dots[i].setText(Html.fromHtml("&#8226;"));
-            dots[i].setTextSize(20);
+            dots[i].setTextSize(25);
 
             onBoardingDots.addView(dots[i]);
         }

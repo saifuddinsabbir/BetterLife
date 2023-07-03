@@ -3,6 +3,7 @@ package com.example.dashbosrd;
 import static org.checkerframework.checker.units.UnitsTools.min;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -139,7 +141,7 @@ public class Consultation extends AppCompatActivity {
 
 //                    Toast.makeText(Medicine.this, doctor + " " + doctorName, Toast.LENGTH_SHORT).show();
 
-                    if(userName.equals(userNameGlobal)) {
+                    if (userName.equals(userNameGlobal)) {
                         Appointment appointment = appointmentSnap.getValue(Appointment.class);
                         appointmentsList.add(appointment);
                     }
@@ -159,7 +161,7 @@ public class Consultation extends AppCompatActivity {
     private void iniPopup() {
         popupRegister = new Dialog(this);
         popupRegister.setContentView(R.layout.popup_register);
-        popupRegister.getWindow().setWindowAnimations(R.style.animation );
+        popupRegister.getWindow().setWindowAnimations(R.style.animation);
         popupRegister.getWindow().setBackgroundDrawable(getDrawable(R.drawable.popup_background));
         popupRegister.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         popupRegister.getWindow().getAttributes().gravity = Gravity.CENTER;
@@ -175,7 +177,7 @@ public class Consultation extends AppCompatActivity {
         formUpazilaAutoCom = popupRegister.findViewById(R.id.formUpazilaAutoComId);
         formScheduleAutoCom = popupRegister.findViewById(R.id.formScheduleAutoComId);
         formAppointmentNoInputLayout = popupRegister.findViewById(R.id.formAppointmentNoInputLayoutId);
-        formAppointmentNoET= popupRegister.findViewById(R.id.formAppointmentNoETID);
+        formAppointmentNoET = popupRegister.findViewById(R.id.formAppointmentNoETID);
         popupSubmitButton = popupRegister.findViewById(R.id.popupSubmitButtonId);
         profileUpazilaInputLayout = popupRegister.findViewById(R.id.profileUpazilaInputLayoutId);
         formScheduleInputLayout = popupRegister.findViewById(R.id.formScheduleInputLayoutId);
@@ -211,10 +213,10 @@ public class Consultation extends AppCompatActivity {
             public void onClick(View v) {
                 //checkInternet
                 try {
-//                    String command = "ping -c 1 google.com";
-//                    if(Runtime.getRuntime().exec(command).waitFor() != 0) {
-//                        noInternetLottieAnimation.setVisibility(View.VISIBLE);
-//                    } else {
+                    String command = "ping -c 1 google.com";
+                    if (Runtime.getRuntime().exec(command).waitFor() != 0) {
+                        noInternetLottieAnimation.setVisibility(View.VISIBLE);
+                    } else {
 
                         String speciality = formDistrictAutoCom.getText().toString();
                         String doctor = formUpazilaAutoCom.getText().toString();
@@ -254,18 +256,30 @@ public class Consultation extends AppCompatActivity {
                                 formDateOfBirthInputLayer.setVisibility(View.GONE);
                                 fromPhoneNoInputLayout.setVisibility(View.GONE);
                                 popupSubmitButton.setVisibility(View.GONE);
+
+                                final AlertDialog.Builder builder = new AlertDialog.Builder(Consultation.this);
+
+                                builder.setMessage("Your appointment is added successfully!").setCancelable(true).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.cancel();
+                                    }
+                                });
+                                final AlertDialog alertDialog = builder.create();
+                                alertDialog.show();
+
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(Consultation.this, e.getMessage()+"", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Consultation.this, e.getMessage() + "", Toast.LENGTH_SHORT).show();
                             }
                         });
-                    referenceAppointment.child("prescribed").setValue("false");
+                        referenceAppointment.child("prescribed").setValue("false");
 
-//                    }
+                    }
                 } catch (Exception e) {
-                    Toast.makeText(Consultation.this, e.getMessage()+"", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Consultation.this, e.getMessage() + "", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -297,25 +311,48 @@ public class Consultation extends AppCompatActivity {
                             dateOfBirthFromDB = snapshot.child(typedUserName).child("dateOfBirth").getValue(String.class);
                             genderFromDB = snapshot.child(typedUserName).child("gender").getValue(String.class);
                             bloodGroupFromDB = snapshot.child(typedUserName).child("bloodGroup").getValue(String.class);
-                            addressFromDB = snapshot.child(typedUserName).child("address").getValue(String.class);
+//                            addressFromDB = snapshot.child(typedUserName).child("address").getValue(String.class);
 
-                            formFullNameInputLayout.getEditText().setText(fullNameFromDB);
-                            fromPhoneNoInputLayout.getEditText().setText(phoneNoFromDB);
+                            if (dateOfBirthFromDB.equals("Empty") || genderFromDB.equals("Empty") || bloodGroupFromDB.equals("Empty")) {
+
+                                final AlertDialog.Builder builder = new AlertDialog.Builder(Consultation.this);
+
+                                builder.setMessage("Please, complete your profile first!").setCancelable(false).setPositiveButton("Edit Profile", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        startActivity(new Intent(Consultation.this, UserProfile.class));
+                                    }
+                                }).setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.cancel();
+                                        popupRegister.dismiss();
+                                    }
+                                });
+                                final AlertDialog alertDialog = builder.create();
+                                alertDialog.show();
 
 
 
-                            String substr=dateOfBirthFromDB.substring(dateOfBirthFromDB.length()-4, dateOfBirthFromDB.length());
-                            Calendar cal = Calendar.getInstance();
-                            int year = cal.get(Calendar.YEAR);
+                            } else {
+                                formFullNameInputLayout.getEditText().setText(fullNameFromDB);
+                                fromPhoneNoInputLayout.getEditText().setText(phoneNoFromDB);
 
-                            formDateOfBirthInputLayer.getEditText().setText(String.valueOf(year - Integer.parseInt(substr) + 1));
-                            //Toast.makeText(Consultation.this, String.valueOf(year - Integer.parseInt(substr) + 1) , Toast.LENGTH_SHORT).show();
-                        }  else {
+
+                                String substr = dateOfBirthFromDB.substring(dateOfBirthFromDB.length() - 4, dateOfBirthFromDB.length());
+                                Calendar cal = Calendar.getInstance();
+                                int year = cal.get(Calendar.YEAR);
+
+                                formDateOfBirthInputLayer.getEditText().setText(String.valueOf(year - Integer.parseInt(substr) + 1));
+                                //Toast.makeText(Consultation.this, String.valueOf(year - Integer.parseInt(substr) + 1) , Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
                             formFullNameInputLayout.setVisibility(View.GONE);
                             formDateOfBirthInputLayer.setVisibility(View.GONE);
                             fromPhoneNoInputLayout.setVisibility(View.GONE);
                         }
                     }
+
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
                     }
@@ -378,7 +415,7 @@ public class Consultation extends AppCompatActivity {
         formScheduleAutoCom.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(!speciality.isEmpty() && !doctor.isEmpty()) {
+                if (!speciality.isEmpty() && !doctor.isEmpty()) {
                     formAppointmentNoInputLayout.setVisibility(View.VISIBLE);
                     Random r = new Random();
                     int randomNumber = r.nextInt(50);
@@ -399,12 +436,13 @@ public class Consultation extends AppCompatActivity {
         referenceLocation.child("schedule").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot item : snapshot.getChildren()) {
-                    if(!item.getValue().toString().equals("schedule")) {
+                for (DataSnapshot item : snapshot.getChildren()) {
+                    if (!item.getValue().toString().equals("schedule")) {
                         spinnerList3.add(item.getValue().toString());
                     }
                 }
-                adapter3.notifyDataSetChanged();;
+                adapter3.notifyDataSetChanged();
+                ;
             }
 
             @Override
@@ -418,12 +456,13 @@ public class Consultation extends AppCompatActivity {
         referenceLocation.child("doctors").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot item : snapshot.getChildren()) {
-                    if(!item.getValue().toString().equals("doctors")) {
+                for (DataSnapshot item : snapshot.getChildren()) {
+                    if (!item.getValue().toString().equals("doctors")) {
                         spinnerList.add(item.getValue().toString());
                     }
                 }
-                adapter.notifyDataSetChanged();;
+                adapter.notifyDataSetChanged();
+                ;
             }
 
             @Override
@@ -437,10 +476,11 @@ public class Consultation extends AppCompatActivity {
         referenceLocation.child(speciality).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot item : snapshot.getChildren()) {
+                for (DataSnapshot item : snapshot.getChildren()) {
                     spinnerList2.add(item.getValue().toString());
                 }
-                adapter2.notifyDataSetChanged();;
+                adapter2.notifyDataSetChanged();
+                ;
             }
 
             @Override

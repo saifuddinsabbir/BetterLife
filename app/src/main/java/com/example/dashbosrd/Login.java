@@ -2,6 +2,7 @@ package com.example.dashbosrd;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatCheckBox;
 
 import android.annotation.SuppressLint;
 import android.app.ActivityOptions;
@@ -40,7 +41,7 @@ public class Login extends AppCompatActivity {
 
     LottieAnimationView loginProgressBar, noInternetLogin;
 
-    CheckBox checkboxRememberMe;
+    AppCompatCheckBox checkboxRememberMe;
 
     @SuppressLint("MissingInflatedId")
     @Override

@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
@@ -42,6 +43,9 @@ public class Signup extends AppCompatActivity {
             signUpPhoneNoTextInputLayout, signupPasswordTextInputLayout, signupConfirmPasswordTextInputLayout;
     TextInputEditText signupFullNameTextEditText, signUpUsernameTextInputEditText, signUpEmailTextInputEditText,
             signUpPhoneNoTextEditText, signupPasswordTextEditText, signupConfirmPasswordTextEditText;
+
+    SwitchMaterial isDoctorSwitch;
+
     Button signUpSignUpButton, signUpLoginButton;
 
     FirebaseDatabase rootNode;
@@ -79,6 +83,15 @@ public class Signup extends AppCompatActivity {
         signUpPhoneNoTextEditText = findViewById(R.id.signUpPhoneNoTextEditTextId);
         signupPasswordTextEditText = findViewById(R.id.signupPasswordTextEditTextId);
         signupConfirmPasswordTextEditText = findViewById(R.id.signupConfirmPasswordTextEditTextId);
+
+        isDoctorSwitch = findViewById(R.id.isDoctorSwitch);
+
+//        isDoctorSwitch.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(Signup.this, isDoctorSwitch.isChecked()+"", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         noInternetSignup.setVisibility(View.INVISIBLE);
         successfulLottieAnimation.setVisibility(View.INVISIBLE);
@@ -443,6 +456,8 @@ public class Signup extends AppCompatActivity {
         UserHelperClass helperClass = new UserHelperClass(fullName, userName, email, phoneNo, dateOfBirth, gender, bloodGroup, address, password);
 
         reference.child(userName).setValue(helperClass);
+
+        reference.child(userName).child("isDoctor").setValue(isDoctorSwitch.isChecked());
 
         successfulLottieAnimation.setVisibility(View.VISIBLE);
         new Handler().postDelayed(new Runnable() {

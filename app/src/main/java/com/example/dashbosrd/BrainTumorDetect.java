@@ -6,6 +6,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -14,6 +15,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -328,7 +330,23 @@ public class BrainTumorDetect extends AppCompatActivity {
                         referenceHistory.setValue(history).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
-                                Toast.makeText(BrainTumorDetect.this, "Added to the history", Toast.LENGTH_SHORT).show();
+                                final AlertDialog.Builder builder = new AlertDialog.Builder(BrainTumorDetect.this);
+
+                                builder.setMessage("Resources are added to the History").setCancelable(true).setPositiveButton("GO TO HISTORY", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        startActivity(new Intent(BrainTumorDetect.this, MedicalRecords.class));
+                                    }
+                                }).setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.cancel();
+                                    }
+                                });
+                                final AlertDialog alertDialog = builder.create();
+                                alertDialog.show();
+
+                                //Toast.makeText(BrainTumorDetect.this, "Added to the history", Toast.LENGTH_SHORT).show();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
@@ -537,7 +555,23 @@ public class BrainTumorDetect extends AppCompatActivity {
                         referenceFeedbacks.setValue(post).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
-                                Toast.makeText(BrainTumorDetect.this, "Post Added", Toast.LENGTH_SHORT).show();
+                                final AlertDialog.Builder builder = new AlertDialog.Builder(BrainTumorDetect.this);
+
+                                builder.setMessage("The post is added as a feedback").setCancelable(true).setPositiveButton("GO TO FEEDBACK", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        startActivity(new Intent(BrainTumorDetect.this, Feedback.class));
+                                    }
+                                }).setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.cancel();
+                                    }
+                                });
+                                final AlertDialog alertDialog = builder.create();
+                                alertDialog.show();
+
+                                //Toast.makeText(BrainTumorDetect.this, "Post Added", Toast.LENGTH_SHORT).show();
                                 popAddPost.dismiss();
                             }
                         }).addOnFailureListener(new OnFailureListener() {

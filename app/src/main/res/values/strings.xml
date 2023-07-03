@@ -8,17 +8,20 @@
     <string name="navigation_drawer_close">Close Navigation Drawer</string>
 
     <!--On Boarding Screen-->
-    <string name="first_heading">Detect Leukemia diseases and Brain Tumor</string>
-    <string name="second_heading">Get necessary treatment</string>
-    <string name="third_heading">Book an appointment with the right doctor</string>
-    <string name="fourth_heading">Get medicines delivered to your doorstep</string>
-    <string name="fifth_heading">Keep your Medical history handy</string>
+    <string name="first_heading">Detect and learn about Brain Tumor and its corresponding treatment</string>
+    <string name="second_heading">Schedule an appointment with the right doctor</string>
+    <string name="third_heading">Prescribe appropriate medicine to the patient</string>
+    <string name="fourth_heading">Call ambulance immediately near to your doorstep</string>
+    <string name="fifth_heading">Provide feedback and make a community</string>
 
-    <string name="first_desc">Detect Leukemia diseases and brain tumor is they exist or not sadknddsf af dsfdf dsfdsf</string>
-    <string name="second_desc">sfasdf gfsdg dg grtg dh dhgf j ghjhg j jj j gj gj gy ujyg jyj</string>
-    <string name="third_desc">dfggffd hdh ty hth t h yth ft h fdfdadafd ada d wd w daw d wad aw d</string>
-    <string name="fourth_desc"> cdv f gh uuyi yg  das d a ghgki l ho;  lj d ffdsa f s f DS </string>
-    <string name="fifth_desc">sad fg fj  uk l k  hgfs das d sa fsaefrg r th y hyf fc b xf d h df hfgjfgk hjgh jm hmn h nfgb gb db fb f</string>
+    <string name="first_desc">Revolutionary app empowers early detection and knowledge acquisition of Brain Tumors with the help of machine learning based technology</string>
+    <string name="second_desc">Effortlessly Schedule Appointments with Specialized Doctors through our Android App</string>
+    <string name="third_desc">Ensure optimal patient care with precise medical guidance by prescribing the most suitable medication.</string>
+    <string name="fourth_desc">Ensure prompt emergency medical assistance with our doorstep ambulance service.</string>
+    <string name="fifth_desc">Engage in meaningful discussions, share insights, and foster a supportive community through constructive feedback. </string>
+
+<!--    "Engage in meaningful discussions, share insights, and foster a supportive community through constructive feedback. Join a collaborative platform where individuals connect, exchange ideas, and contribute to a vibrant community built on mutual growth and learning."-->
+
 
 
     <string name="about_brain_tumor1_desc"> A brain tumor is a mass or growth of abnormal cells in your brain. Many different types of brain tumors exist. Some brain tumors are noncancerous (benign), and some brain tumors are cancerous (malignant). Brain tumors can begin in your brain (primarybrain tumors), or cancer can begin in other parts of your body and spread to your brain as secondary (metastatic) brain tumors.

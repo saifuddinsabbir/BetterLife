@@ -1,6 +1,7 @@
 package com.example.dashbosrd;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.text.format.DateFormat;
@@ -9,8 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -151,14 +154,47 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
                             String prescribed = snapshot.child("prescribed").getValue(String.class);
 
                             if(prescribed.equals("true")) {
-                                Intent intentToDoctorInfo = new Intent(mContext, Prescription.class);
-                                intentToDoctorInfo.putExtra("appointmentKey", mData.get(position).getAppointmentKey());
-                                mContext.startActivity(intentToDoctorInfo);
+
+                                final AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+
+                                builder.setMessage("Wow! Your prescription is ready.").setCancelable(true).setPositiveButton("GENERATE PDF", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intentToDoctorInfo = new Intent(mContext, Prescription.class);
+                                        intentToDoctorInfo.putExtra("appointmentKey", mData.get(position).getAppointmentKey());
+                                        mContext.startActivity(intentToDoctorInfo);
+                                    }
+                                }).setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.cancel();
+                                    }
+                                });
+                                final AlertDialog alertDialog = builder.create();
+                                alertDialog.show();
 
                             } else {
-                                Intent intentToDoctorInfo = new Intent(mContext, DoctorInfo.class);
-                                intentToDoctorInfo.putExtra("appointmentKey", mData.get(position).getAppointmentKey());
-                                mContext.startActivity(intentToDoctorInfo);
+                                String contxt = (mContext+"").substring(0, 35);
+//                                Toast.makeText(mContext, contxt, Toast.LENGTH_SHORT).show();
+                                if(!(contxt).equals("com.example.dashbosrd.Consultation@")) {
+                                    Intent intentToDoctorInfo = new Intent(mContext, DoctorInfo.class);
+                                    intentToDoctorInfo.putExtra("appointmentKey", mData.get(position).getAppointmentKey());
+                                    mContext.startActivity(intentToDoctorInfo);
+                                } else {
+
+                                    final AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+
+                                    builder.setMessage("Sorry! Incomplete Prescription").setCancelable(true).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.cancel();
+                                        }
+                                    });
+                                    final AlertDialog alertDialog = builder.create();
+                                    alertDialog.show();
+//                                    Toast.makeText(mContext, "Incomplete Prescription", Toast.LENGTH_SHORT).show();
+                                }
+
 
                             }
                         }

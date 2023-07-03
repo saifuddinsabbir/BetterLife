@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +26,11 @@ import android.widget.Toast;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
@@ -42,6 +48,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     CardView leukemiaCardView, brainTumorCardView, consultationCardView, medicineCardView, updateProfileCardView, feedbackCardView, nearbyHospitalsCardView,
             medicalRecordsCardView, ambulanceCardView, healthTipsCardView;
+
+    DatabaseReference userReference;
 
     SessionManager sessionManager;
     HashMap<String, String> userDetails;
@@ -71,6 +79,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         healthTipsCardView = findViewById(R.id.healthTipsCardViewId);
         userNameTextView = findViewById(R.id.userNameId);
         userProfileImage = findViewById(R.id.userProfileImage);
+
+
+
+//        Toast.makeText(this, userReference.child("isDoctor")+"", Toast.LENGTH_SHORT).show();
 
         userProfileImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,8 +132,37 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         medicineCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, Medicine.class));
-                overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+                userReference = FirebaseDatabase.getInstance().getReference("users");
+
+                userReference.orderByChild("userName").equalTo(userNameGlobal).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        Boolean isDoctor = snapshot.child(userNameGlobal).child("isDoctor").getValue(Boolean.class);
+                        if(isDoctor) {
+                            startActivity(new Intent(MainActivity.this, Medicine.class));
+                            overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+                        } else {
+
+                            final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+                            builder.setMessage("Sorry! You have to be a doctor to proceed there").setCancelable(true).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            });
+                            final AlertDialog alertDialog = builder.create();
+                            alertDialog.show();
+                            //Toast.makeText(MainActivity.this, "You're not eligible to proceed there.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
             }
         });
 
@@ -163,6 +204,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, HealthTips.class));
+                overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
             }
         });
 
@@ -232,22 +274,43 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
-            MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(MainActivity.this)
-                    .setTitle("Exit")
-                    .setMessage("Want to exit?")
-                    .setCancelable(false)
-                    .setPositiveButton("Exit", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            moveTaskToBack(true);
-                            android.os.Process.killProcess(android.os.Process.myPid());
-                            System.exit(1);
-                        }
-                    })
-                    .setNegativeButton("Cancel", null);
 
-            builder.create();
-            builder.show();
+            final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+            builder.setMessage("Exit now?").setCancelable(false).setPositiveButton("EXIT", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    moveTaskToBack(true);
+                    android.os.Process.killProcess(android.os.Process.myPid());
+                    System.exit(1);
+                }
+            }).setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                    dialog.cancel();
+                }
+            });
+            final AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+
+
+//            MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(MainActivity.this)
+//                    .setTitle("EXIT")
+//                    .setMessage("Want to Exit now?")
+//                    .setCancelable(false)
+//                    .setPositiveButton("EXIT", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            moveTaskToBack(true);
+//                            android.os.Process.killProcess(android.os.Process.myPid());
+//                            System.exit(1);
+//                        }
+//                    })
+//                    .setNegativeButton("CANCEL", null);
+//
+//            builder.create();
+//            builder.show();
         }
     }
     @Override
@@ -276,15 +339,55 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.nav_logout:
-                SharedPreferences.Editor editor = getSharedPreferences("UserInfo",
-                        MODE_PRIVATE).edit();
-                editor.putString("userName", "null");
-                editor.apply();
 
-                Intent intent_nav_logout = new Intent(MainActivity.this, Login.class);
-                startActivity(intent_nav_logout);
-                finish();
-                ////overridePendingTransition(R.anim.slide_from_top, R.anim.slide_to_bottom);
+                final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+                builder.setMessage("Log out now?").setCancelable(false).setPositiveButton("LOG OUT", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        SharedPreferences.Editor editor = getSharedPreferences("UserInfo", MODE_PRIVATE).edit();
+                                editor.putString("userName", "null");
+                                editor.apply();
+
+                                Intent intent_nav_logout = new Intent(MainActivity.this, Login.class);
+                                startActivity(intent_nav_logout);
+                                finish();
+                                overridePendingTransition(R.anim.slide_from_top, R.anim.slide_to_bottom);
+                    }
+                }).setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.cancel();
+                    }
+                });
+                final AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+
+//                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(MainActivity.this)
+//                        .setTitle("LOG OUT")
+//                        .setMessage("Do you want to Log out now?")
+//                        .setCancelable(false)
+//                        .setPositiveButton("LOG OUT", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                SharedPreferences.Editor editor = getSharedPreferences("UserInfo",
+//                                        MODE_PRIVATE).edit();
+//                                editor.putString("userName", "null");
+//                                editor.apply();
+//
+//                                Intent intent_nav_logout = new Intent(MainActivity.this, Login.class);
+//                                startActivity(intent_nav_logout);
+//                                finish();
+//                                overridePendingTransition(R.anim.slide_from_top, R.anim.slide_to_bottom);
+//
+//                            }
+//                        })
+//                        .setNegativeButton("NO", null);
+//
+//                builder.create();
+//                builder.show();
+
                 break;
 
             case R.id.nav_rate:

@@ -47,6 +47,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_marginTop="60dp"
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -85,7 +86,7 @@
         android:backgroundTint="#C342BEF6"
         android:textSize="16sp"
         android:fontFamily="@font/balo_bhai"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:text="Register for Appointment"/>
 
 

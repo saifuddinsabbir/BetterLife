@@ -49,7 +49,7 @@ public class Prescription extends AppCompatActivity {
             chiefProblemTex, clinicalFindingsTex, clinicalDiagnosisTex, examinationTex, treatmentPlanTex, adviceTex,
             medicineTex;
 
-    Button downloadPDFBtn1, sharePDFBtn1;
+    LinearLayout downloadPDFBtn1, sharePDFBtn1;
 
     String appointmentKey;
 

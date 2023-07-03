@@ -3,6 +3,7 @@ package com.example.dashbosrd;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatRatingBar;
 import androidx.core.content.ContextCompat;
@@ -12,6 +13,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -188,7 +190,7 @@ public class Feedback extends AppCompatActivity {
     }
 
     private void loadLastData() {
-        int contentSize = 2;
+        int contentSize = 3;
 
         referenceFeedbacks = FirebaseDatabase.getInstance().getReference("feedbacks");
 
@@ -263,7 +265,7 @@ public class Feedback extends AppCompatActivity {
     }
 
     private void loadData() {
-        int contentSize = 2;
+        int contentSize = 3;
 
         referenceFeedbacks = FirebaseDatabase.getInstance().getReference("feedbacks");
 
@@ -329,7 +331,7 @@ public class Feedback extends AppCompatActivity {
     }
 
     private void loadPrevData() {
-        int contentSize = 2;
+        int contentSize = 3;
         referenceFeedbacks = FirebaseDatabase.getInstance().getReference("feedbacks");
 
         Query query;
@@ -585,7 +587,7 @@ public class Feedback extends AppCompatActivity {
         referenceImage.child(key).putFile(pickedPhotoUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Toast.makeText(Feedback.this, "image uploaded", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(Feedback.this, "image uploaded", Toast.LENGTH_SHORT).show();
                 referenceImage.child(key).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
@@ -594,7 +596,17 @@ public class Feedback extends AppCompatActivity {
                         referenceFeedbacks.setValue(post).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
-                                Toast.makeText(Feedback.this, "Post Added", Toast.LENGTH_SHORT).show();
+                                final AlertDialog.Builder builder = new AlertDialog.Builder(Feedback.this);
+
+                                builder.setMessage("The post is added as a feedback").setCancelable(true).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.cancel();
+                                    }
+                                });
+                                final AlertDialog alertDialog = builder.create();
+                                alertDialog.show();
+
                                 popAddPost.dismiss();
                             }
                         }).addOnFailureListener(new OnFailureListener() {

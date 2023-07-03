@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".HealthTips">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,37 +33,454 @@
             android:id="@+id/postHeadingId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="22sp"
             android:fontFamily="@font/balo_bhai"
-            android:text="Health Tips"
+            android:gravity="center"
+            android:text="Realtime Weather (REST API)"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <LinearLayout
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp">
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:fontFamily="@font/balo_bhai"-->
+<!--                android:gravity="center"-->
+<!--                android:text=" Information"-->
+<!--                android:textSize="22sp" />-->
+
+
+            <!--        <TextView-->
+            <!--            android:text="Search for District, State, or Country"-->
+            <!--            android:layout_gravity="left"-->
+            <!--            android:textSize="15sp"-->
+            <!--            android:layout_marginLeft="20dp"-->
+            <!--            android:layout_marginTop="20dp"-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_height="wrap_content"/>-->
+
+            <LinearLayout
+                android:layout_width="370dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/pagination_backround"
+                android:elevation="8dp"
+                android:gravity="center">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/searchLocationBox"
+                    android:layout_width="250dp"
+                    android:layout_height="45dp"
+                    android:background="@android:color/transparent"
+                    android:elevation="5dp"
+                    android:hint="Search Location..."
+                    android:paddingLeft="10dp"
+                    android:inputType="text"
+                    app:endIconMode="clear_text"
+                    app:endIconTint="@color/black"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    android:textSize="17sp" />
+
+                <ImageButton
+                    android:id="@+id/searchBtn"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="20dp"
+                    android:background="#00000000"
+                    android:elevation="5dp"
+                    android:src="@drawable/search_vector3" />
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="20dp"
+                android:text="Or use your Current Location"
+                android:textSize="17sp" />
+
+            <ImageView
+                android:id="@+id/currentLocationBtn"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/rounded_button2"
+                android:elevation="8dp"
+                android:padding="10dp"
+                android:src="@drawable/location" />
+
+
+            <LinearLayout
+                android:id="@+id/weatherCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginBottom="80dp"
+                android:background="@drawable/feedback_card_background"
+                android:elevation="10dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <LinearLayout
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/banner_textview"
+                    android:gravity="center_horizontal"
+                    android:elevation="5dp"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/locationName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/balo_bhai"
+                        android:text="Feni"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+
+                <!--            <View-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="2dp"-->
+                <!--                android:layout_marginTop="5dp"-->
+                <!--                android:layout_marginLeft="60dp"-->
+                <!--                android:layout_marginRight="60dp"-->
+                <!--                android:background="#c0c0c0" />-->
+
+                <ImageView
+                    android:id="@+id/weatherIconImage"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:layout_marginTop="30dp"
+                    android:src="@drawable/cloudy2" />
+
+                <TextView
+                    android:id="@+id/weatherState"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="Mostly Cloudy"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/temperatureTex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="29.07°C"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Feels like "
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/feelsLikeTex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="29.01°C"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/balo_bhai"
+                            android:text="Wind Speed: "
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/windSpeedTex"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="11.2 km/h"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/balo_bhai"
+                            android:text="Wind Direction: "
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/windDirectionTex"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="186°"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!--            <LinearLayout-->
+                <!--                android:gravity="center"-->
+                <!--                android:layout_marginTop="5dp"-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content">-->
+                <!--                -->
+                <!--            </LinearLayout>-->
+
+                <!--            <LinearLayout-->
+                <!--                android:gravity="center"-->
+                <!--                android:layout_marginTop="5dp"-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content">-->
+                <!--                -->
+                <!--            </LinearLayout>-->
+
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/balo_bhai"
+                            android:text="Latitude: "
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/latitudeTex"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="23.0159° N"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/balo_bhai"
+                            android:text="Longitude: "
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/longitudeTex"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="91.3976° E"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/balo_bhai"
+                            android:text="Day: "
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/dayTex"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Sunday"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/balo_bhai"
+                            android:text="Last Updated: "
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/lastUpdatedTex"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="07:00"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <!--            <LinearLayout-->
+                <!--                android:gravity="center"-->
+                <!--                android:layout_marginTop="10dp"-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content">-->
+
+                <!--                -->
+
+                <!--            </LinearLayout>-->
+
+                <!--            <LinearLayout-->
+                <!--                android:gravity="center"-->
+                <!--                android:layout_marginTop="5dp"-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content">-->
+                <!--                -->
+
+                <!--            </LinearLayout>-->
+
+                <!--            <LinearLayout-->
+                <!--                android:gravity="center"-->
+                <!--                android:layout_marginTop="5dp"-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content">-->
+
+                <!--                -->
+
+                <!--            </LinearLayout>-->
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <RelativeLayout
         android:gravity="center"
         android:layout_marginTop="60dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lottieAnimationId"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:id="@+id/loadingLottieAnimation"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:elevation="5dp"
             app:lottie_loop="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="300dp"
             app:lottie_autoPlay="true"
-            app:lottie_rawRes="@raw/doctor_tv" />
+            app:lottie_rawRes="@raw/login5" />
 
-    </LinearLayout>
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/notFoundLottieAnimation"
+            android:layout_width="350dp"
+            android:layout_height="180dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="180dp"
+            android:elevation="5dp"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            android:visibility="invisible"
+            app:lottie_rawRes="@raw/pagenotfound" />
+
+        <TextView
+            android:id="@+id/notFoundTex"
+            android:layout_below="@+id/notFoundLottieAnimation"
+            android:text="Location Not Found"
+            android:visibility="invisible"
+            android:textSize="16sp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
