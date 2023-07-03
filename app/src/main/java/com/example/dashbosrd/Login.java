@@ -73,6 +73,7 @@ public class Login extends AppCompatActivity {
         loginLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                loginProgressBar.setVisibility(View.VISIBLE);
                 checkInternetConnection();
             }
         });
@@ -129,13 +130,11 @@ public class Login extends AppCompatActivity {
         }
 
 
-        loginProgressBar.setVisibility(View.VISIBLE);
         if (!validateUserName() | !validatePassword()) {
             loginProgressBar.setVisibility(View.INVISIBLE);
             return;
         } else {
             isUser();
-            loginProgressBar.setVisibility(View.INVISIBLE);
         }
     }
 

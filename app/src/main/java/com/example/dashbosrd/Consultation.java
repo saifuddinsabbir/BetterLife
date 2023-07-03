@@ -88,6 +88,8 @@ public class Consultation extends AppCompatActivity {
     RecyclerView appointmentListRecycleView;
     AppointmentAdapter appointmentAdapter;
 
+    LottieAnimationView nothingPrescribeLottieAnimation;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +101,7 @@ public class Consultation extends AppCompatActivity {
         sessionManager = new SessionManager(this);
         userDetails = sessionManager.getUsersDetailFromSession();
 
+        nothingPrescribeLottieAnimation = findViewById(R.id.nothingPrescribeLottieAnimationId);
         appointmentListRecycleView = findViewById(R.id.appointmentListRecycleViewId);
         appointmentListRecycleView.setLayoutManager(new LinearLayoutManager(Consultation.this));
         appointmentListRecycleView.setHasFixedSize(true);
@@ -145,6 +148,12 @@ public class Consultation extends AppCompatActivity {
                         Appointment appointment = appointmentSnap.getValue(Appointment.class);
                         appointmentsList.add(appointment);
                     }
+                }
+
+                if (!appointmentsList.isEmpty()) {
+                    nothingPrescribeLottieAnimation.setVisibility(View.INVISIBLE);
+                } else {
+                    nothingPrescribeLottieAnimation.setVisibility(View.VISIBLE);
                 }
 
                 appointmentAdapter = new AppointmentAdapter(Consultation.this, appointmentsList);
