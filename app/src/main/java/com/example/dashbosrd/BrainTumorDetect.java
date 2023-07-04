@@ -149,10 +149,33 @@ public class BrainTumorDetect extends AppCompatActivity {
         learnBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String type = "pituitary";
-                Intent intent = new Intent(BrainTumorDetect.this, BrainTumorDetails.class);
-                intent.putExtra("type", type);
-                startActivity(intent);
+
+                final AlertDialog.Builder builder = new AlertDialog.Builder(BrainTumorDetect.this);
+
+                builder.setMessage("Learn about Pituitary Brain Tumor").setCancelable(false).setPositiveButton("Pituitary", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String type = "pituitary";
+                        Intent intent = new Intent(BrainTumorDetect.this, BrainTumorDetails.class);
+                        intent.putExtra("type", type);
+                        startActivity(intent);
+                    }
+                }).setNegativeButton("Treatment", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        startActivity(new Intent(BrainTumorDetect.this, BrainTumorTreatment.class));
+
+                    }
+                }).setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                final AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+
+
             }
         });
 

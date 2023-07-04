@@ -88,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, UserProfile.class));
+                overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
             }
         });
 
@@ -353,6 +354,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 startActivity(intent_nav_logout);
                                 finish();
                                 overridePendingTransition(R.anim.slide_from_top, R.anim.slide_to_bottom);
+                                finish();
                     }
                 }).setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
                     @Override
@@ -393,7 +395,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_rate:
                 Intent intent_nav_rating = new Intent(MainActivity.this, AppRating.class);
                 startActivity(intent_nav_rating);
-                overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+                overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
                 break;
 
             case R.id.nav_share:

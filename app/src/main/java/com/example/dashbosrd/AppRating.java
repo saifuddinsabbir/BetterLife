@@ -3,6 +3,7 @@ package com.example.dashbosrd;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -70,5 +71,12 @@ public class AppRating extends AppCompatActivity {
             Toast.makeText(AppRating.this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(AppRating.this, MainActivity.class));
+        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+        super.onBackPressed();
     }
 }

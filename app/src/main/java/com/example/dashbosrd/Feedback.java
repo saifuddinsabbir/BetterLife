@@ -657,4 +657,12 @@ public class Feedback extends AppCompatActivity {
         storePostImageIntoDB(key);
 
     }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
+
+        super.onBackPressed();
+    }
 }

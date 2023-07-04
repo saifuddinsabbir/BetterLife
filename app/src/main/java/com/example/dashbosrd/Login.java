@@ -183,6 +183,7 @@ public class Login extends AppCompatActivity {
                         Intent intent = new Intent(Login.this, MainActivity.class);
                         intent.putExtra("userName", userEnteredUsername);
                         startActivity(intent);
+                        overridePendingTransition(R.anim.slide_from_bottom, R.anim.slide_to_top);
                     } else {
                         loginpasswordTextInputLayout.setError("Wrong Password");
                         loginpasswordTextInputLayout.requestFocus();
@@ -221,6 +222,13 @@ public class Login extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+        android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(1);
+        super.onBackPressed();
+    }
 
     public void loginSignupButtonAnimation() {
         loginSignupButton.setOnClickListener(new View.OnClickListener() {
