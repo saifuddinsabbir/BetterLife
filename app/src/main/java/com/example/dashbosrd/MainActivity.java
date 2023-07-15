@@ -140,8 +140,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         Boolean isDoctor = snapshot.child(userNameGlobal).child("isDoctor").getValue(Boolean.class);
                         if(isDoctor) {
-                            startActivity(new Intent(MainActivity.this, Medicine.class));
-                            overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+
+                            final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+                            builder.setMessage("You're authorized as a Doctor. Want to proceed now?").setCancelable(true).setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    startActivity(new Intent(MainActivity.this, Medicine.class));
+                                    overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+                                }
+                            }).setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            });
+
+                            final AlertDialog alertDialog = builder.create();
+                            alertDialog.show();
+
                         } else {
 
                             final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
